@@ -1,0 +1,31 @@
+
+
+
+<krpano>
+	<skin_settings deeplinking="true" />
+	<action name="skin_deeplinking_update_url_process">
+		copy(adr, browser.location);
+		indexoftxt(qi, get(adr), 'startscene=');
+		if(qi GT 0, subtxt(adr, adr, 0, get(qi)));
+		copy(si, scene[get(xml.scene)].index);
+		copy(h, view.hlookat);
+		copy(v, view.vlookat);
+		copy(f, view.fov);
+		copy(d, view.distortion);
+		copy(a, view.architectural);
+		clamp(d, 0.0, 1.0);
+		clamp(a, 0.0, 1.0);
+		set(pp, calc(f LT 10 ? 6 : 2));
+		roundval(h, get(pp));
+		roundval(v, get(pp));
+		roundval(f, get(pp));
+		roundval(d, 2);
+		roundval(a, 1);
+		indexoftxt(wi, get(adr), '?');
+		if(wi GT 0,
+		           set(adr, calc(adr +'&amp;'+ 'startscene=' + si)); ,
+		           set(adr, calc(adr +'?'+ 'startscene=' + si)); 
+		);
+		js( history.replaceState(null, document.title, get(adr)); );
+	</action>
+</krpano>
