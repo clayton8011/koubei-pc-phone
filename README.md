@@ -4,3 +4,4 @@
 "# pano-name-card" 
 "# pano-name-card" 
 "# pano-name-card" 
+"# pano-anme-card" 
