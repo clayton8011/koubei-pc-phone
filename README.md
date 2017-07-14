@@ -7,3 +7,4 @@
 "# pano-anme-card" 
 "# other" 
 "# koubei-pc-phone" 
+"# other" 
