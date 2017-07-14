@@ -6,3 +6,4 @@
 "# pano-name-card" 
 "# pano-anme-card" 
 "# other" 
+"# koubei-pc-phone" 
