@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>景点列表</title>
+		<link rel="stylesheet" type="text/css" href="css/index-reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body class="color-body ">
+		<header>
+			<div class="header base-width">
+				<div class="pull-left"><img src="images/logo.png"/></div>
+				<ul class="pull-left manu-list">
+					<li><a href="index.html">景区景点</a></li>
+					<li><a href="headlines.html">景区头条</a></li>
+					<li class="active"><a href="scenic-spot-list.html">景区特色</a></li>
+				</ul>
+				<div class="pull-right">
+					<span class="user-name">用户：TOM</span>
+					<button class="exit-btn" type="button">退出登录</button>
+				</div>
+			</div>
+		</header>
+		<div class="base-content base-width clearfix">
+			<p class="list-title">景点列表 <button class="pull-right bulid-scenic-spot">新建景点</button></p><!--<button class="filter-btn pull-right">筛选</button>-->
+			<!--<div class="filter-box">
+				<label>景区地址</label>
+				<select class="prov" name="">
+					<option value=""></option>
+				</select>
+				<label>省</label>
+				<select class="city" name="">
+					<option value="">请选择</option>
+				</select>
+				<label>市</label>
+				<label>景区类型</label>
+				<select name="">
+					<option value="">请选择</option>
+				</select>
+			</div>-->
+			<table class="activity-list" border="" cellspacing="" cellpadding="">
+				<thead>
+					<tr><th class="text-center">序号</th><th>活动名称</th><th>活动时间</th><th>活动状态</th><th>权重</th><th>操作</th></tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center"><input type="checkbox" name="" class="checkbox-type-hui" value="" />
+							01</td>
+						<td class="text-over">北京王府井啤酒节</td>
+						<td class="text-over">2017年4月15日-2017年5月18日</td>
+						<td>
+							<label class="switch-btn">
+				                <input class="checked-switch" type="checkbox" />
+				                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+				                <span class="toggle-btn"></span> 
+				            </label>
+						</td>
+						<td>01</td>
+						<td class="edit-grp">
+							<button type="button" class="list-edit-btn" >编辑</button>
+							<!--<a href="">查看</a>-->
+							<button type="button" >删除</button>
+							<button class="sort-btn" type="button" >排序</button>
+							<ul class="sorting-list">
+								<li data-number= "0">置顶</li>
+								<li data-number= "1">上移</li>
+								<li data-number= "2">下移</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="text-center"><input type="checkbox" name="" class="checkbox-type-hui" value="" />
+							02</td>
+						<td class="text-over">北京王府井啤酒节</td>
+						<td class="text-over">2017年4月15日-2017年5月18日</td>
+						<td>
+							<label class="switch-btn">
+				                <input class="checked-switch" type="checkbox" />
+				                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+				                <span class="toggle-btn"></span> 
+				            </label>
+						</td>
+						<td>01</td>
+						<td class="edit-grp">
+							<button type="button" class="list-edit-btn" >编辑</button>
+							<!--<a href="">查看</a>-->
+							<button type="button" >删除</button>
+							<button class="sort-btn" type="button" >排序</button>
+							<ul class="sorting-list">
+								<li data-number= "0">置顶</li>
+								<li data-number= "1">上移</li>
+								<li data-number= "2">下移</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="text-center"><input type="checkbox" name="" class="checkbox-type-hui" value="" />
+							03</td>
+						<td class="text-over">北京王府井啤酒节</td>
+						<td class="text-over">2017年4月15日-2017年5月18日</td>
+						<td>
+							<label class="switch-btn">
+				                <input class="checked-switch" type="checkbox" />
+				                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+				                <span class="toggle-btn"></span> 
+				            </label>
+						</td>
+						<td>01</td>
+						<td class="edit-grp">
+							<button type="button" class="list-edit-btn" >编辑</button>
+							<button type="button" >删除</button>
+							<button class="sort-btn" type="button" >排序</button>
+							<ul class="sorting-list">
+								<li data-number= "0">置顶</li>
+								<li data-number= "1">上移</li>
+								<li data-number= "2">下移</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="text-center"><input type="checkbox" name="" class="checkbox-type-hui" value="" />
+							04</td>
+						<td class="text-over">北京王府井啤酒节</td>
+						<td class="text-over">2017年4月15日-2017年5月18日</td>
+						<td>
+							<label class="switch-btn">
+				                <input class="checked-switch" type="checkbox" />
+				                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+				                <span class="toggle-btn"></span> 
+				            </label>
+						</td>
+						<td>01</td>
+						<td class="edit-grp">
+							<button type="button" class="list-edit-btn" >编辑</button>
+							<button type="button" >删除</button>
+							<button class="sort-btn" type="button" >排序</button>
+							<ul class="sorting-list">
+								<li data-number= "0">置顶</li>
+								<li data-number= "1">上移</li>
+								<li data-number= "2">下移</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="text-center"><input type="checkbox" name="" class="checkbox-type-hui" value="" />
+							05</td>
+						<td class="text-over">北京王府井啤酒节</td>
+						<td class="text-over">2017年4月15日-2017年5月18日</td>
+						<td>
+							<label class="switch-btn">
+				                <input class="checked-switch" type="checkbox" checked="checked" />
+				                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+				                <span class="toggle-btn"></span> 
+				            </label>
+						</td>
+						<td>01</td>
+						<td class="edit-grp">
+							<button class="list-edit-btn" type="button">编辑</button>
+							<!--<button class="view-btn" type="button">查看</button>-->
+							<button type="button" >删除</button>
+							<button class="sort-btn" type="button" >排序</button>
+							<ul class="sorting-list">
+								<li data-number= "0">置顶</li>
+								<li data-number= "1">上移</li>
+								<li data-number= "2">下移</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="activity-edit base-width">
+			<div class="shadow-box shadow-box-first">
+				<p class="scenic-area-title lg-title">活动编辑</p>
+				<div class="activity-inf-box">
+					<div class="input-box">
+						<label>活动名称</label>
+						<div>
+							<input class="activity-sm-input" type="text" name="" id="" value="" placeholder="请输入活动名称" />
+						</div>
+						<label>活动时间</label>
+						<div>
+							<input class="activity-sm-input" type="text" name="" id="" value="" placeholder="例如五月下旬或2017.01.05 08:00-2017.06.01 18:00" />
+						</div>
+						<label>权重</label>
+						<div>
+							<select class="quanzhong" name="">
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+								<option value="">6</option>
+								<option value="">7</option>
+								<option value="">8</option>
+								<option value="">9</option>
+								<option value="">10</option>
+							</select>
+						</div>
+						<label>上传封面</label>
+						<div class="clearfix">
+							<div class="updata-box activity-sm-input pull-left" style="height: 196px;">
+								<img class="updata-img" style="margin-top: 34px;" src="images/activity-updata.png">
+								<p class="updata-tip">点击或拖拽上传封面照片（限一张，格式为jpg)</p>
+							</div>
+							<div class="pull-left" style="margin-left: 50px;">
+								<div class="activity-view-box">
+									<img class="activity-view-img" src="images/activity-view.png"/>
+								</div>
+								<div class="activity-btn-grp clearfix">
+									<button class="pull-left" type="button">预览</button>
+									<button class="pull-right" type="button">选用</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="shadow-box">
+				<p class="scenic-area-title lg-title">详细信息</p>
+				<div class="activity-inf-box">
+					<div class="input-box">
+						<label>景区地址</label>
+						<div id="citySelect">
+							<select class="base-sel prov" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr ">省</label>
+							<select class="base-sel city" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr">市</label>
+							<select class="base-sel dist" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr inside-label-last">县／区</label>
+							<input class="addr-input" type="text" name="" id="" value="" placeholder="请输入景区详细地址" />
+						</div>
+						<label>电子导航图</label>
+						<div>
+							<div class="map">
+								<img src="images/map.png" style="display: block;width: 100%;height: 100%;"/>
+							</div>
+							<!--<div class="sub-button-grp">
+								<button class="save-btn">保存</button>
+								<button class="cancel-btn">取消</button>
+							</div>-->
+						</div>
+						<label>活动介绍</label>
+						<div style="position: relative;">
+							<textarea class="textarea-inp" placeholder="请输入活动介绍" maxlength="200" name="" rows="" cols=""></textarea>
+							<span class="textarea-number">0/200</span>
+						</div>
+						<label>是否有门票</label>
+						<div class="radio-box">
+								<input class="checkbox-type" type="checkbox" name="" id="" value="正星球图" />
+								<span class="check-name">是</span>
+								<input class="checkbox-type" type="checkbox" name="" id="" value="反星球图" />
+								<span class="check-name">否</span>
+								<input type="text" name="" id="" value="" placeholder="请输入门票价格" style="width: 471px;" />
+						</div>
+						<label>交通攻略</label>
+						<div style="position: relative;">
+							<textarea class="textarea-inp" placeholder="请输入交通攻略" maxlength="200" name="" rows="" cols=""></textarea>
+							<span class="textarea-number">0/200</span>
+						</div>
+						<label></label>
+						<div class="sub-button-grp">
+								<button class="save-btn">保存</button>
+								<button class="cancel-btn">取消</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+ 
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/cloud-business.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cityselect.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				businessCircle.isIe()
+
+				 $(".filter-box,#citySelect").citySelect({  
+			           nodata: "none",  
+			           required: false
+			     }); 
+//			      $("#citySelect").citySelect({  
+//		           nodata: "none",  
+//		           required: false
+//		//         prov:"北京",  
+//		//         city:"北京",  
+//		//         dist:"东城区"  
+//		     }); 
+			})
+		</script>
+	</body>
+	
+</html>

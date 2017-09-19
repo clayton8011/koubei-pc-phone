@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var CountryList = function(opts) {
+				this.list = opts.list || {};
+				this._events = {};
+				this.root = opts.el || $('body');
+				if (opts.events) {
+					for(var k in opts.events) {
+						this.on(k,opts.events[k]);
+					}
+				}
+				this.render();
+				this.bindEvent();
+				this.exec('onload');
+				
+			};
+			CountryList.prototype = {
+				render: function() {
+					var item;
+					for (var i = 0,length = this.list.length; i < length;i++) {
+						item = $('<spna class="item" id = "'+i+'">'+this.list[i] + '</span>')
+						this.root.append(item);
+					}
+				},
+				bindEvent:function() {
+					
+				},
+				add:function(name) {
+					
+				}
+			}
+	</script>
+	</body>
+</html>
