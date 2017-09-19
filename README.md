@@ -8,3 +8,4 @@
 "# other" 
 "# koubei-pc-phone" 
 "# other" 
+"# haiDianTuShu" 
