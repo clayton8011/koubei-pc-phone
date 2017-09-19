@@ -1,0 +1,24 @@
+<?php
+
+namespace frontend\modules\shop\controllers;
+
+use common\models\AliOpen;
+use Yii;
+
+
+/**
+ * Default controller for the `shop` module
+ */
+class DefaultController extends BaseController
+{
+    public $layout = '/user_backend';
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+}

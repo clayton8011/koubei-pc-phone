@@ -1,0 +1,348 @@
+<?php
+use frontend\assets\AppAsset;
+
+$this->title = '活动编辑';
+?>
+    <input type="hidden" id="activity-id" value="<?=$activity->id?>">
+<div class="activity-edit base-width" style="display: block;">
+    <div class="shadow-box shadow-box-first">
+        <p class="scenic-area-title lg-title">活动编辑</p>
+        <div class="activity-inf-box">
+            <div class="input-box">
+                <label>活动名称</label>
+                <div>
+                    <input class="activity-sm-input" type="text" name="" id="title" value="<?=$activity->title?>" placeholder="请输入活动名称">
+                </div>
+                <label>活动时间</label>
+                <div>
+                    <input class="activity-sm-input" type="text" name="" id="scenic_time" value="<?=$activity->scenic_time?>" placeholder="例如五月下旬或2017.01.05 08:00-2017.06.01 18:00">
+                </div>
+                <label>权重</label>
+                <div>
+                    <select class="quanzhong" name=""  id="sort">
+                        <option <?=$activity->sort==1?'selected="selected"':''?> value="1">1</option>
+                        <option <?=$activity->sort==2?'selected="selected"':''?>  value="2">2</option>
+                        <option <?=$activity->sort==3?'selected="selected"':''?>  value="3">3</option>
+                        <option <?=$activity->sort==4?'selected="selected"':''?>  value="4">4</option>
+                        <option <?=$activity->sort==5?'selected="selected"':''?>  value="5">5</option>
+                        <option <?=$activity->sort==6?'selected="selected"':''?>  value="6">6</option>
+                        <option <?=$activity->sort==7?'selected="selected"':''?>  value="7">7</option>
+                        <option <?=$activity->sort==8?'selected="selected"':''?>  value="8">8</option>
+                        <option <?=$activity->sort==9?'selected="selected"':''?>  value="9">9</option>
+                        <option <?=$activity->sort==10?'selected="selected"':''?>  value="10">10</option>
+                    </select>
+                </div>
+                <label>上传封面</label>
+                <div class="clearfix">
+                    <input type="hidden" id="pre_img_input" value="<?=$activity->thumb_path?>">
+                    <div class="updata-box activity-sm-input pull-left" id="upload-material" style="height: 196px;">
+                        <img class="updata-img" style="margin-top: 34px;" src="/images/activity-updata.png">
+                        <p class="updata-tip">点击或拖拽上传封面照片（限一张，格式为jpg)</p>
+                    </div>
+                    <div id="material-file" style="display: none;"></div>
+                    <div class="pull-left" style="margin-left: 50px;">
+                        <div class="activity-view-box">
+                            <img class="activity-view-img" id="prev_img" src="<?=$activity->thumb_path?Yii::$app->params['pano_format_domain'].$activity->thumb_path:''?>">
+                        </div>
+<!--                        <div class="activity-btn-grp clearfix">-->
+<!--                            <button class="pull-left" type="button">预览</button>-->
+<!--                            <button class="pull-right" type="button">选用</button>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shadow-box">
+        <p class="scenic-area-title lg-title">详细信息</p>
+        <div class="activity-inf-box">
+            <div class="input-box">
+
+
+                <label>景区地址</label>
+                <div id="citySelect">
+                    <select class="base-sel prov" name="province">
+                        <option value="">请选择</option>
+                    </select>
+                    <label class="inside-label label-addr ">省</label>
+                    <select class="base-sel city" name="city">
+                        <option value="">请选择</option>
+                    </select>
+                    <label class="inside-label label-addr">市</label>
+                    <select class="base-sel dist" name="district">
+                        <option value="">请选择</option>
+                    </select>
+                    <label class="inside-label label-addr inside-label-last">县／区</label>
+                    <input class="addr-input" type="text" name="" id="address-info" value="<?=$activity->address_info?>" placeholder="请输入景区详细地址" />
+                </div>
+                <label>电子导航图</label>
+                <div>
+                    <input type="hidden" id="lng" value="<?=$activity->lng?>"/>
+                    <input type="hidden" id="lat" value="<?=$activity->lat?>"/>
+                    <div class="map" id="container-map">
+
+                    </div>
+                </div>
+
+                <label>活动介绍</label>
+                <div style="position: relative;">
+                    <textarea class="textarea-inp" placeholder="请输入活动介绍" maxlength="200" name="" id="introduce" rows="" cols=""><?=$activity->introduce?></textarea>
+                    <span class="textarea-number">0/200</span>
+                </div>
+                <label>是否有门票</label>
+                <div class="radio-box">
+                    <input class="checkbox-type" type="radio" name="is_ticket"  <?=$activity->is_ticket==1?'checked="checked"':''?> value="1">
+                    <span class="check-name">是</span>
+                    <input class="checkbox-type" type="radio" name="is_ticket" <?=$activity->is_ticket==2?'checked="checked"':''?> value="2">
+                    <span class="check-name">否</span>
+                    <input type="text" name="" id="ticket_price" value="<?=$activity->ticket_price?>" placeholder="请输入门票价格" style="width: 471px;">
+                </div>
+                <label>交通攻略</label>
+                <div style="position: relative;">
+                    <textarea class="textarea-inp" placeholder="请输入交通攻略" id="traffic" maxlength="200" name="" rows="" cols=""><?=$activity->traffic?></textarea>
+                    <span class="textarea-number">0/200</span>
+                </div>
+                <label></label>
+                <div class="sub-button-grp">
+                    <button class="save-btn"  data-loading-text="保存中...">保存</button>
+                    <button class="cancel-btn">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $this->beginBlock('select_address')?>
+
+
+//阻止浏览器默认行为
+document.addEventListener( "dragleave", function(e) {
+    e.preventDefault();
+}, false);
+document.addEventListener( "drop", function(e) {
+    e.preventDefault();
+}, false);
+document.addEventListener( "dragenter", function(e) {
+    e.preventDefault();
+}, false);
+document.addEventListener( "dragover", function(e) {
+    e.preventDefault();
+}, false);
+
+$("#citySelect").citySelect({
+    nodata: "none",
+    required: false
+});
+var map = setAmap({
+    container : 'container-map',
+    lng:'<?=$activity->lng?>',
+    lat:'<?=$activity->lat?>',
+    setlnglat : function(lng, lat){
+        $('#lng').val(lng);
+        $('#lat').val(lat);
+    }
+});
+
+
+// 地址
+var provArr = <?=$activity->address?json_encode(explode('/',$activity->address)):'{}'?>;
+$("#citySelect").citySelect({
+    nodata: "none",
+    required: false,
+    prov: undefined!=provArr[0]?provArr[0]:'',
+    city:undefined!=provArr[1]?provArr[1]:'',
+    dist:undefined!=provArr[2]?provArr[2]:''
+});
+// 地图加载
+if(<?=$activity->lng?> && <?=$activity->lat?>){
+    map.setMarket([<?=$activity->lng?> ,<?=$activity->lat?> ]);
+    map.obj.setCenter([<?=$activity->lng?> ,<?=$activity->lat?> ]);
+    map.obj.setZoom(13);
+}
+
+
+
+$('#citySelect select').change(function(){
+    var _this = $(this);
+    map.searchDistrict(_this.attr('name'), _this.val());
+});
+$('#address-info').keyup(function(){
+    var city = $('#citySelect select');
+    var cityInfo = '';
+    for(var i = 0; i < city.length; i++){
+        if(city.eq(i).val() != null){
+            cityInfo += city.eq(i).val();
+        }
+    }
+    map.placeSearch(cityInfo,$(this).val());
+});
+
+// 上传封面
+var uploader_audio_obj = get_uploader_obj({
+    mime_types: [
+        {title: "jpg,png", extensions: "jpg,png"},
+    ],
+    browse_button : 'upload-material',
+    container_box : 'material-file',
+    max_file_size: '5mb',
+    get_policy_url: '<?=Yii::$app->urlManager->createUrl(['shop/shop-admin/get-policy', 'type' => 'material_images'])?>',
+    selected_upload: false,
+    one_file : true
+});
+
+uploader_audio_obj.uploader.init();
+var box = document.getElementById("upload-material"); //drop区域的DOM元素
+box.addEventListener("drop", function (e) {
+    var fileList = e.dataTransfer.files; //获取文件对象
+
+    var up = uploader_audio_obj.uploader; //plupload的实例对象
+
+    //检测是否是拖拽文件到页面的操作
+    if (fileList.length == 0) {
+        return false;
+    }
+    if(fileList.length > 1){
+        alert('仅支持单文件拖拽上传');
+    }
+    up.addFile(fileList[0]);
+
+}, false);
+
+uploader_audio_obj.files_added = function (up, files) {
+    var str = '';
+    for(var i = 0; i < files.length; i++){
+        str += '<li class="updating" audio-id="" id="' + files[i].id + '">' +
+            '<p class="text-over">'+files[i].name.substring(0, files[i].name.lastIndexOf('.'))+'</p>'+
+            '<div class="gress-box">'+
+            '<div style="width: 0;"></div>'+
+            '</div>'+
+            '<div class="music-btn-grp">'+
+            '<button class="delect-btn"></button>'+
+            '</div>'+
+            '</li>';
+    }
+    $('#audio-list').append(str);
+    uploader_audio_obj.start_upload();
+};
+
+uploader_audio_obj.upload_progress = function(up, file){
+    businessCircle.material_progress($('#'+file.id) ,file.percent);
+}
+
+uploader_audio_obj.upload_success = function (up, file, info, json) {
+    $('#prev_img').attr('src','<?=Yii::$app->params['pano_format_domain']?>'+json.filename);
+    $('#pre_img_input').val(json.filename);
+}
+
+
+var pageObj = {
+    error:function(msg,obj){
+        alert(msg);
+    }
+};
+$('.save-btn').click(function(){
+    var thisBtn = $(this);
+    var dataObj = {
+        id:$('#activity-id').val(),
+        title:'',
+        scenic_time:'',
+        sort:$('#sort').val(),
+        thumb_path:'',
+        address:'',
+        address_info:'',
+        lat:'',
+        lng:'',
+        introduce:'',
+        is_ticket:'',
+        ticket_price:$('#ticket_price').val(),
+        traffic:'',
+    };
+
+    var obj = $('#title');
+    dataObj.title =obj.val();
+    if(!dataObj.title){
+        pageObj.error('景点名称不能为空。',obj);
+        return false;
+    }
+
+    var obj = $('#scenic_time');
+    dataObj.scenic_time =obj.val();
+    if(!dataObj.scenic_time){
+        pageObj.error('活动时间不能为空。',obj);
+        return false;
+    }
+
+    var obj = $('#pre_img_input');
+    dataObj.thumb_path =obj.val();
+    if(!dataObj.thumb_path){
+        pageObj.error('封面不能为空。',obj);
+        return false;
+    }
+
+    dataObj.address = $('select[name="province"]').val()+'/'+$('select[name="city"]').val()+'/'+$('select[name="district"]').val()
+    dataObj.address_info = $('#address-info').val();
+    dataObj.lat = $('#lat').val();
+    dataObj.lng = $('#lng').val();
+    if(!dataObj.lat || !dataObj.lng){
+        pageObj.error('请在地图上标记具体位置。',obj);
+        return false;
+    }
+
+    var obj = $('#introduce');
+    dataObj.introduce =obj.val();
+    if(!dataObj.introduce){
+        pageObj.error('活动介绍不能为空。',obj);
+        return false;
+    }
+
+    var obj = $('#is_ticket');
+    dataObj.is_ticket = $('input[name=is_ticket]:checked').val();
+    if(!dataObj.is_ticket){
+        pageObj.error('请选择是否有门票。',obj);
+        return false;
+    }
+
+    var obj = $('#traffic');
+    dataObj.traffic = obj.val();
+    if(!dataObj.traffic){
+        pageObj.error('请输入交通攻略。',obj);
+        return false;
+    }
+
+    thisBtn.button('loading');
+    $.ajax({
+        type: 'post',
+        url:'<?= Yii::$app->urlManager->createUrl(['scenic/activity/save'])?>',
+        data: dataObj,
+        dataType: 'json',
+        success: function (result) {
+            if(result.status==1){
+                $('#activity-id').val(result['data']['activity_id']);
+                alert('保存成功。');
+            }else{
+                pageObj.error(result.msg);
+            }
+            thisBtn.button('reset');
+        },
+        error:function(){
+            thisBtn.button('reset');
+            pageObj.error('保存出错请重试。');
+        }
+    });
+});
+
+<?php
+$this->endBlock();
+$this->registerJs($this->blocks['select_address']);
+?>
+
+
+<?php
+AppAsset::addCss($this, "@web/css/2.0/index.css");
+AppAsset::addScript($this,"@web/js/jquery.cityselect.js");
+AppAsset::addScript($this,"https://webapi.amap.com/maps?v=1.3&key=".Yii::$app->params['map_key']."&plugin=AMap.DistrictSearch");
+AppAsset::addScript($this,"@web/js/amap.js");
+AppAsset::addScript($this,"@web/js/2.0/cloud-business.js");
+AppAsset::addScript($this,"@web/js/oss_upload/lib/plupload-2.1.2/js/plupload.full.min.js");
+AppAsset::addScript($this,"@web/js/oss_upload/upload.js");
+?>

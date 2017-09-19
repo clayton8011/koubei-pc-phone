@@ -1,0 +1,203 @@
+<?php
+
+/* @var $this yii\web\View */
+/* @var $shop common\models\KoubeiServiceMarketOrder */
+
+$this->title = '店铺管理';
+
+use yii\helpers\Html;
+use frontend\assets\AppAsset;
+?>
+<div class="content-right pull-right">
+    <div class="shop-admin-box">
+        <h5 class="shop-title-name"><?= $shop->shop_name?></h5>
+        <div class="shangquan-box">
+            <label class="shangq-addr">店铺地址：</label><input class="shangq-addr-input" type="text" name="" id="" value="<?= $shop->address?>" placeholder="请输入店铺地址" /><br />
+            <label>全景照片：</label><span class="shangq-tips">请上传1到8张全景照片(长宽比例为2:1)</span>
+            <ul class="add-sceneimg-list clearfix">
+                <li>
+                    <div class="shangq-add-img" id="selectfiles">
+                    </div>
+                    <div id="container"></div>
+                </li>
+            </ul>
+            <label class="page-addr">页面地址：</label><input class="page-addr-input" type="text" name="" id="" value="" placeholder="请输入店铺地址" /><a class="shangq-link" href="#">预览</a><a class="shangq-link" data-toggle="modal" data-garget="#2Dcode-modal "  href="#2Dcode-modal">二维码</a><a class="shangq-link" href="#">复制地址</a>
+            <div class="clearfix">
+                <label class="pull-left page-addr">口碑上线：</label><input class="mui-switch pull-left mui-switch-animbg" type="checkbox" />
+            </div>
+            <div class="clearfix">
+                <label class="page-addr">页面模版：</label>
+                <a href="#" class="pull-right shangq-more">更多&gt;</a>
+            </div>
+            <ul class="template-list clearfix">
+                <li>
+                    <img src="/images/template-list.png"/>
+                    <div class="template-btn-grp clearfix">
+                        <button class="pull-left" type="button">预览</button>
+                        <button class="pull-right" type="button">选用</button>
+                    </div>
+                    <p class="template-selected">当前模版</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--modal-->
+<div id="vr-preview-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document" style="margin-top:100px;background: none;box-shadow: none;width: 330px;">
+    <div class="modal-content" style="background: none;box-shadow: none;border: none;">
+      <!--<div class="modal-header">-->
+        <button type="button" style="opacity:1;cursor: pointer;" class="close" data-dismiss="modal" aria-label="Close"><img src="/images/vr-pre-close.png"/></button>
+      <!--</div>-->
+      <div class="modal-body" style="padding-top: 28px;width: 257px;">
+      	<div class="" id="krpano">
+	      	<img src="/images/template-list.png"/>
+      	</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade in" id="2Dcode-modal">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+        <div class="modal-content">
+            <button type="button" class="close ruler-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <img id="bind-weixin-img" class="qr-code-img">
+            <p class="weinxin-tip">用微信扫描二维码进行绑定</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="rename-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">重命名</h4>
+      </div>
+      <div class="modal-body">
+        <label for="">修改名称</label>
+        <input class="rename-input" type="text" name="" id="" value="" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php $this->beginBlock('page_foot') ?>
+    // 获取全景信息
+    material.getMaterial_url = '<?= Yii::$app->urlManager->createUrl(['shop/shop-admin/get-panoramic'])?>';
+    material.shop_id = '<?= $shop->shop_id?>';
+    material.getMaterial($('.add-sceneimg-list'));
+    // 上传图片
+    var uploader_video_obj = get_uploader_obj({
+        mime_types: [
+            {title: "jpg,png", extensions: "jpg,png"},
+        ],
+        max_file_size: '150mb',
+        get_policy_url: '<?=Yii::$app->urlManager->createUrl(['shop/shop-admin/get-policy', 'type' => 'upload_pano'])?>',
+        selected_upload: false,
+        one_file : false
+    });
+    uploader_video_obj.uploader.init();
+    uploader_video_obj.files_added = function (up, files) {
+        var length = files.length + $('.add-sceneimg-list li').length;
+        if(length > 9){
+            alert('只能上传八张图片哦！');
+            return false;
+        }
+        if(length == 9){
+            $('#selectfiles').parent().remove();
+        }
+        var start = true;
+        for(var i = 0; i < files.length; i++){
+            var reader = new FileReader();
+            reader.readAsDataURL(files[i].getNative());
+            reader.onload = (function (e) {
+                var image = new Image();
+                image.src = e.target.result;
+                image.onload = function () {
+                    if(checkImgWidthAndHeight(this.width, this.height)){
+                        start = false;
+                    }
+                }
+            });
+        }
+        if(start){
+            var str = '';
+            for(var i = 0; i < files.length; i++){
+                str += '<li scene-id="" id="'+files[i].id+'">'+
+                        '<img src=""/>'+
+                        '<div class="del-btn-box" style="display: none;">'+
+                            '<button class="pull-right" type="button">删除</button>'+
+                        '</div>'+
+                        '<p class="text-over vr-set-title">'+files[i].name.substring(0, files[i].name.lastIndexOf('.'))+'</p>'+
+                        '<div class="progress-box">'+
+                            '<div class="progress-bg">'+
+                                '<div class="progress-left">'+
+                                    '<div class="circleProgress leftcircle"></div>'+
+                                '</div>'+
+                                '<div class="progress-right">'+
+                                    '<div class="circleProgress rightcircle"></div>'+
+                                '</div>'+
+                                '<p class="pro-number">0%</p>'+
+                            '</div>'+
+                        '</div>'+
+                    '</li>';
+            }
+            $('.add-sceneimg-list li[scene-id]:last').after(str);
+            uploader_video_obj.start_upload();
+        }
+    };
+
+    uploader_video_obj.upload_success = function (up, file, info, json) {
+        json['type'] = 'images';
+        json['file_title'] = file.name.substring(0, file.name.lastIndexOf('.'));
+        json['panoramic_id'] = material.panoramic_id;
+        json['shop_id'] = material.shop_id;
+        $.ajax({
+            type: 'POST',
+            url: "<?=Yii::$app->urlManager->createUrl(['shop/shop-admin/add-material'])?>",
+            data: json,
+            success: function (res) {
+                if (res.status == 1) {
+                    $('#'+file.id).attr('scene-id',res.data.scene_id);
+                    $('#'+file.id).find('.progress-box').remove();
+                    $('#'+file.id).children('img').attr('src','/images/cutting.png');
+                    $('#'+file.id).append('<button class="rename-btn"><img src="/images/rename-btn.png"/>重命名</button>');
+                    alert(json.file_title+'上传成功。');
+                } else {
+                    alert(json.file_title+'上传失败，请重试。');
+                }
+            },
+            error: function () {
+                alert('上传失败，请重试。');
+            },
+            dataType: 'json'
+        });
+    }
+
+    //验证图片大小限制
+    function checkImgWidthAndHeight(width, height) {
+        if (width != 2 * height) {
+            alert('球面全景图片必须为2:1比例');
+            return false;
+        }
+        /*if (width < 2000 || height < 1000) {
+            alert('球面全景图片像素必须为2000*1000以上');
+            return false;
+        }*/
+        return true;
+    }
+<?php
+$this->endBlock();
+$this->registerJs($this->blocks['page_foot']);
+AppAsset::addScript($this,"@web/js/upload_material.js");
+AppAsset::addScript($this,"@web/js/oss_upload/lib/plupload-2.1.2/js/plupload.full.min.js");
+AppAsset::addScript($this,"@web/js/oss_upload/upload.js");
+?>

@@ -1,0 +1,159 @@
+<?php
+/* @var $this yii\web\View */
+/* @var $noticeList array */
+
+use frontend\assets\AppAsset;
+$this->title = '景区须知';
+?>
+<div class="base-content base-width">
+    <div class="notice-box" style="display: block;">
+        <p class="scenic-area-title lg-title">景区须知配置</p>
+        <div class="scenic-area-inf-box">
+            <p class="scenic-edit-tips" style="display: none;">请输入景点介绍/请输入开放时间/请输入门票信息 <img class="close-tip pull-right" src="/images/tip-close.png"></p>
+            <div class="input-box">
+                <div class="default-notice">
+                    <?php if($noticeList) : ?>
+                        <?php foreach ($noticeList as $noticeKey => $noticeVal) :?>
+                            <label><?= $noticeVal['title']?></label>
+                            <div>
+                                <textarea title="<?= $noticeVal['title']?>" id="<?= $noticeVal['id']?>" class="textarea-inp textarea-sm" placeholder="请输入景区介绍。" maxlength="200" name="" rows="" cols=""><?= $noticeVal['content']?></textarea>
+                            </div>
+                        <?php endforeach;?>
+                    <?php else:?>
+                        <label>景区介绍</label>
+                        <div>
+                            <textarea title="景区介绍" class="textarea-inp textarea-sm" placeholder="请输入景区介绍。" maxlength="200" name="" rows="" cols=""></textarea>
+                        </div>
+                        <label>门票价格</label>
+                        <div>
+                            <textarea title="门票价格" class="textarea-inp textarea-sm" placeholder="请输入门票价格，例如：15/人  免费" maxlength="200" name="" rows="" cols=""></textarea>
+                        </div>
+                        <label>开放时间</label>
+                        <div>
+                            <textarea title="开放时间" class="textarea-inp textarea-xs" placeholder="请输入开放时间，例如：周一至周五 8:00-18:00。" maxlength="200" name="" rows="" cols=""></textarea>
+                        </div>
+                        <label>免费政策</label>
+                        <div>
+                            <textarea title="免费政策" class="textarea-inp textarea-sm" placeholder="请输入免费政策，例如：儿童身高1.2米一下免费，持残疾人证免费。" maxlength="200" name="" rows="" cols=""></textarea>
+                        </div>
+                        <label>优惠政策</label>
+                        <div>
+                            <textarea title="优惠政策" class="textarea-inp textarea-xs" placeholder="请输入优惠政策，例如：持老年人优待证可享受半价优惠。" maxlength="200" name="" rows="" cols=""></textarea>
+                        </div>
+                        <label>交通攻略</label>
+                        <div>
+                            <textarea title="交通攻略" class="textarea-inp textarea-xs" placeholder="请输入交通攻略，例如：公交可乘坐52路到劲松桥东站转乘41路抵达厚俸桥南（北京欢乐谷）站下车即到；地铁可乘坐7号线直达欢乐谷。" maxlength="200" name="" rows="" cols=""></textarea>
+                        </div>
+                    <?php endif;?>
+                </div>
+                <div class="input-notice" style="display: none;">
+                    <label>标题</label>
+                    <div><input type="text" name="" class="notice-input-title" maxlength="40" value="" placeholder="单行输入"><button class="notice-input-confirm">确认</button><button class="notice-input-cancel">取消</button></div>
+                    <label>优惠政策</label>
+                    <div style="position: relative;">
+                        <textarea class="textarea-inp" placeholder="多行输入" maxlength="200" name="" rows="" cols=""></textarea>
+                        <span class="textarea-number">0/200</span>
+                    </div>
+                </div>
+                <label></label>
+                <div>
+                    <button class="add-totice">
+                        <img src="/images/add-notice.png">
+                        自定义添加
+                    </button>
+                    <div class="sub-button-grp">
+                        <button class="save-btn">保存</button>
+                        <button class="cancel-btn">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $this->beginBlock('create');?>
+
+    $(".close-tip").on('click',function(){
+        $(this).parent().hide();
+    })
+    $(".add-totice").on('click',function(){
+        $('.input-notice').show();
+    })
+    $(".notice-input-cancel").on('click',function(){
+        $('.input-notice input,textarea').val(null);
+        $('.input-notice').hide();
+    });
+    $(".notice-input-confirm").on('click',function(){
+        if(!$('.input-notice input').val()){
+            alert('标题！');return false;
+        }
+        if(!$('.input-notice textarea').val()){
+            alert('内容！');return false;
+        }
+        var str = '<label>'+$('.input-notice input').val()+'</label>'+
+            '<div>'+
+                '<textarea title="'+$('.input-notice input').val()+'" class="textarea-inp textarea-sm" placeholder="" maxlength="200" name="" rows="" cols="">'+$('.input-notice textarea').val()+'</textarea>'+
+            '</div>';
+        $('.input-notice input,textarea').val(null);
+        $('.input-notice').hide();
+        $('.default-notice').append(str);
+    });
+
+    $('.save-btn').click(function(){
+        var saveData = [];
+        $('.default-notice textarea').each(function(){
+            var _this = $(this);
+            if(!_this.val()){
+                errors();
+                saveData = [];
+                return false;
+            }
+            if(!_this.attr('title')){
+                errors();
+                saveData = [];
+                return false;
+            }
+            saveData.push({
+                'id' : _this.attr('id') ? _this.attr('id') : 0,
+                'title' : _this.attr('title'),
+                'content' : _this.val()
+            });
+        });
+        if(saveData.length){
+            $.ajax({
+                type : 'post',
+                url : '<?= Yii::$app->urlManager->createUrl(['scenic/scenic-notice/save-notice'])?>',
+                data : {data : saveData},
+                dataType : 'json',
+                success : function(result){
+                    if(result.status == 1){
+                        for(var i=0; i < result.data.length;i++){
+                            $('textarea[title='+result.data[i].title+']').attr('id',result.data[i].id)
+                        }
+                        alert('保存成功');
+                        location.href='<?= Yii::$app->urlManager->createUrl(['scenic/scenic-admin/index'])?>';
+                    }else{
+                        alert(result.msg);
+                    }
+                },
+                error : function(){
+                    alert('保存失败，请检查填入数据');
+                }
+            });
+        }
+
+    });
+    function errors(){
+        $('.scenic-edit-tips').fadeIn();
+        window.scrollBy(0,-1000000000);
+        setTimeout(function(){
+            $('.scenic-edit-tips').fadeOut();
+        },3000);
+    }
+<?php
+$this->endBlock();
+$this->registerJs($this->blocks['create']);
+?>
+<?php
+AppAsset::addCss($this,"@web/css/2.0/index.css");
+?>

@@ -1,0 +1,50 @@
+var businessCircle = {
+	event:null,
+	init:function() {
+	    if(!event) {
+	    	businessCircle.bindEvent;
+	    }
+	},
+	bindEvent:$(function() {
+//		菜单部分
+		$('#manu-list').on('click','a',function() {
+			var _this =this;
+			$('#manu-list').find(".active").removeClass('active');
+			$(_this).addClass("active");
+		})
+		$("#template-list").on('click','a',function() {
+//				$("#heading-template").find('a').addClass("coll");
+			var _id ="heading-"+ this.parentNode.parentNode.id.replace("-list","");
+			$("#"+_id).find('a').addClass("coll");
+		})
+		$('#template-list,#shangquan-list').on('hide.bs.collapse', function () {
+			var _id = this.id.replace("-list","");
+			$("#heading-"+_id).find('a').removeClass("coll");
+		});
+//菜单部分结束
+		$(".shop-list").on('click','.vr-set-btn',function(){
+			$('.shop-list-box').hide();
+			$('.vr-set-box').fadeIn();
+		});
+		$(".back-btn").on('click',function() {
+			$('.vr-set-box').hide();
+			$('.shop-list-box').fadeIn();
+		})
+	}),
+	progress:function(obj,num) {
+		$('#'+obj).find('.pro-number').text(num+"%");
+		if(num < 50 && num >-1) {
+			deg=225-num*3.6;
+			$('#'+obj).find(".rightcircle").css({"transform":"rotate(225deg)","-ms-transform":"rotate(225deg)","-moz-transform":"rotate(225deg)","-webkit-transform":"rotate(225deg)"});
+			$('#'+obj).find(".progress-right").hide();
+			$('#'+obj).find(".leftcircle").css({"transform":"rotate("+deg+"deg)","-ms-transform":"rotate("+deg+"deg)","-moz-transform":"rotate("+deg+"deg)","-webkit-transform":"rotate("+deg+"deg)"});
+		}else {
+			$('#'+obj).find(".progress-right").show();
+			deg=45-num*3.6;
+			$('#'+obj).find(".leftcircle").css({"transform":"rotate(45deg)","-ms-transform":"rotate(45deg)","-moz-transform":"rotate(45deg)","-webkit-transform":"rotate(45deg)"})
+			$('#'+obj).find(".rightcircle").css({"transform":"rotate("+deg+"deg)","-ms-transform":"rotate("+deg+"deg)","-moz-transform":"rotate("+deg+"deg)","-webkit-transform":"rotate("+deg+"deg)"});
+		}
+	}
+
+}
+businessCircle.init();

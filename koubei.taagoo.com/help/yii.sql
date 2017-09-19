@@ -1,0 +1,206 @@
+#动景云商 1.0
+CREATE TABLE `tg_member` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(16) NOT NULL DEFAULT '0' COMMENT '阿里云用户ID',
+  `username` varchar(20) NOT NULL DEFAULT '' COMMENT '用户名',
+  `app_auth_token` varchar(40) NOT NULL DEFAULT '' COMMENT '用来调用数据的token',
+  `app_refresh_token` varchar(40) NOT NULL DEFAULT '' COMMENT '刷新app_auth_token',
+  `expires_in` varchar(16) NOT NULL DEFAULT '0' COMMENT 'app_auth_token 过期时间',
+  `re_expires_in` varchar(16) NOT NULL DEFAULT '0' COMMENT 'app_refresh_token过期时间',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='阿里用户表';
+
+CREATE TABLE `tg_koubei_service_market_order` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT,
+    `commodity_order_id` varchar(32) NOT NULL DEFAULT '' COMMENT '口碑订单编号',
+    `order_time` varchar(32) NOT NULL DEFAULT '' COMMENT '订购时间',
+    `title` varchar(128) NOT NULL DEFAULT '' COMMENT '服务名称',
+    `order_item_num` varchar(7) NOT NULL DEFAULT '' COMMENT '门店数量',
+    `total_price` varchar(10) NOT NULL DEFAULT '' COMMENT '总价格',
+    `biz_type` varchar(64) NOT NULL DEFAULT '' COMMENT '业务分类',
+    `specifications` varchar(128) NOT NULL DEFAULT '' COMMENT '服务的不同版本',
+    `phone_no` varchar(19) NOT NULL DEFAULT '' COMMENT '订单所属人联系方式',
+    `online_time` varchar(32) NOT NULL DEFAULT '' COMMENT '上架时间',
+    `expire_date` varchar(32) NOT NULL DEFAULT '' COMMENT '过期时间',
+    `order_status` varchar(10) NOT NULL DEFAULT '' COMMENT 'TO_DO-未实施,DOING-实施中,TO_CONFIRM-待商户确认,DONE-已完成,MERCHANT_REJECTED-商户已回绝,MERCHANT_CANCELLED-商户已取消,ISV_REJECTED-服务商已回绝,ISV_CANCELLED-服务商已取消',
+    `shop_status` varchar(10) NOT NULL DEFAULT '' COMMENT '店铺状态（ONLINE--已上架 OFFLINE--未上架 AVAILABLE--已开通 INIT--未开通 EXPIRED--已过期）',
+    `status` varchar(25) NOT NULL DEFAULT '' COMMENT '待服务商接单',
+    `commodity_id` varchar(32) NOT NULL DEFAULT '' COMMENT '订购的服务商品ID',
+    `merchant_pid` varchar(16) NOT NULL DEFAULT '' COMMENT '商户PID',
+    `merchant_name` varchar(256) NOT NULL DEFAULT '' COMMENT '商户名称',
+    `brand_name` varchar(64) NOT NULL DEFAULT '' COMMENT '品牌名称',
+    `contacts` varchar(64) NOT NULL DEFAULT '' COMMENT '订单联系人',
+    `shop_name` varchar(1024) NOT NULL DEFAULT '' COMMENT '店铺名称',
+    `shop_id` varchar(64) NOT NULL DEFAULT '' COMMENT '店铺ID',
+    `category` varchar(128) NOT NULL DEFAULT '' COMMENT '店铺品类',
+    `province` varchar(20) NOT NULL DEFAULT '' COMMENT '店铺所在的省份',
+    `city` varchar(128) NOT NULL DEFAULT '' COMMENT '店铺所在的市',
+    `address` varchar(128) NOT NULL DEFAULT '' COMMENT '店铺所在具体位置',
+    `created_at` int unsigned NOT NULL DEFAULT '0' COMMENT '创建日期',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `commodity_order_id` (`commodity_order_id`)
+) ENGINE=InnoDB  AUTO_INCREMENT=1  DEFAULT CHARSET=utf8 COMMENT='口碑服务市场订单';
+
+CREATE TABLE `tg_panoramic` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) unsigned NOT NULL COMMENT '所属用户',
+  `shop_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '商铺ID',
+  `template` int(11) NOT NULL DEFAULT '1' COMMENT '模板',
+  `showlogo` tinyint(4) NOT NULL DEFAULT '0' COMMENT '隐藏logo',
+  `custom_logo` int(11) NOT NULL DEFAULT '0' COMMENT '自定义logo 0 为系统图标',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
+  `process_percent` int(11) DEFAULT '0' COMMENT '发布进度',
+  `created_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='全景组';
+
+CREATE TABLE `tg_panoramic_list` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `panoramic_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属全景组',
+  `panoramic_material_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '全景素材id',
+  `sort_val` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '排序值',
+  `created_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建日期',
+  `lock` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0正常 1锁住',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '1正常 2删除',
+  `panoramic_material_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '场景名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='全景组列表';
+
+CREATE TABLE `tg_panoramic_material` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) unsigned NOT NULL COMMENT '所属用户',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '标题',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除 3待审核 4审核未通过 5待切图 6审核未通过并删除',
+  `width` float unsigned NOT NULL DEFAULT '0' COMMENT '宽',
+  `height` float unsigned NOT NULL DEFAULT '0' COMMENT '高',
+  `size` float unsigned NOT NULL DEFAULT '0' COMMENT '大小',
+  `scene_str` text COLLATE utf8_unicode_ci COMMENT '场景字符串',
+  `image_str` text COLLATE utf8_unicode_ci COMMENT '场景image字符串',
+  `remote_path` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'oss路径',
+  `tilesize` float unsigned NOT NULL DEFAULT '0' COMMENT '切图尺寸',
+  `img_level_size` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '切图级别尺寸',
+  `created_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='全景图素材';
+
+# 动景云商 二期
+CREATE TABLE `tg_scenic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '景区名称',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `scenic_level` int(11) NOT NULL DEFAULT '0' COMMENT '景区等级',
+  `scenic_type` int(11) NOT NULL DEFAULT '0' COMMENT '景区类型',
+  `panoramic_id` int(11) NOT NULL DEFAULT '0' COMMENT '动景ID',
+  `start_rule` tinyint(4) NOT NULL DEFAULT '1' COMMENT '开场图样式（1无 2正星球图 3反星球图）',
+  `introduce` text COMMENT '景区介绍',
+  `audio_id` int(11) NOT NULL DEFAULT '0' COMMENT '音频ID',
+  `drawing_open` tinyint(4) NOT NULL DEFAULT '0' COMMENT '手绘图开关（0关闭 1 打开）',
+  `drawing` int(11) NOT NULL DEFAULT '0' COMMENT '手绘图',
+  `address` varchar(100) NOT NULL DEFAULT '' COMMENT '地址',
+  `address_info` varchar(200) NOT NULL DEFAULT '' COMMENT '详细地址',
+  `lat` char(20) NOT NULL DEFAULT '' COMMENT '纬度',
+  `lng` char(20) NOT NULL DEFAULT '' COMMENT '经度',
+  `thumb` int(11) NOT NULL DEFAULT '0' COMMENT '封面',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='景区表';
+
+CREATE TABLE `tg_scenic_audio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '音频标题',
+  `path` varchar(512) NOT NULL DEFAULT '' COMMENT '音频路径',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `size` int(11) NOT NULL DEFAULT '0' COMMENT '大小',
+  `rel_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1景区,2景点',
+  `rel_id` int(11) NOT NULL DEFAULT '1' COMMENT '对应rel_type的表ID',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1正常 2 删除',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1正常 2 删除',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='景区景点解说语音表';
+
+CREATE TABLE `tg_scenic_drawing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '手绘图标题',
+  `path` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '手绘图路径',
+  `width` float NOT NULL DEFAULT '0' COMMENT '宽',
+  `height` float NOT NULL DEFAULT '0' COMMENT '高',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1正常 2 删除',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='手绘图表';
+
+CREATE TABLE `tg_scenic_level` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '等级名称',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='景区等级表';
+
+CREATE TABLE `tg_scenic_notice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '景区须知标题',
+  `content` text COMMENT '景区须知内容',
+  `scenic_id` int(11) NOT NULL DEFAULT '0' COMMENT '景区ID',
+  `lock` tinyint(4) NOT NULL DEFAULT '0' COMMENT '锁定 0正常 1锁定',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='景区须知表';
+
+CREATE TABLE `tg_scenic_spot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '景点名称',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '显示权重',
+  `panoramic_id` int(11) NOT NULL DEFAULT '0' COMMENT '动景ID',
+  `introduce` text COLLATE utf8_unicode_ci COMMENT '景点介绍',
+  `audio_id` int(11) NOT NULL DEFAULT '0' COMMENT '景点解说',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1正常 2 删除',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='景点表';
+
+CREATE TABLE `tg_scenic_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '类型名称',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='景区类型表';
+
+CREATE TABLE `tg_activity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '活动标题',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `scenic_time` varchar(125) NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '显示权重',
+  `thumb_path` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '封面图',
+  `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '地址',
+  `address_info` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '详细地址',
+  `lat` char(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '纬度',
+  `lng` char(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '经度',
+  `introduce` text COLLATE utf8_unicode_ci COMMENT '活动介绍',
+  `is_ticket` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有门票 1 有 2 没有',
+  `ticket_price` varchar(125) NOT NULL DEFAULT '0.00' COMMENT '门票价格',
+  `traffic` text COLLATE utf8_unicode_ci COMMENT '交通攻略',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1上线 2下线 3删除',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='活动表';
+
+CREATE TABLE `tg_headlines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '头条名称',
+  `thumb_path` varchar(512) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '头条封面图',
+  `pub_time` varchar(125) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '发布时间',
+  `source` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '来源',
+  `sort` tinyint(4) NOT NULL DEFAULT '0' COMMENT '权重',
+  `content` text COLLATE utf8_unicode_ci COMMENT '内容',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='头条表';
+
+ALTER TABLE `tg_scenic_drawing`
+ADD COLUMN `size`  int NOT NULL DEFAULT 0 COMMENT '大小' AFTER `user_id`;

@@ -1,0 +1,40 @@
+var material = {
+    getMaterial_url: '',
+    shop_id: '',
+    panoramic_id: '',
+    getMaterial: function (_listObj) {
+        $.ajax({
+            type: 'post',
+            url: material.getMaterial_url,
+            data: {
+                shop_id: material.shop_id
+            },
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+                var str = '';
+                if (result.status == 1) {
+                    var length = result.data.scene_data.length;
+                    material.panoramic_id = result.data.panoramic_id;
+                    if (length > 0) {
+                        var scene_data = result.data.scene_data;
+                        for (var i in scene_data) {
+                            str += '<li scene-id="' + scene_data[i].scene_id + '">' +
+                                '<img src="' + scene_data[i].thumb + '"/>' +
+                                '<div class="del-btn-box">' +
+                                '<button class="pull-right" type="button">删除</button>' +
+                                '</div>' +
+                                '<p class="text-over">' + scene_data[i].title + '</p>' +
+                                '<button class="rename-btn"><img src="/images/rename-btn.png"/>重命名</button>' +
+                                '</li>';
+                        }
+                    }
+                    if (length >= 8) {
+                        $('#selectfiles').parent().remove();
+                    }
+                }
+                _listObj.prepend(str);
+            }
+        });
+    }
+};

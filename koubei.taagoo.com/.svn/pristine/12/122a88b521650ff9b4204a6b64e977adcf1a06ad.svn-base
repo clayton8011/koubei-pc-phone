@@ -1,0 +1,974 @@
+<?php
+use common\models\Panoramic;
+/* @var $this yii\web\View */
+/* @var $shop common\models\KoubeiServiceMarketOrder */
+/* @var $model common\models\Panoramic */
+/* @var $scenic common\models\Scenic */
+/* @var $headlines array */
+/* @var $activity array */
+?>
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title><?= $shop->shop_name?></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="Pragma" />
+    <meta content="0" http-equiv="Expires" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="/pano_player/custom/css/response.css">
+    <link rel="stylesheet" href="/pano_player/custom/css/redefine.css">
+    <link rel="stylesheet" href="/pano_player/alivideo/alivideo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/frontend_index.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/animate.min.css"/>
+    <style>
+        @-ms-viewport { width:device-width; }
+        @media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+        html { height:100%; }
+        body { height:100%; overflow:hidden; margin:0; padding:0; font-family:microsoft yahei, Helvetica, sans-serif;  background-color:#000000; }
+        .bottom-mini-height{
+            height: 7rem;
+        }
+        .base-bottom{
+            display:none;
+        }
+        .content-class{
+            display: none;
+        }
+        .content-class .scenic-inf-box{
+            display: block;
+        }
+    </style>
+    <script>
+        var pageObj = {
+            pano_id:'<?=$model->id?>',
+            pano_json_url:'<?=Yii::$app->urlManager->createUrl(['scenic/scenic/pano-json'])?>',
+            base_xml_url:'<?=Yii::$app->urlManager->createUrl(['scenic/scenic/play-xml','id'=>$model->id])?>',
+            login_id:'',
+            login_url:'<?= urlencode(Yii::$app->request->hostInfo.Yii::$app->request->getUrl())?>',
+            login_avatar:'',
+            do_comment_url:'<?=Yii::$app->urlManager->createUrl(['/user-panoramic/do-comment','id'=>$model->id])?>',
+            is_praise:''
+        };
+    </script>
+    <script language="JavaScript" type="text/javascript" src="/pano_player/custom/js/jquery-1.9.1.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/pano_player/custom/js/common.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/pano_player/custom/js/vrshow.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/pano_player/tour.js"></script>
+</head>
+<body>
+
+<div id="pano" style="position: absolute;width:100%; height:100%;"></div>
+
+<header class="head" data-role="header">
+    <!-- <div class="back-box"> -->
+    <button class="back-btn-base" data-rel="back" type="button" data-add-back-btn="true" >口碑</button>
+    <div class="headlines-box">
+        <div>
+            <h5>景区头条</h5>
+            <div class="swiper-container" id="toutiao-sw">
+                <div class="swiper-wrapper">
+                    <?php foreach ($headlines as $key => $headline):?>
+                        <?php if($key > 4){break;}?>
+                        <div class="swiper-slide"><?= $headline['title']?></div>
+                    <?php endforeach;?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="more-btn-base" type="button"></button>
+
+    <!-- </div> -->
+</header>
+
+<div class="btn-grp-l">
+    <a class="logo-link" href="#"><img src="/images/logo1.png" /></a>
+    <div class="music-box">
+        <button type="button"  class="music-btn" href="#"><img src="/images/music.png" /></button>
+        <ul class="music-list" style="display: none;">
+            <li>中文</li>
+            <li>English</li>
+        </ul>
+    </div>
+</div>
+<div class="btn-grp-r">
+    <a class="hongbao-link" href="#"><img src="/images/hongbao.png" /></a>
+    <button class="map-btn" href="javascript:;" onClick="toggleKrpSandTable()"><img src="/images/map-tn.png" /></button>
+</div>
+<button class="cn-button" id="cn-button"></button>
+<!--<div class="component">-->
+<div class="manu-list hide">
+    <ul>
+        <li class="businessmen-btn"><img src="/images/tuijianshangjia.png"></li>
+        <li class="tese-activity-btn"><img src="/images/tesehuodong.png"></li>
+        <li class="vr-btn"><img src="/images/vr.png"></li>
+        <li class="theme-btn"><img src="/images/zhutituijian.png"></li>
+        <li class="public-btn"><a href=""><img src="/images/gonggongsheshi.png"></a></li>
+    </ul>
+</div>
+<!--</div>-->
+
+
+<div class="base-bottom base-high-bottom bottom-mini-height" id="index-bottom">
+    <div class="bottom-top">
+        <button class="swiper-down-btn swiper-up-btn" id="base-high-sw-btn" type="button" ></button>
+    </div>
+    <div class="base-addr flex-box base-high-addr">
+        <img class="bus-cir-img" src="<?= $scenic->getThumb()?>">
+        <div class="flex1">
+            <h5><?= $scenic->title?></h5>
+            <p class="text-over"><?= $scenic->address_info?></p>
+        </div>
+        <button class="by-car-btn" type="button" onclick="location.href='https://common.diditaxi.com.cn/general/webEntry#/'"> 打车去</button>
+    </div>
+    <div class="base-high-bottom-box content-class">
+        <!--景区信息start-->
+        <div class="scenic-inf-box">
+            <?php
+                foreach ($scenicNotice as $key=>$item){
+            ?>
+                <div class="scenic-inf-section">
+                    <h5 class="inf-title"><?=$item->title?>：</h5>
+                    <p class="inf-detial scenic-introduction"><?=$item->content?></p>
+                </div>
+            <?php
+                }
+            ?>
+        </div>
+        <!--景区信息end-->
+    </div>
+</div>
+
+
+
+
+<!--景区景点场景start-->
+<div class="base-bottom scene-bottom" id="scenic-scene-bottom" style="display: none;">
+    <div class="bottom-top">
+        <div class="swiper-container" id="scenes-list">
+            <ul class="swiper-wrapper scenes-sw-list">
+                <?php foreach($scenicSpotList as $key=>$item){?>
+                <li class="swiper-slide"><a href="<?=Yii::$app->urlManager->createUrl(['scenic/scenic/scenic-spot','id'=>$item->id])?>"><img src="<?=$item->getThumb()?>"><p class="text-over"><?=$item->title?></p></a></li>
+                <?php }?>
+                <div class="swiper-pagination"></div>
+            </ul>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="base-addr flex-box base-high-addr">
+        <img class="bus-cir-img" src="<?= $scenic->getThumb()?>">
+        <div class="flex1">
+            <h5><?= $scenic->title?></h5>
+            <p class="text-over"><?= $scenic->address_info?></p>
+        </div>
+        <button class="by-car-btn" type="button" onclick="location.href='https://common.diditaxi.com.cn/general/webEntry#/'"> 打车去</button>
+    </div>
+</div>
+<!--景区景点场景end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--景点-->
+<div class="base-bottom scenic-spot-bottom" style="display: none;">
+    <div class="bottom-top">
+        <button class="swiper-down-btn" id="scenic-spot-sw-btn" type="button" ></button>
+        <div class="base-addr flex-box scenic-spot-addr">
+            <h5 class="text-over">三里屯太古里</h5>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="scenic-spot-detial">
+        <b>景点介绍：</b>
+        <p>什刹海指前海、后海和西海三个湖泊及临近地区，这里拥有大片优美的湖面，也是北京著名的一片历史街区，众多名人故居、王府等古迹散落其中，还有贴近老百...生活的各类美食，后海酒吧街更是京城夜生活的老牌胜地。夏天来坐游船初到什刹海，第一眼一定被大片潋艳的湖光所吸引。...垂柳毵毵，远山秀色如黛，风光绮丽，为燕京胜...之一。今天，这里仍旧保存着十分难得的自然景观和人文胜迹交相辉映的历史风貌，宋庆龄故居、郭沫若故居、恭王府花园、广化寺、火神庙、钟鼓楼和银锭桥等古迹将什刹海点缀得美丽灿烂。
+            近年来，什刹海酒吧街已成为京城夜色中最热闹的地方之一。这里还聚集着众多北京风味的特色餐厅。你可以品酒泛舟，览湖光粼粼，或徜徉两岸，听杨柳婆娑，或搜寻美食，尝御膳家宴，或投宿胡同人家品着原汁的京味儿。</p>
+        <button class="show-all-btn">查看全部 <img src="/images/all-down.png"/></button>
+    </div>
+    <div class="swiper-box" style="background: #fff;">
+        <div class="swiper-container" id="scenic-spot-list">
+            <ul class="swiper-wrapper scenic-spot-sw-list">
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店9</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿专卖店</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">迪专卖店</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店0</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店1</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店2</p></li>
+                <div class="swiper-pagination"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--场景-->
+<div class="base-bottom scene-bottom" style="display: none;">
+    <div class="bottom-top">
+        <button class="swiper-down-btn" id="scenes-sw-btn"  type="button" ></button>
+        <div class="swiper-container" id="scenes-list">
+            <ul class="swiper-wrapper scenes-sw-list">
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店9</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿专卖店</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">迪专卖店</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店0</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店1</p></li>
+                <li class="swiper-slide"><img src="/images/scene-img.png"><p class="text-over">阿迪专卖店2</p></li>
+                <div class="swiper-pagination"></div>
+            </ul>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="base-addr flex-box scene-addr">
+        <img class="bus-cir-img" src="/images/shangquan-name.png">
+        <div class="flex1">
+            <h5>三里屯太古里</h5>
+            <p class="text-over">朝阳区三里屯路19号院</p>
+        </div>
+        <button class="by-car-btn" type="button"> 打车去</button>
+    </div>
+</div>
+<!--公共部分 头条，景区信息等-->
+<div class="base-bottom base-high-bottom">
+    <div class="bottom-top">
+        <button class="swiper-down-btn" id="base-high-sw-btn" type="button" ></button>
+    </div>
+    <div class="base-addr flex-box base-high-addr">
+        <img class="bus-cir-img" src="<?= $scenic->getThumb()?>">
+        <div class="flex1">
+            <h5><?= $scenic->title?></h5>
+            <p class="text-over"><?= $scenic->address_info?></p>
+        </div>
+        <button class="by-car-btn" type="button" onclick="location.href='https://common.diditaxi.com.cn/general/webEntry#/'"> 打车去</button>
+    </div>
+    <div class="base-high-bottom-box">
+        <!--头条-->
+        <div class="headlines-show-box">
+            <h2>景区头条</h2>
+            <ul class="headlines-list">
+                <?php foreach ($headlines as $headline):?>
+                <li>
+                        <a class="flex-box" href="<?= Yii::$app->urlManager->createUrl(['scenic/scenic/toutiao-detail','id'=> $headline['id']])?>" data-ajax="false">
+                        <img src="<?= Yii::$app->params['alioss']['endpoint'].'/'.$headline['thumb_path'];?>"/>
+                        <div class="flex1 flex-box">
+                            <div class="headlines-detail">
+                                <h5><?= $headline['title']?></h5>
+                                <p class="headlines-link"><?= $headline['source']?><span><?= $headline['pub_time']?></span></p>
+                                <div class="headlines-time"><?= $headline['content']?></div>
+                            </div>
+                            <button class="headlines-more"></button>
+                        </div>
+                    </a>
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <!--景区信息-->
+        <div class="scenic-inf-box">
+            <div class="scenic-inf-section">
+                <p class="inf-base-tip"><img src="/images/scenic-time.png"/><b>开放时间：</b>全天开放</p>
+                <p class="inf-base-tip"><img src="/images/scenic-ticket.png"/><b>门票价格：</b>免费</p>
+                <p class="inf-base-tip inf-base-tip-last"><img src="/images/scenic-layer.png"/><b>景点级别：</b>AAAA</p>
+            </div>
+            <div class="scenic-inf-section">
+                <h5 class="inf-title">景点介绍：</h5>
+                <p class="inf-detial scenic-introduction">什刹海也写作“十刹海”，四周原有十座佛寺，故有此称。随着时间发展逐渐形成西海﹑后海﹑前海，三海水道相通。自清代起就成为游乐消夏之所。三海碧波荡漾什刹海也写作“十刹海”，四周原有十座佛寺，故有此称。随着时间发展逐渐形成西海﹑后海﹑前海，三海水道相通。自清代起就成为游乐消夏之所。三海碧波荡漾</p>
+                <button class="show-all-inf-btn">查看全部 <img src="/images/all-down.png"/></button>
+            </div>
+            <div class="scenic-inf-section">
+                <h5 class="inf-title">交通信息：</h5>
+                <p class="inf-detial">乘坐地铁6号线到北海北站下车或乘坐5、60、107、124路等公交车到鼓楼站下车。乘坐13、107、111、118、609、623路在北海北门下车，沿着前海向北步行可到达。公交地安门外站——60路; 82路; 90内; 90外; 107路; 124路; 204夜班车内; 204夜班车外；</p>
+            </div>
+        </div>
+        <!--特色活动-->
+        <div class="activity-box">
+            <h2>特色活动</h2>
+            <ul class="headlines-list">
+                <?php foreach ($activity as $active)?>
+                <li>
+                    <a class="flex-box" href="<?= Yii::$app->urlManager->createUrl(['scenic/scenic/activity-detail','id' => $active['id']])?>" data-ajax="false">
+                    <img src="<?= Yii::$app->params['alioss']['endpoint'].'/'.$active['thumb_path'];?>"/>
+                    <div class="flex1 flex-box">
+                        <div class="headlines-detail">
+                            <h5><?= $active['title']?></h5>
+                            <p class="headlines-time"><?= $active['introduce']?></p>
+                        </div>
+                        <button class="headlines-more"></button>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--推荐商家-->
+        <div class="businessmen-box">
+            推荐商家
+        </div>
+        <!--主题推荐-->
+        <div class="theme-box">
+            主题推荐
+        </div>
+        <!--公共设施-->
+        <!--<div class="public-box">
+            公共设施
+        </div>-->
+    </div>
+</div>
+
+</body>
+<script src="/pano_player/custom/js/comment.js"></script>
+<script language="JavaScript" type="text/javascript" src="/pano_player/custom/js/object.js"></script>
+<script type="text/javascript">
+    $("button").attr('data-role','none');
+    $("select").attr('data-role','none');
+</script>
+
+<script type="text/javascript" src="/pano_player/alivideo/alivideo.js"></script>
+<script src="/js/jquery.mobile-1.3.2.min.js"></script>
+<script src="/js/swiper-3.3.1.jquery.min.js"></script>
+<script src="/js/swiper.animate1.0.2.min.js"></script>
+<!--<script src="/js/modile-scenic.js" type="text/javascript" charset="utf-8"></script>-->
+
+<script>
+    var thisPageObj = {
+        init:function(){
+            //上下按钮公共事件
+          $('button.swiper-down-btn').on('tap',function(){
+             var thisBtn = $(this);
+             if(thisBtn.hasClass('swiper-up-btn')){
+                 thisBtn.removeClass('swiper-up-btn');
+                 thisBtn.parents('div.base-bottom').removeClass('bottom-mini-height');
+                 thisBtn.parents('div.base-bottom').find('div.content-class').show();
+             }else{
+                thisBtn.addClass('swiper-up-btn');
+                 thisBtn.parents('div.base-bottom').addClass('bottom-mini-height');
+             }
+          });
+
+            //点击右侧菜单列表按钮
+            $("#cn-button").on('tap',function() {
+                if (this.className == "cn-button active") {
+                    //隐藏后就显示景区景点选择框
+                    thisPageObj.hideManu();
+                    thisPageObj.goScenicScene();
+                } else {
+                    //打开后就显示景区信息
+                    thisPageObj.showManu();
+                    thisPageObj.goScenicInfo();
+                }
+            });
+            thisPageObj.showManu();
+            thisPageObj.goScenicInfo();
+        },
+        //显示底部不同页面公共调用
+        showButtonCommon:function(obj){
+            $('div.base-bottom').hide();
+            $('div.base-bottom .content-class').hide();
+        },
+        //进入景区信息
+        goScenicInfo:function(){
+            var thisDiv = $('#index-bottom');
+            thisPageObj.showButtonCommon(thisDiv);
+            thisDiv.show();
+        },
+        //显示景区近点列表
+        goScenicScene:function(){
+            var thisDiv = $('#scenic-scene-bottom');
+            thisPageObj.showButtonCommon(thisDiv);
+            thisDiv.show();
+        },
+        hideManu:function() {
+            $(".manu-list").removeClass("opened-nav");
+            document.getElementById("cn-button").className="cn-button";
+            $("#shop-list").removeClass('swiper-container-hide');
+            setTimeout(function() {
+                $(".manu-list").width("0");
+            },300)
+        },
+        showManu:function() {
+            $(".manu-list").addClass("opened-nav");
+            document.getElementById("cn-button").className="cn-button active";
+            $(".manu-list").width("31.8%");
+        },
+    }
+    thisPageObj.init();
+
+//    var thisPageObj={
+//        lastShowBottomType:'',
+//        init:function(type){
+//            thisPageObj.bindEvent();
+//            switch(type){
+//                case 'index':
+//                    $('#scenic-bottom-div').show();
+//                    thisPageObj.lastShowBottomType = 'scenic-info';//打开显示景区信息
+//                    $("#cn-button").tap();
+//                    break;
+//            }
+//        },
+//        bindEvent:function(){
+//            //点击向上向下按钮
+//            $('#base-high-sw-btn').on('tap',function(){
+//                var thisBtn = $(this);
+//                if(thisBtn.hasClass('swiper-up-btn')){
+//                    thisBtn.removeClass('swiper-up-btn');
+//                    thisPageObj.showBottomTypeFun(true);
+//                }else{
+//                    thisBtn.addClass('swiper-up-btn');
+//                    thisPageObj.showBottomTypeFun(false);
+//                }
+//            });
+//
+//            //点击右侧菜单列表按钮
+//            $("#cn-button").on('tap',function() {
+//                if (this.className == "cn-button active") {
+//                    //隐藏后就显示景区景点选择框
+//                    thisPageObj.hideManu();
+//                } else {
+//                    //打开后就显示景区信息
+//                    thisPageObj.showManu();
+//                    thisPageObj.lastShowBottomType = 'scenic-info';
+//                    thisPageObj.showBottomTypeFun(false);
+//                }
+//            });
+//        },
+//        showBottomTypeFun:function(show){
+//            if(show){
+//                $('#scenic-bottom-div').removeClass('bottom-mini-height');
+//                $('div.base-high-bottom-box').show();
+//            }else{
+//                $('#scenic-bottom-div').addClass('bottom-mini-height');
+//                $('div.base-high-bottom-box').hide();
+//            }
+//            switch(thisPageObj.lastShowBottomType){
+//                case 'scenic-info':
+//                    //景区信息显示
+//                    if(show){
+//                        $('#scenic-info').show();
+//                    }else{
+//                        $('#scenic-info').hide();
+//                    }
+//                    break;
+//            }
+//        },
+//        hideManu:function() {
+//            $(".manu-list").removeClass("opened-nav");
+//            document.getElementById("cn-button").className="cn-button";
+//            $("#shop-list").removeClass('swiper-container-hide');
+//            setTimeout(function() {
+//                $(".manu-list").width("0");
+//            },300)
+//        },
+//        showManu:function() {
+//            $(".manu-list").addClass("opened-nav");
+//            document.getElementById("cn-button").className="cn-button active";
+//            $("#shop-list").addClass('swiper-container-hide');
+//            $(".manu-list").width("31.8%");
+//        },
+//    };
+//    thisPageObj.init('index');
+
+</script>
+
+
+<script>
+    $(function(){
+        plugins_init_function.push(bgmusic_init);
+    })
+    function bgmusic_init(data,settings){
+        //背景音乐
+        var musicObj = data.bg_music;
+        if (musicObj.isWhole=='1') {
+            var musicOne = musicObj.sceneSettings[0];
+            if(musicOne.mediaUrl){
+                settings["onstart"] += "playsound(bgmusic, '" + musicOne.mediaUrl + "', 0);";
+            }
+        } else {
+            $(musicObj.sceneSettings).each(function (idx) {
+                if(this.mediaUrl){
+                    settings['scene[scene_' + this.sceneID + '].bgmusic'] = this.mediaUrl;
+                }
+            });
+        }
+        settings["events[skin_events].onloadcomplete"]+="js(toggleMusicBtn(get(xml.scene)));";
+    }
+    function toggleMusicBtn(sceneName) {
+        var musicObj = $("body").data("panoData").bg_music;
+        var musicOne = musicObj.sceneSettings[0];
+        if (musicObj.isWhole=='1' && musicOne.mediaUrl) {
+//                        if (musicObj.useMusic=='1') {
+            $('.btn_bgmusic,.btn_bgmusic_off').show();
+//                        } else {
+//                            $('.btn_bgmusic,.btn_bgmusic_off').hide();
+//                        }
+        } else {
+            var imgUuid = sceneName.substring(sceneName.indexOf("_") + 1, sceneName.length).toLowerCase();
+            $(musicObj.sceneSettings).each(function (idx) {
+                if (imgUuid == this.sceneID && this.mediaUrl) {
+//                                if (this.useMusic=='1') {
+                    $('.btn_bgmusic,.btn_bgmusic_off').show();
+//                                } else {
+//                                    $('.btn_bgmusic,.btn_bgmusic_off').hide();
+//                                }
+                }
+            });
+        }
+    }
+    function pause_bgMusic(el) {
+        var krpano = document.getElementById('krpanoSWFObject');
+        krpano.call("pausesoundtoggle(bgmusic);pausesoundtoggle(bgm);");
+        toggleMusic(el);
+    }
+    function toggleMusic(el) {
+        if ($(el).hasClass("btn_bgmusic")) {
+            $(el).removeClass("btn_bgmusic");
+            $(el).addClass("btn_bgmusic_off");
+        } else {
+            $(el).removeClass("btn_bgmusic_off");
+            $(el).addClass("btn_bgmusic");
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(bgvoice_init);
+    })
+    function bgvoice_init(data,settings){
+        var speechObj = data.speech_explain;
+        if(speechObj.isWhole=='1'){
+            if(speechObj.useSpeech=='1'){
+                settings["onstart"] += "playsound(bgspeech, '"+speechObj.mediaUrl+"', 0);";
+            }
+        }else{
+            $(speechObj.sceneSettings).each(function(idx){
+                if(this.useSpeech=='1'){
+                    settings['scene[scene_'+this.imgUuid+'].bgspeech'] = this.mediaUrl;
+                }
+            });
+        }
+        settings["events[skin_events].onloadcomplete"]+="js(toggleSpeechBtn(get(xml.scene)));";
+    }
+    function toggleSpeechBtn(sceneName){
+        var speechObj = $("body").data("panoData").speech_explain;
+        if(speechObj.isWhole=='1'){
+            if(speechObj.useSpeech=='1'){
+                $('.btn_music').show();
+            }else{
+                $('.btn_music').hide();
+            }
+        }else{
+            var imgUuid = sceneName.substring(sceneName.indexOf("_")+1,sceneName.length).toLowerCase();
+            $(speechObj.sceneSettings).each(function(idx){
+                if(imgUuid == this.imgUuid){
+                    if(this.useSpeech=='1'){
+                        $('.btn_music').show();
+                    }else{
+                        $('.btn_music').hide();
+                    }
+                }
+            });
+        }
+    }
+    function pauseSpeech(el){
+        var krpano = document.getElementById('krpanoSWFObject');
+        krpano.call("pausesoundtoggle(bgspeech);pausesoundtoggle(bgs);");
+        toggleSpeech(el);
+    }
+    function toggleSpeech(el) {
+        if ($(el).hasClass("btn_music")) {
+            $(el).removeClass("btn_music");
+            $(el).addClass("btn_music_off");
+        } else {
+            $(el).removeClass("btn_music_off");
+            $(el).addClass("btn_music");
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(praise_init);
+    })
+    function praise_init(data){
+        if(data.showpraise == '1'){
+            $("#praiseDiv").hide();
+        }else if(pageObj.is_praise){
+            $("#btnpraise").attr('src','/pano_player/custom/images/vr-btn-good-click.png');
+        }
+        $("#praisedNum").text(data.counterNum.praise);
+    }
+    /**
+     * 赞加1，并且发起推送
+     * @param obj
+     */
+    function addPraise(obj) {
+        if (!pageObj.login_id) {
+            window.location.href = pageObj.login_url;
+        }else if(!pageObj.is_praise){
+            $(obj).attr('src','/pano_player/custom/images/vr-btn-good-click.png');
+            var num = $($(obj).next()).text();
+            num = parseInt(num);
+            $($(obj).next()).text(num + 1);
+            $.ajax({
+                url: '<?=Yii::$app->urlManager->createUrl('user-panoramic/do-praise')?>',
+                method:'post',
+                data: {'id':pageObj.pano_id},
+                dataType: 'json',
+                success: function(res){
+                    if(res.status==1){
+                        pageObj.is_praise = true;
+                    }else{
+                        alert('点赞失败，稍后再试。');
+                    }
+                },
+                error:function(){
+                    alert('点赞失败，稍后再试。');
+                }
+            });
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(showvrglass_init);
+    })
+    function showvrglass_init(data,settings){
+        settings['skin_settings.webvr'] = data.showvrglasses==1 ? false : true;
+    }
+    function showWebvrBtn(){
+        $('.btn_vrmode').show();
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(showlogo_init);
+    })
+    function showlogo_init(data){
+        if(data.showlogo=='1'){
+            $("#logoImg").hide();
+        }else{
+            $("#logoImg").show();
+        }
+    }
+</script>
+<script>
+    $(function(){
+        $("#logoImg").show();
+        plugins_init_function.push(custom_logo_init);
+    })
+    function custom_logo_init(data){
+        var logoObj = data.custom_logo;
+        if(logoObj){
+            $('#logoImg').attr('src', logoObj.imgPath);
+            if(logoObj.logoLink) {
+                $('#logoImg').attr('onclick', 'javascript:window.open("' + logoObj.logoLink + '")');
+            }
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(footmarker_init);
+    })
+    function footmarker_init(data){
+        $('#footmarkDiv').find('img').attr('lng',data.lng).attr('lat',data.lat).attr('address',data.address);
+        if (data.footmark=='0') {
+            $('#footmarkDiv').hide();
+        }
+    }
+    function hideShareAndFootmarkBtn(){
+        //$("#shareDiv").hide();
+        $("#footmarkDiv").hide();
+    }
+    function showFootMark(_this){
+        $("#show_map").modal('show');
+        setTimeout(function () {
+            var mapOpt = {
+                map_box: 'mapContent',
+                lat : $(_this).attr('lat'),
+                lng : $(_this).attr('lng'),
+                address : $(_this).attr('address'),
+                showSelectInfoWindow : false,
+                showSearchMarker : false
+            };
+            getBaiduMap(mapOpt);
+        },500)
+
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(gyro_init);
+    })
+    function gyro_init(data,settings){
+        if (data.gyro!="0") {
+            $(".btn_gyro").show;
+        }
+        settings['skin_settings.gyro'] = data.gyro=="1" ? true : false;
+    }
+    function showGyroBtn() {
+        var gyro = $("body").data("panoData").gyro;
+        if (gyro) {
+            var krpano = document.getElementById('krpanoSWFObject');
+            krpano.set("plugin[skin_gyro].enabled",true);
+            $(".btn_gyro").show();
+        }
+    }
+
+    function toggleGyro(el) {
+        var krpano = document.getElementById('krpanoSWFObject');
+        if ($(el).hasClass("btn_gyro")) {
+            krpano.set("plugin[skin_gyro].enabled",false);
+            $(el).removeClass("btn_gyro");
+            $(el).addClass("btn_gyro_off");
+        } else {
+            krpano.set("plugin[skin_gyro].enabled",true);
+            $(el).removeClass("btn_gyro_off");
+            $(el).addClass("btn_gyro");
+        }
+    }
+    function openGyro(){
+        var krpano = document.getElementById('krpanoSWFObject');
+        alert(krpano.get("plugin[skin_gyro].isavailable"));
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(link_init);
+        $('#mapMarkModal').on('hide.zui.modal', function (e) {
+            toggleBtns(true);
+        });
+    })
+    function link_init(data){
+        $(".vrshow_container_3_min .img_desc_container_min:first").nextAll().remove();
+        if (data.custom_right_button.linkSettings && data.custom_right_button.linkSettings.length > 0) {
+            $(data.custom_right_button.linkSettings).each(function(idx){
+                var imgSrc = this.icon;
+                var title = this.title;
+                var htmlStr = '';
+                if(this.type == 3){
+                    var locationData = this.content;
+                    htmlStr += '<div class="img_desc_container_min img_add" >'+
+                        '<img src="'+imgSrc+'" onclick="showFootMark(this)" lng="'+this.lng+'" lat="'+this.lat+'" address="'+this.address+'">'+
+                        '<div class="img_desc_min">'+title+'</div>'+
+                        '</div>';
+                    $(".vrshow_container_3_min").append(htmlStr);
+                    $(".vrshow_container_3_min > div:last img").data("locationData",locationData);
+                }else{
+                    var url = this.content;
+                    if(!isNaN(url)){
+                        url = "tel://" + url;
+                    }else{
+                        if(url.indexOf('http://') != 0&&url.indexOf('https://') != 0){
+                            url = 'http://' + url;
+                        }
+                    }
+                    htmlStr += '<div class="img_desc_container_min img_add" >'+
+                        '<img src="'+imgSrc+'" onclick="lookLinkUrl(\''+url+'\')" '+(isIos()?'':'data-toggle="tooltip"')+' title="'+(url.length > 20 ? url.substring(0,20)+'...' : url)+'">'+
+                        '<div class="img_desc_min">'+title+'</div>'+
+                        '</div>';
+                    $(".vrshow_container_3_min").append(htmlStr);
+                }
+            });
+            $('.vrshow_container_3_min [data-toggle=tooltip]').tooltip({});
+        }
+    }
+    function isIos(){
+        var ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod/.test(ua)) {
+            return true;
+        }
+        return false;
+    }
+    function lookLinkUrl(url){
+        window.open(url);
+    }
+    function openMapModal(el,readonly){
+        // toggleBtns();
+        mapModalEl = el;
+        _U.mapMarkModal().openModal($(mapModalEl).data("locationData"),readonly);
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(custom_user_init);
+    })
+    function custom_user_init(data){
+        var logoObj = data.custom_logo;
+        if(logoObj && logoObj.user){
+            $("#user_nickName").text(logoObj.user);
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(open_alert_init);
+    })
+    function open_alert_init(data,settings){
+        if (data.openAlert.iconID!='0' && data.openAlert.imgPath) {
+            settings["events[skin_events].onloadcomplete"] += "show_open_alert('" + data.openAlert.imgPath + "');";
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(custom_right_init);
+    })
+    function custom_right_init(data){
+        // $(".vrshow_container_3_min .img_desc_container_min:first").nextAll().remove();
+        // if (data.url_phone_nvg.linkSettings && data.url_phone_nvg.linkSettings.length > 0) {
+        //     $(data.custom_right_button.linkSettings).each(function(idx){
+        //         var title = this.title;
+        //         var htmlStr = '';
+        //         var url = this.content;
+        //            if(!isNaN(url)){
+        //                url = "tel://" + url;
+        //            }else{
+        //                if(!(url.indexOf('http://') == 0)){
+        //                    url = 'http://' + url;
+        //                }
+        //            }
+
+        //     });
+        // }
+
+    }
+    // function lookLinkUrl(url){
+    //     window.open(url);
+    // }
+
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(shade_sky_floor_init);
+    })
+    function shade_sky_floor_init(data,settings){
+        if (data.sky_land_shade.isWhole) {//全局遮罩
+            var useShade = data.sky_land_shade.useShade;
+            if (useShade) {
+                var imgPath = data.sky_land_shade.shadeSetting.imgPath;
+                var location = data.sky_land_shade.shadeSetting.location;
+                if (location == 0) {
+                    location = -90;
+                } else {
+                    location = 90;
+                }
+                settings["events[skin_events].onloadcomplete"] += "show_shade('" + imgPath + "'," + location + ",true);";
+            }
+        } else {//单场景遮罩
+            settings["events[skin_events].onloadcomplete"]+="js(getShade(get(xml.scene)));";
+        }
+    }
+    function getShade(sceneName) {
+        var imgUuid = sceneName.substring(sceneName.indexOf('_') + 1).toLowerCase();
+        var panoData = $("body").data("panoData");
+        var shadeSetting = panoData.sky_land_shade.shadeSetting;
+        if (shadeSetting) {
+            for(var i = 0;i < shadeSetting.length ; i++){
+                var obj = shadeSetting[i];
+                if(imgUuid == obj.imgUuid){
+                    var useShade = obj.useShade;
+                    if (useShade) {
+                        var imgPath = obj.imgPath;
+                        var location = obj.location;
+                        if (location == 0) {
+                            location = -90;
+                        } else {
+                            location = 90;
+                        }
+                        var krpano = document.getElementById('krpanoSWFObject');
+                        krpano.call("addShade('" + imgUuid + "','" + imgPath + "'," + location + ");");
+                    }
+                }
+            }
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(showuser_init);
+    })
+    function showuser_init(data){
+        if(data.showuser=='1'){
+            $("#authorDiv").hide();
+        }else{
+            $("#authorDiv").show();
+        }
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(share_init);
+    })
+    function share_init(data){
+        if(data.showshare == "1"){
+            $("#shareDiv").hide();
+        }
+    }
+    //分享-获取二维码
+    function getQRCodePic(){
+        $("#qrCodeModal").modal('show');
+        $("#qrcode").attr("src",'<?=Yii::$app->urlManager->createUrl(['panoramic/qrcode','id'=>$model->id])?>');
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(showviewnum_init);
+    })
+    function showviewnum_init(data){
+        if(data.showviewnum=='1'){
+            $("#viewnumDiv").hide();
+        }
+
+
+    }
+</script>
+<script>
+    $(function(){
+        plugins_init_function.push(profile_init);
+    })
+    function profile_init(data){
+        if(data.showprofile == '1'){
+            $("#profileDiv").hide();
+        }
+    }
+    function hideProfile() {
+        $('#infomationModal').modal('hide');
+        toggleBtns(true);
+    }
+    function showProfile() {
+        toggleBtns(false);
+        var data = $("body").data("panoData");
+        $('#profileWorkName').text('');
+        $('#profileProfile').text('');
+        $('#profileWorkName').text(data.name);
+        $('#profileProfile').text(data.summary==null?"":data.summary);
+        $('#infomationModal').modal("show");
+    }
+</script>
+<script>
+    function videoPh_open(src,img) {
+        var posterImg='';
+        if(img){
+            posterImg = img;
+        }
+        $("#video_player_modal").modal('show');
+        $("#spotVideoBox").empty();
+        var videoStr = '<video class="spotVideo" preload="metadata" src="'+src+'" '
+            +'controls="controls" poster="'+posterImg+'" autoplay="true"></video>'
+            +'<a class="video_close" href="javascript:;" onClick="close_video_player()" >关闭</a>';
+        $("#spotVideoBox").append(videoStr);
+    }
+</script>
+</html>

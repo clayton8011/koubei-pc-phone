@@ -1,0 +1,576 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pano",
+				"panoObj"
+			],
+			[
+				"pa",
+				"panoObj"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"web",
+				"webkit-box"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"webkit",
+				"webkit-flex"
+			],
+			[
+				"wei",
+				"webkit-box"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"rb",
+				"rgba()"
+			],
+			[
+				"a",
+				"auto"
+			],
+			[
+				"mn",
+				"min-height"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"border-r",
+				"border-radius"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"border-bo",
+				"border-bottom"
+			],
+			[
+				"boxs",
+				"box-sizing"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"margin-o",
+				"margin-top"
+			],
+			[
+				"r",
+				"rgba()"
+			],
+			[
+				"h",
+				"hide"
+			],
+			[
+				"fa",
+				"fadeIn"
+			],
+			[
+				"border-bottom-l",
+				"border-bottom-left-radius"
+			],
+			[
+				"magin",
+				"margin-bottom"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"打",
+				"打赏"
+			],
+			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"col",
+				"col-xs-12"
+			],
+			[
+				"border-top",
+				"border-top-left-radius"
+			],
+			[
+				"im",
+				"images"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"u",
+				"ul\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"svn",
+				"SVN: Checkout…"
+			]
+		],
+		"width": 448.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"dir",
+			"exit",
+			"install",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"install",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/sublimeBuild/koubei/user terminal/css/index.css",
+		"/E/sublimeBuild/ziyuanku-taagoo/branches/20160803/frontend/views/pano/detail.php",
+		"/E/sublimeBuild/ziyuanku-taagoo/branches/20160803/frontend/views/pano/play.php",
+		"/E/sublimeBuild/ziyuanku-taagoo/branches/20160803/backend/web/js/pano_default/tour.xml",
+		"/C/Users/Administrator/Desktop/mp/index.html",
+		"/E/sublimeBuild/ziyuanku-taagoo/branches/20160803/frontend/views/pano/base_xml.php",
+		"/E/sublimeBuild/ziyuanku-taagoo/branches/20160803/frontend/web/pano_player/skin/vtourskin.xml",
+		"/C/Users/Administrator/Desktop/vtour/tour.html",
+		"/E/sublimeBuild/ziyuanku-taagoo/branches/20160803/backend/web/js/pano_editor/static/vender/krpano/plugins/webvr.xml",
+		"/E/sublimeBuild/wePano-160331/mobile/web/pano_player/custom/css/redefine.css",
+		"/E/sublimeBuild/wePano-160331/mobile/views/carte/view.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/video/view.php",
+		"/E/sublimeBuild/koubei/swiper/swiper-3.3.1.jquery.min.js",
+		"/E/sublimeBuild/koubei/swiper/swiper-3.3.1.min.js",
+		"/E/sublimeBuild/koubei/js/index.js",
+		"/C/Users/Administrator/Desktop/bottomManu/css/index.css",
+		"/E/sublimeBuild/koubei/js/iscroll.js",
+		"/E/sublimeBuild/koubei/js/common.js",
+		"/E/sublimeBuild/koubei/swiper/swiper.animate1.0.2.min.js",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/share.js",
+		"/E/sublimeBuild/wePano-160331/frontend/views/space/datum.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/space/_datum_nav.php",
+		"/E/sublimeBuild/wePano-160331/frontend/controllers/SpaceController.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/user-panoramic/update.php",
+		"/E/sublimeBuild/wePano-160331/frontend/controllers/UserController.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/pano_editor/js/config/editorDemo.js",
+		"/E/sublimeBuild/wePano-160331/frontend/views/space/index.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/space/hisdatum.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/pano_player/custom/css/redefine.css",
+		"/E/sublimeBuild/wePano-160331/frontend/views/panoramic/player.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/user-panoramic/_adv_hot.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/user-panoramic/_adv_eyes.php",
+		"/E/sublimeBuild/wePano-160331/frontend/views/user-panoramic/_adv_left_group.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/pano_obj_int/hotspot.js",
+		"/E/sublimeBuild/wePano-160331/frontend/web/css/works-player.css",
+		"/E/sublimeBuild/wePano-160331/frontend/web/css/common.css",
+		"/E/sublimeBuild/wePano-160331/frontend/web/css/edit.css",
+		"/E/sublimeBuild/wePano-160331/frontend/web/css/index.css",
+		"/E/sublimeBuild/wePano-160331/frontend/web/pano_player/custom/xml/newFun.xml",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/edit.js",
+		"/E/sublimeBuild/wePano-160331/frontend/web/css/bootstrap.min.css",
+		"/E/sublimeBuild/wePano-160331/frontend/views/panoramic/detail.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/viewPano/panoEvent.js",
+		"/E/sublimeBuild/wePano-160331/frontend/views/user-panoramic/video.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/pano_obj_int/panoView.js",
+		"/E/sublimeBuild/wePano-160331/frontend/views/layouts/_common_js.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/css/bootstrap-slider.min.css",
+		"/E/sublimeBuild/wePano-160331/frontend/views/layouts/_foot.php",
+		"/E/sublimeBuild/wePano-160331/frontend/web/js/jquery_ui/jquery-ui.js",
+		"/E/sublimeBuild/wePano-160331/frontend/views/layouts/_head.php",
+		"/C/Users/Administrator/node-angular/NiceFish/package.json",
+		"/C/Users/Administrator/Desktop/data.js",
+		"/C/sublimeFolder/pano tour/more.html",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/2017-calendar/index.php",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/2017-calendar/beijing.php",
+		"/D/phpStudy06-27/phpStudy/nginx/conf/nginx.conf",
+		"/E/hbuilder/index.php",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/2017-calendar/info.php",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/2017-calendar/common.php",
+		"/C/sublimeFolder/pano tour/css/more.css",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/muiAppNew/list.html",
+		"/C/sublimeFolder/pano tour/css/index.css",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/we-pc-login/js/bootstrap.min.js",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/we-pc-login/js/jquery-2.1.0.js",
+		"/C/Users/Administrator/Desktop/QQ图片20151127093626.jpg",
+		"/C/sublimeFolder/pano tour/js/base.js",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/TortoiseSVN/TortoiseSVN.sublime-settings",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/User/TortoiseSVN.sublime-settings",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/muiAppNew/sdsdwqdsfd",
+		"/C/Users/Administrator/AppData/Roaming/HBuilder/userprofiles/hht8011@163.com/muiAppNew/list-old.html",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Installed Packages/GitSavvy.sublime-package",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/SVN/Default (Windows).sublime-keymap",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/SVN/SVN.sublime-settings",
+		"/C/Program Files/Sublime Text 3/pyexpat.pyd"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"",
+			"E:\\sublimeBuild\\wePano-160331\\frontend\\web\\images",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"景区头条",
+			"headlines-list",
+			".back-btn-base {\n\theight: 1.75rem;\n\tbackground: url(../images/back-btn.png) no-repeat left center;\n\tbackground-size: auto 100%;\n\tpadding-left: 1.5rem;\n\tcolor: #fff;\n\tfont-size: 1.667rem;\n\tline-height: 1.667rem;\n\tmargin:0.417rem 6.15% 0 3.8%;\n}",
+			" // var swiper = new Swiper('.swiper-container', {\n\t\t  //       // pagination: '.swiper-pagination',\n\t\t  //       slidesPerView: 4,\n\t\t  //       paginationClickable: false,\n\t\t  //       spaceBetween: \"4.2%\",\n\t\t  //       freeMode: true\n\t\t  //   });",
+			"thumb_image",
+			" thumb_image_size",
+			"create_auto_thumbs",
+			" scene.count",
+			"skin_scroll_layer",
+			"<action name=\"skin_onresize\">\n      mul(mh, area.pixelheight, -1); \n      if(layer[skin_thumbs].state == 'opened',add(mh,layer[skin_thumbs].height); \n      set(layer[skin_scroll_layer].y, 97); , set(layer[skin_scroll_layer].y,get(mh)); ); if(layer[skin_map].state == 'opened', sub(hh,area.pixelheight,skin_settings.controlbar_offset);\n        sub(hh,layer[skin_control_bar].height); sub(hh,32); add(mh,hh); add(mh,skin_settings.controlbar_overlap);\n        sub(mh, layer[skin_scroll_layer].y_offset); copy(layer[skin_map].height, hh); ); add(mh,\n        layer[skin_scroll_layer].y_offset); skin_video_updateseekbarwidth(); skin_arrange_buttons();\n    </action>",
+			"skin_scroll_layer",
+			"skin_layer",
+			"open",
+			"skin_layer",
+			"/snow_idmage",
+			"initAdvancedSetting",
+			"vtourskin_design_117",
+			"   // var u = navigator.userAgent, app = navigator.appVersion; \n            // this.mobile=!!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/);",
+			" \n",
+			"();\n",
+			">\n",
+			"   // $(function(){\n    //     $(\".share-btn\").on('click',function(){\n    //         $(\"#shareModal\").fadeIn();\n    //     });\n    //     $(\".share-close\").on('click',function(){\n    //     \t$(\"#shareModal\").fadeOut();\n    //     })\n    // })",
+			"}\n",
+			")')\n",
+			"va",
+			"openurl",
+			"sharePano",
+			"taagoo_logo",
+			"addlayer",
+			" plugins_init_function",
+			"bgmusic_init",
+			"  btn_bgmusic",
+			"pauseMusic",
+			"play_hotspot_voice",
+			"pausesoundtoggle",
+			"btn_bgmusic",
+			"toggleMusic",
+			"weixinCallback",
+			"wx.config",
+			"getQRCodePic()",
+			"showthumbs",
+			"pause_bgMusic",
+			"pause_bgMusic(this)",
+			"showWebVR()",
+			"showthumbs()",
+			"pause_bgMusic(this)\n",
+			";\n",
+			"flex",
+			".csstransforms ",
+			"gratuity-define",
+			"gratuity-difine",
+			"gratuity-other",
+			"gratuity-define",
+			"gratuity-box",
+			"gratuity-define",
+			"gratuity-other",
+			"gratuity-other-tip",
+			"打赏金额不能为空且必须大于0.1元小于600元。",
+			"打",
+			"table",
+			"赏",
+			"/>\n",
+			"share",
+			"wal-list-box",
+			"提现失败，请稍后再试",
+			"pull-left",
+			"wal-sum",
+			"certifi-box",
+			"ruler-modal",
+			"wal-list-table",
+			"wall-list-sum",
+			"    /* padding: 0; */\n    /* backg",
+			"999999",
+			"add-like",
+			"   <!--  <div class=\"wal-list-box\">\n            <table class=\"wal-list-table\" border=\"\" cellspacing=\"0\" cellpadding=\"0\">\n                <tr><th>打赏人</th><th>打赏时间</th><th>打赏动景</th><th>打赏金额(元)</th></tr>\n                <tr><td>城市猎人</td><td>2016-10-20 10:30</td><td class=\"text-over pano-link\"><a href=\"#\">http://we.taagoo.com...</a></td><td class=\"wall-list-sum\">+0.1 </td></tr>\n            </table>\n        </div> -->",
+			"li",
+			"></",
+			"actionIntegralCheck",
+			"datum",
+			"editorcom",
+			"other-close",
+			"input-gratuity-box",
+			"other-modal",
+			" <div class=\"row gratuity-list\">\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"0.1\">0.1元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"0.5\">0.5元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"1.00\">1元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"5.00\">5元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"10.00\">10元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"20.00\">20元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"50.00\">50元</button></div>\n                <div class=\"col-xs-3\"><button type=\"button\" total-fee=\"100.00\">100元</button></div>\n            </div>",
+			"gratuity-list",
+			"<img",
+			"<div class=\"input-gratuity-box\">\n                <p>请输入其他金额</p>\n                <div>\n                    <input type=\"number\" name=\"points\" min=\"0.1\" max=\"600\" placeholder=\"0.1-600\"  />元\n                </div>\n            </div>\n            <p class=\"gratuity-count\">已有<span>123</span>人打赏</p>",
+			"                \n",
+			"gratuityModal",
+			">\n",
+			" <div class=\"row gratuity-list\">\n                </div>",
+			"</p>",
+			"<p>",
+			"pictextModal",
+			"console",
+			"zoo",
+			"遮罩拖动",
+			"isWhole",
+			"groupbyul",
+			"zo",
+			"eyes_obj",
+			"eye",
+			"tab-content1",
+			"shadeSlider",
+			"切换",
+			"groupbyul",
+			"超链接",
+			"speak_name",
+			"音乐",
+			"#tab-box-shijiao",
+			"add_nadir_logo",
+			"works-list",
+			"table-body",
+			"btn_fullscreen",
+			"add_nadir_logo",
+			"krpano.call",
+			"judgmentImgPath",
+			"<strong class=\"text-warning\"><a href=\"https://bbs.ivrpano.com/article/1482216137701\" target=\"_blank\" style=\"color:inherit\">设置教程&gt;&gt;</a></strong>",
+			"教程",
+			"addShadeImg",
+			"resetScene",
+			"initAdvViewSetting",
+			"judgmentImgPath",
+			"addShadeImg",
+			"initAdvViewSetting",
+			"resetScene",
+			"judgmentImgPath",
+			"addShadeImg"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"withdraw-list-table",
+			"</button>",
+			"<button type=\"button\">0",
+			"index",
+			"this.pano.get(\"xml.scene\")"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 78.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "toutiao_detail.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 936.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 246.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

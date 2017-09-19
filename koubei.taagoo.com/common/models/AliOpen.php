@@ -1,0 +1,177 @@
+<?php
+namespace common\models;
+
+use Yii;
+
+include(Yii::getAlias('@vendor/alipay/AopSdk.php'));
+
+class AliOpen
+{
+    /**
+     * 根据 app_auth_code 获取 app_auth_token
+     * @param $app_auth_code string
+     * @return mixed
+     */
+    public static function getAccessToken($app_auth_code)
+    {
+        $aop = self::getAopObj();
+        $request = new \AlipayOpenAuthTokenAppRequest();
+        $request->setBizContent("{" .
+            "    \"grant_type\":\"authorization_code\"," .
+            "    \"code\":\"" . $app_auth_code . "\"," .
+            "  }");
+        $result = $aop->execute($request);
+
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            $result->$responseNode->created_at = time();
+            $result = $result->$responseNode;
+            if (Member::operationUser($result)) {
+                return $result;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 刷新 app_auth_token
+     * @param $refresh_token string
+     * @return mixed
+     */
+    public static function refreshAppAuthToken($refresh_token)
+    {
+        $aop = self::getAopObj();
+        $request = new \AlipayOpenAuthTokenAppRequest();
+        $request->setBizContent("{" .
+            "    \"grant_type\":\"refresh_token\"," .
+            "    \"code\":\"" . $refresh_token . "\"," .
+            "  }");
+        $result = $aop->execute($request);
+
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            $result->$responseNode->created_at = time();
+            $result = $result->$responseNode;
+            if (Member::operationUser($result)) {
+                return $result;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查询商家下店铺信息
+     * @param $app_auth_token string
+     * @return mixed
+     */
+    public static function getShopIds($app_auth_token)
+    {
+        $aop = self::getAopObj();
+        $aop->app_auth_token = $app_auth_token;
+        $request = new \AlipayOfflineMarketShopBatchqueryRequest ();
+        $request->setBizContent("{" .
+            "    \"page_no\":\"1\"" .
+            "  }");
+        $result = $aop->execute($request);
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            return $result->$responseNode;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 获取单个门店的信息
+     * @param $shopId string
+     * @return mixed
+     */
+    public static function getOfflineMarketShopQuerydetailRequest($app_auth_token, $shopId)
+    {
+        $aop = self::getAopObj();
+        $aop->app_auth_token = $app_auth_token;
+        $request = new \AlipayOfflineMarketShopQuerydetailRequest();
+        $request->setBizContent("{" .
+            "    \"shop_id\":\"" . $shopId . "\"," .
+            "    \"op_role\":\"ISV\"" . // 服务商操作
+            "  }");
+        $result = $aop->execute($request);
+
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            return $result->$responseNode;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 查询授权信息
+     * @param $app_auth_token string
+     * @return mixed
+     */
+    public static function getAppQuery($app_auth_token)
+    {
+        $aop = self::getAopObj();
+        $request = new \AlipayOpenAuthTokenAppQueryRequest();
+        $request->setBizContent("{" .
+            "    \"app_auth_token\":\"" . $app_auth_token . "\"" .
+            "  }");
+        $result = $aop->execute($request);
+
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            return $result->$responseNode;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 店铺摘要信息（商圈信息）
+     */
+    public static function getBatchQuery($queryType, $pId)
+    {
+        $aop = self::getAopObj();
+        $request = new \AlipayOfflineMarketShopSummaryBatchqueryRequest();
+        $request->setBizContent("{" .
+            "    \"op_role\":\"ISV\"," .
+            "    \"query_type\":\"" . $queryType . "\"," .
+            "    \"related_partner_id\":\"" . $pId . "\"," .
+            "    \"shop_status\":\"PAUSED,OPEN,INIT\"," .
+            "    \"page_no\":1," .
+            "    \"page_size\":100" .
+            "  }");
+        $result = $aop->execute($request);
+        $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+        $resultCode = $result->$responseNode->code;
+        if (!empty($resultCode) && $resultCode == 10000) {
+            return $result->$responseNode;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * aop 对象
+     * @return object
+     */
+    public static function getAopObj()
+    {
+        $aop = new \AopClient ();
+        $aop->gatewayUrl = Yii::$app->params['aliyun_app']['gatewayUrl'];
+        $aop->appId = Yii::$app->params['aliyun_app']['appId'];
+        $aop->rsaPrivateKey = Yii::$app->params['aliyun_app']['rsaPrivateKey'];
+        $aop->alipayrsaPublicKey = Yii::$app->params['aliyun_app']['alipayrsaPublicKey'];
+        $aop->apiVersion = '1.0';
+        $aop->signType = Yii::$app->params['aliyun_app']['signType'];
+        $aop->postCharset = Yii::$app->params['aliyun_app']['charset'];
+        $aop->format = Yii::$app->params['aliyun_app']['format'];
+        return $aop;
+    }
+}

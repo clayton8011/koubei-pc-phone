@@ -1,0 +1,122 @@
+<?php
+
+namespace common\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%scenic}}".
+ *
+ * @property integer $id
+ * @property string $title
+ * @property integer $user_id
+ * @property integer $scenic_level
+ * @property integer $scenic_type
+ * @property integer $panoramic_id
+ * @property integer $start_rule
+ * @property integer $introduce
+ * @property integer $audio_id
+ * @property integer $drawing_open
+ * @property integer $drawing
+ * @property integer $address
+ * @property integer $address_info
+ * @property float $lat
+ * @property float $lng
+ * @property integer $thumb
+ * @property integer $created_at
+ */
+class Scenic extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%scenic}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['title', 'user_id', 'panoramic_id', 'scenic_level', 'scenic_type'], 'required'],
+            [['panoramic_id', 'user_id', 'scenic_level', 'scenic_type', 'start_rule', 'audio_id', 'drawing_open', 'drawing', 'created_at'], 'integer'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'title' => '景区名称',
+            'user_id' => '用户ID',
+            'scenic_level' => '景区等级',
+            'scenic_type' => '景区类型',
+            'panoramic_id' => '所属全景组',
+            'start_rule' => '开场图样式（1无 2正星球图 3反星球图）',
+            'introduce' => '景区介绍',
+            'audio_id' => '音频ID',
+            'drawing_open' => '手绘图开关（0关闭 1 打开）',
+            'drawing' => '手绘图',
+            'address' => '地址',
+            'address_info' => '详细地址',
+            'lat' => '纬度',
+            'lng' => '经度',
+            'created_at' => '创建日期',
+        ];
+    }
+
+
+    /**
+     * 场景设置
+     * @return  {[type]} [description]
+     * @version 1.0      2015-12-31T15:48:46+0800
+     * @author cnzhangxl@foxmail.com
+     */
+    public function scenarios()
+    {
+        return [
+            'create' => ['title', 'user_id', 'scenic_level', 'scenic_type', 'panoramic_id', 'start_rule', 'introduce', 'audio_id', 'drawing_open', 'drawing', 'address', 'address_info', 'lat', 'lng', 'thumb', 'created_at'],
+            'update' => ['title', 'user_id', 'scenic_level', 'scenic_type', 'panoramic_id', 'start_rule', 'introduce', 'audio_id', 'drawing_open', 'drawing', 'address', 'address_info', 'lat', 'lng', 'thumb', 'created_at']
+        ];
+    }
+
+    public function beforeValidate()
+    {
+        if ($this->scenario != 'default' && $this->scenario != 'search') {
+            if ($this->isNewRecord) {
+                $this->created_at = time();
+            }
+        }
+        return parent::beforeValidate();
+    }
+
+    /**
+     * 获取缩略图
+     */
+    public function getThumb()
+    {
+        if($this->thumb){
+            $material = PanoramicMaterial::findOne($this->thumb);
+            if($material){
+                return $material->getThumbs()['default'];
+            }
+        }
+        return PanoramicList::findOne(['panoramic_id' => $this->panoramic_id, 'status' => 1])->panoramicMaterial->getThumbs()['default'];
+    }
+
+    /**
+     * 获取用户信息
+     * @date   2016-03-24T10:53:02+0800
+     * @author cnzhangxl@foxmail.com
+     * @return [type]                   [description]
+     */
+    public function getMember(){
+        return $this->hasOne('common\models\Member', ['user_id' => 'user_id']);
+    }
+}

@@ -1,0 +1,353 @@
+<?php
+
+namespace frontend\modules\scenic\controllers;
+
+use common\models\Headlines;
+use common\models\KoubeiServiceMarketOrder;
+use common\models\Member;
+use common\models\Panoramic;
+use common\models\Scenic;
+use common\models\ScenicAudio;
+use yii\web\ForbiddenHttpException;
+use common\models\Activity;
+use Yii;
+use common\models\AliOpen;
+use common\models\ScenicSpot;
+use common\models\ScenicNotice;
+
+/**
+ * Scenic controller for the `scenic` module
+ */
+class ScenicController extends \yii\web\Controller
+{
+
+    public $layout = false;
+    public $enableCsrfValidation = false;
+
+    /**
+     * 播放页面
+     */
+    public function actionIndex($shop_id, $merchant_pid)
+    {
+        $koubeiServiceaMarketOrder = KoubeiServiceMarketOrder::find()->where(['shop_id' => $shop_id, 'merchant_pid' => $merchant_pid])->one();
+        if ($koubeiServiceaMarketOrder) {
+            $memberModel = Member::findOne(['user_id' => $merchant_pid]);
+            if ($memberModel) {
+                $scenicModel = Scenic::findOne(['user_id' => $memberModel->id]);
+                if ($scenicModel) {
+                    $model = Panoramic::findOne($scenicModel->panoramic_id);
+                    if ($model) {
+                        $headlines = Headlines::find()->where(['user_id' => $memberModel->id])->orderBy('sort asc')->asArray()->all();
+                        $activity = Activity::find()->where(['user_id' => $memberModel->id])->orderBy('sort asc')->asArray()->all();
+                        $ScenicNotice = ScenicNotice::find()->where(['scenic_id' => $scenicModel->id])->all();
+                        $scenicSpotList = ScenicSpot::find()->where(['user_id' => $memberModel->id, 'status' => 1])->all();
+                        return $this->render('index', [
+                            'model' => $model,
+                            'scenic' => $scenicModel,
+                            'shop' => $koubeiServiceaMarketOrder,
+                            'headlines' => $headlines,
+                            'activity' => $activity,
+                            'scenicNotice' => $ScenicNotice,
+                            'scenicSpotList' => $scenicSpotList
+                        ]);
+                    }
+                }
+
+            }
+        }
+        throw new ForbiddenHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * 播放xml
+     * @date   2016-08-29T17:13:30+0800
+     * @author cnzhangxl@foxmail.com
+     * @return [type]                   [description]
+     */
+    public function actionPlayXml($id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+        $headers = Yii::$app->response->headers;
+        $headers->add('Content-Type', 'text/xml');
+        $model = Panoramic::findOne($id);
+        if (!$model || !in_array($model->status, [1, 3, 4])) {
+            throw new ForbiddenHttpException('The requested page does not exist.');
+        }
+        return $this->render('play_xml', [
+            'model' => $model
+        ]);
+    }
+
+    /**
+     * 动景播放json
+     */
+    public function actionPanoJson()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (Yii::$app->request->post()) {
+            $id = Yii::$app->request->post('panoramic_id');
+            $returnData = Panoramic::getPlayJson($id);
+            if ($id == 39) {
+                //展示沙盘
+                $sand_table = array(
+                    'imgID' => 72,
+                    'imgPath' => "http://test-pano.oss-cn-hangzhou.aliyuncs.com/own/pic/2016/08/11/157abd16e6b589.jpg",
+                    'sandID' => 44,
+                    'sceneOpt' => array(
+                        'scene_1' => array(
+                            'hlookat' => 0,
+                            'krpLeft' => "77.58%",
+                            'krpTop' => "17.79%",
+                            'left' => "70.46%",
+                            'rotate' => 0,
+                            'sceneTitle' => "1000x500_5784651a92d75",
+                            'top' => "10.68%"
+                        ),
+                        'scene_40' => array(
+                            'hlookat' => 0,
+                            'krpLeft' => "22.78%",
+                            'krpTop' => "22.78%",
+                            'left' => "15.66%",
+                            'rotate' => 0,
+                            'sceneTitle' => "c",
+                            'top' => "15.66%"
+                        )
+                    )
+                );
+                $returnData['sand_table']['sandTables'][] = $sand_table;
+                $hotspot = array(
+                    'scene_1' => array(
+                        'image' => array(
+                            array(
+                                'ath' => 51.8941,
+                                'atv' => 8.22664,
+                                'galleryName' => "glrhotspot_271",
+                                'hotspotTitle' => "image",
+                                'iconId' => "212",
+                                'iconType' => "system",
+                                'imgs' => array('rid' => "73", 'src' => "http://test-pano.oss-cn-hangzhou.aliyuncs.com/own/pic/2016/08/11/157abd4182bf71.jpg"),
+                                'isDynamic' => 2,
+                                'isShowSpotName' => 1,
+                                'name' => "hotspot_271",
+                                'thumbPath' => "http://pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/hotsport.png"
+                            )
+                        ),
+                        'link' => array(
+                            array(
+                                'ath' => 65.8736,
+                                'atv' => 8.19249,
+                                'galleryName' => "glrhotspot_268",
+                                'hotspotTitle' => "link",
+                                'iconId' => "212",
+                                'iconType' => "system",
+                                'link' => "http://www.zhihu.com",
+                                'isDynamic' => 2,
+                                'isShowSpotName' => 1,
+                                'name' => "hotspot_272",
+                                'thumbPath' => "http://pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/link.png"
+                            )
+                        ),
+                        'scene' => array(
+                            array(
+                                'ath' => 150.8443,
+                                'atv' => 8.03545,
+                                'galleryName' => "glrhotspot_268",
+                                'hotspotTitle' => "scene",
+                                'iconId' => "212",
+                                'iconType' => "system",
+                                'linkedscene' => "scene_40",
+                                'isDynamic' => 2,
+                                'isShowSpotName' => 1,
+                                'sceneImg' => "http://test-pano.taagoo.cn/vr_cloud/2017/05/11/9315914344751e00/thumb.jpg",
+                                'sceneTitle' => "1",
+                                'name' => "hotspot_273",
+                                'thumbPath' => "http://pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/forward.png"
+                            )
+                        ),
+                        'text' => array(
+                            array(
+                                'ath' => 190.8291,
+                                'atv' => 13.0725,
+                                'galleryName' => "glrhotspot_268",
+                                'hotspotTitle' => "text",
+                                'iconId' => "212",
+                                'iconType' => "system",
+                                'wordContent' => "测试一波",
+                                'isDynamic' => 2,
+                                'isShowSpotName' => 1,
+                                'name' => "hotspot_274",
+                                'thumbPath' => "http://pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/circle.png"
+                            )
+                        ),
+                        'video' => array(
+                            array(
+                                'ath' => 92.0202,
+                                'atv' => 13.3238,
+                                'galleryName' => "glrhotspot_268",
+                                'hotspotTitle' => "video",
+                                'iconId' => "212",
+                                'iconType' => "system",
+                                'location' => "http://test-pano.oss-cn-hangzhou.aliyuncs.com/own/video/2016/08/11/157ac366f63ea2.mp4",
+                                'isDynamic' => 2,
+                                'isShowSpotName' => 1,
+                                'name' => "hotspot_275",
+                                'thumbPath' => "http://pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/video.png"
+                            )
+                        ),
+                        'voice' => array(
+                            array(
+                                'ath' => 135.9914,
+                                'atv' => 13.3736,
+                                'galleryName' => "glrhotspot_268",
+                                'hotspotTitle' => "audio",
+                                'iconId' => "212",
+                                'iconType' => "system",
+                                'musicSrc' => "http://test-pano.oss-cn-hangzhou.aliyuncs.com/own/audio/2016/08/11/157abd1a59ee8c.mp3",
+                                'musicTitle' => "苏运莹-2-0+1",
+                                'isDynamic' => 2,
+                                'isShowSpotName' => 1,
+                                'name' => "hotspot_276",
+                                'thumbPath' => "http://pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/music2.png"
+                            )
+                        ),
+                    ),
+                    'scene_40' => array(
+                        'image' => [],
+                        'link' => [],
+                        'text' => [],
+                        'scene' => [],
+                        'video' => [],
+                        'voice' => []
+                    )
+                );
+                $returnData['hotspot'] = $hotspot;
+            }
+            return ['status' => 1, 'data' => $returnData];
+        }
+        return ['status' => 0];
+    }
+
+    /**
+     * 活动详情
+     */
+    public function actionActivityDetail($id)
+    {
+        $activity = Activity::findOne($id);
+        if (!$activity) {
+            throw new ForbiddenHttpException('活动不存在或已下架。');
+        }
+        $scenic = Scenic::findOne(['user_id' => $activity->user_id]);
+        if (!$scenic) {
+            throw new ForbiddenHttpException('无景区信息。');
+        }
+
+        $scenicList = Activity::find()->where(['user_id' => $activity->user_id])->orderBy('`sort` asc')->limit('0,6')->all();
+        return $this->render('activity-detail', [
+            'activity' => $activity,
+            'scenic' => $scenic,
+            'scenicList' => $scenicList
+        ]);
+    }
+
+    /**
+     * 店铺列表
+     */
+    public function actionShopList($shop_id, $merchant_pid)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $returnRes = ['status' => 0, 'data' => []];
+        $koubeiServiceaMarketOrder = KoubeiServiceMarketOrder::find()->where(['shop_id' => $shop_id, 'merchant_pid' => $merchant_pid])->one();
+        if ($koubeiServiceaMarketOrder) {
+            $res = AliOpen::getBatchQuery('MALL_RELATION', $merchant_pid);
+            if (isset($res->shop_summary_infos) && $res->shop_summary_infos) {
+                foreach ($res->shop_summary_infos as $key => $item) {
+                    $picColl = json_decode($item->pic_coll, true);
+                    $returnRes['data'][] = [
+                        'business_time' => $item->business_time,
+                        "pic" => $picColl[$item->main_image],
+                        'main_shop_name' => $item->main_shop_name,
+                        'address' => $item->address,
+                        'branch_shop_name' => isset($item->branch_shop_name) ? $item->branch_shop_name : '',
+                        'is_show' => $item->is_show
+                    ];
+                }
+            }
+        }
+        return $returnRes;
+    }
+
+    /**
+     * 头条详情页
+     */
+    public function actionToutiaoDetail($id)
+    {
+        $headLine = Headlines::findOne($id);
+        if (!$headLine) {
+            throw new ForbiddenHttpException('无头条信息。');
+        }
+        $headLineList = Headlines::find()->where(['user_id' => $headLine->user_id])->orderBy('`sort` asc')->limit('0,4')->all();
+        return $this->render('toutiao_detail', [
+            'headLine' => $headLine,
+            'headLineList' => $headLineList
+        ]);
+    }
+
+
+    //景点json数据
+    public function actionSpotJson()
+    {
+        $res = ['status' => 0,'data'=>[]];
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('id');
+        $info = ScenicSpot::find()->where(['id'=>$id])->asArray()->one();
+        if ($info) {
+            $res['status'] = 1;
+            $res['data']['info'] = $info;
+            $res['data']['audio'] = ScenicAudio::find()->where(['rel_type'=>2,'rel_id'=>$id])->asArray()->all();
+        }
+        return $res;
+    }
+
+
+    //景区json数据
+    public function actionScenicJson()
+    {
+        $res = ['status' => 0,'data'=>[]];
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('id');
+        $info = Scenic::find()->where(['id'=>$id])->asArray()->one();
+        if ($info) {
+            $res['status'] = 1;
+            $res['data']['info'] = $info;
+            $res['data']['audio'] = ScenicAudio::find()->where(['rel_type'=>1,'rel_id'=>$id])->asArray()->all();
+        }
+        return $res;
+    }
+
+    /**
+     * 景点详情页
+     */
+    public function actionSpotDetail($id)
+    {
+        $scenicSpot = ScenicSpot::findOne($id);
+        $model = Panoramic::findOne($scenicSpot->panoramic_id);
+        $headlines = Headlines::find()->where(['user_id' => $scenicSpot['user_id']])->orderBy('sort asc')->asArray()->all();
+        $scenicModel = Scenic::findOne(['user_id' => $scenicSpot->user_id]);
+        $activity = Activity::find()->where(['user_id' => $scenicSpot->user_id])->orderBy('sort asc')->asArray()->all();
+        return $this->render('scenic-spot', [
+            'scenicSpot' => $scenicSpot,
+            'headlines' => $headlines,
+            'model' => $model,
+            'scenic' => $scenicModel,
+            'activity' => $activity
+        ]);
+    }
+    
+    /**
+     * 公共设施
+     */
+    public function actionPublic()
+    {
+        return $this->render('public');
+    }
+}

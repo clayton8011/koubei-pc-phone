@@ -1,0 +1,113 @@
+<?php
+namespace console\controllers;
+use common\models\KoubeiServiceMarketOrder;
+use Yii;
+use yii\console\Controller;
+use common\models\AliOpen;
+use common\models\Category;
+use common\models\CategoryRelation;
+use common\models\Shop;
+
+class KoubeiShopController extends Controller
+{
+    //同步商圈店铺列表
+    public function actionSyncShop()
+    {
+        $aop = AliOpen::getAopObj();
+        $request = new \AlipayOfflineMarketShopSummaryBatchqueryRequest ();
+
+        $list = KoubeiServiceMarketOrder::find()->all();
+        foreach($list as $item){
+            $page = 1;
+            $b = true;
+            while ($page){
+                $request->setBizContent("{" .
+                "    \"op_role\":\"ISV\"," .
+                "    \"shop_id\":\"".$item->shop_id."\"," .
+                "    \"query_type\":\"MALL_RELATION\"," .
+                "    \"page_no\":".$page."," .
+                "    \"page_size\":10" .
+                "  }");
+                $resultAccept = $aop->execute ( $request,'',$item->member->app_auth_token);
+                $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+                $resultCode = $resultAccept->$responseNode->code;
+                if (!empty($resultCode) && $resultCode == 10000) {
+                    if($resultAccept->$responseNode->total_items==Shop::find()->where(['merchant_pid'=>$item->merchant_pid])->count()){
+                        break;
+                    }
+                    foreach($resultAccept->$responseNode->shop_summary_infos as $shop){
+                        $shopModel = Shop::findOne($shop->shop_id);
+                        if($shopModel){
+                            $shopModel->scenario = 'update';
+                        }else{
+                            $shopModel = new Shop(['scenario'=>'create']);
+                        }
+                        $shopModel->shop_id = $shop->shop_id;
+                        $shopModel->merchant_pid = $item->merchant_pid;
+                        $shopModel->gmt_create = $shop->gmt_create;
+                        $shopModel->status = $shop->status;
+                        $shopModel->star = isset($shop->shop_comment_info->star)?$shop->shop_comment_info->star:0;
+                        $shopModel->score = isset($shop->shop_comment_info->score)?$shop->shop_comment_info->score:0;
+                        $shopModel->province_code = $shop->province_code;
+                        $shopModel->city_code = $shop->city_code;
+                        $shopModel->district_code = $shop->district_code;
+                        $shopModel->pic_coll = $shop->pic_coll;
+                        $shopModel->brand_name = $shop->brand_name;
+                        $shopModel->main_image = $shop->main_image;
+                        $shopModel->shop_type = $shop->shop_type;
+                        $shopModel->main_shop_name = $shop->main_shop_name;
+                        $shopModel->address = $shop->address;
+                        $shopModel->longitude = $shop->longitude;
+                        $shopModel->latitude = $shop->latitude;
+                        $shopModel->branch_shop_name = isset($shop->branch_shop_name)?$shop->branch_shop_name:'';
+                        $shopModel->is_show = $shop->is_show;
+                        $shopModel->created_at =time();
+                        if($shopModel->save()){
+                            $haveCategoryId = [];
+                            foreach ($shop->category_infos as $category){
+                                $categoryModel = Category::findOne($category->category_id);
+                                if(!$categoryModel){
+                                    $categoryModel = new Category(['scenario'=>'create']);
+                                }else{
+                                    $categoryModel->scenario = 'update';
+                                }
+                                $categoryModel->id = $category->category_id;
+                                $categoryModel->name = $category->category_name;
+                                $categoryModel->level = $category->category_level;
+                                if($categoryModel->save()){
+                                    $categoryRelation = CategoryRelation::find()->where(['category_id'=>$categoryModel->id,'shop_id'=>$shop->shop_id])->count();
+                                    if(!$categoryRelation){
+                                        $categoryRelationModel = new CategoryRelation(['scenario'=>'create']);
+                                        $categoryRelationModel->category_id = $category->category_id;
+                                        $categoryRelationModel->shop_id = $shop->shop_id;
+                                        if(!$categoryRelationModel->save()){
+                                            Yii::error($categoryRelationModel);
+                                        }
+                                    }
+                                    $haveCategoryId[] = $category->category_id;
+                                }else{
+                                    Yii::error($categoryModel);
+                                }
+                            }
+                            if($haveCategoryId){
+                                CategoryRelation::deleteAll(['AND',
+                                    'shop_id = '.$shop->shop_id,
+                                    ['NOT IN', 'category_id', $haveCategoryId]
+                                ]);
+                            }
+                        }else{
+                            Yii::error($shopModel);
+                        }
+                    }
+                    $page++;
+                    if($resultAccept->$responseNode->total_page_no<$page){
+                        break;
+                    }
+                }else{
+                    break;
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,121 @@
+<?php
+
+namespace common\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%panoramic_list}}".
+ *
+ * @property integer $id
+ * @property integer $panoramic_id
+ * @property integer $panoramic_material_id
+ * @property integer $sort_val
+ * @property integer $panoramic_material_title
+ * @property integer $status
+ * @property integer $lock
+ */
+class PanoramicList extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%panoramic_list}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['panoramic_id', 'panoramic_material_id', 'sort_val'], 'required'],
+            [['panoramic_id', 'panoramic_material_id', 'sort_val', 'status', 'lock', 'created_at'], 'integer'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'panoramic_id' => '所属全景组',
+            'panoramic_material_id' => '全景素材id',
+            'sort_val' => '排序值',
+            'status' => '1正常 2删除',
+            'lock' => '0正常 1锁住',
+            'created_at' => '创建日期',
+            'panoramic_material_title' => '动景名称'
+        ];
+    }
+
+
+    /**
+     * 场景设置
+     * @return  {[type]} [description]
+     * @version 1.0      2015-12-31T15:48:46+0800
+     * @author cnzhangxl@foxmail.com
+     */
+    public function scenarios()
+    {
+        return [
+            'create' => ['panoramic_id', 'panoramic_material_id', 'sort_val', 'status', 'lock', 'created_at', 'panoramic_material_title'],
+            'update' => ['panoramic_id', 'panoramic_material_id', 'sort_val', 'status', 'lock', 'created_at', 'panoramic_material_title'],
+            'delete' => ['status'],
+            'rename' => ['panoramic_material_title'],
+        ];
+    }
+
+    public function beforeValidate()
+    {
+        if ($this->scenario != 'default' && $this->scenario != 'search') {
+            if ($this->isNewRecord) {
+                $this->created_at = time();
+            }
+        }
+        return parent::beforeValidate();
+    }
+
+    /**
+     * 获取panoramic_material 信息
+     */
+    public function getPanoramicMaterial()
+    {
+        return $this->hasOne('common\models\PanoramicMaterial', ['id' => 'panoramic_material_id']);
+    }
+
+    /**
+     * 获取标题
+     */
+    public function getTitle()
+    {
+        if ($this->panoramic_material_title == '') {
+            $this->panoramic_material_title = $this->panoramicMaterial->title;
+        }
+        $arr['default'] = $this->panoramic_material_title;
+        return $arr;
+    }
+    
+    /**
+     * 动景组添加动景
+     * @param $panoramic_id string 动景组ID
+     * @param $material_id string 动景ID
+     * @return mixed
+     */
+    public static function createMaterial($panoramic_id,$material_id)
+    {
+        $listModel = new self();
+        $listModel->scenario = 'create';
+        $listModel->panoramic_id = $panoramic_id;
+        $listModel->panoramic_material_id = $material_id;
+        $listModel->sort_val = 0;
+        if($listModel->save()){
+            return $listModel;
+        }
+        return false;
+    }
+}

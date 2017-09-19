@@ -1,0 +1,80 @@
+<?php
+namespace frontend\controllers;
+
+use Yii;
+use yii\web\Controller;
+use common\models\AliOpen;
+use common\models\KoubeiServiceMarketOrder;
+
+
+
+/**
+ * 支付宝向服务商推送消息Controller
+ */
+class AlipayMonitorController extends Controller
+{
+    public $enableCsrfValidation = false;
+
+    /**
+     * 监听支付宝推送消息
+     * @return bool
+     */
+    public function actionIndex()
+    {
+        $request = Yii::$app->request;
+        $message = 'alipay--收到通知，post:'.json_encode($request->post())."\r\n".'get:'.json_encode($request->get());
+
+        $aop = AliOpen::getAopObj();
+        //验签
+        $b = $aop->rsaCheckV2($request->post(),'',$aop->signType);
+        Yii::info($message."\r\n".'验签结果:'.$b,'alipay');
+        if($b){
+            $commodity_order_id = $request->post('commodity_order_id');
+            $request = new \AlipayOpenServicemarketOrderQueryRequest ();
+            $request->setBizContent("{" .
+                "    \"commodity_order_id\":\"".$commodity_order_id."\"," .
+                "    \"start_page\":\"1\"" .
+                "  }");
+            $result = $aop->execute ( $request);
+
+            $responseNode = str_replace(".", "_", $request->getApiMethodName()) . "_response";
+            $resultCode = $result->$responseNode->code;
+            if(!empty($resultCode)&&$resultCode == 10000){
+                $koubeiServiceMarketOrder = new KoubeiServiceMarketOrder(['scenario'=>'create']);
+                $koubeiServiceMarketOrder->commodity_order_id = $request->post('commodity_order_id');
+                $koubeiServiceMarketOrder->order_time = $request->post('order_time');
+                $koubeiServiceMarketOrder->title = $request->post('title');
+                $koubeiServiceMarketOrder->order_item_num = $request->post('order_item_num');
+                $koubeiServiceMarketOrder->total_price = $request->post('total_price');
+                $koubeiServiceMarketOrder->biz_type = $request->post('biz_type');
+                $koubeiServiceMarketOrder->specifications = $result['specifications'];
+                $orderItems = $result['order_items'];
+                $koubeiServiceMarketOrder->phone_no = $orderItems['phone_no'];
+                $koubeiServiceMarketOrder->online_time = $orderItems['online_time'];
+                $koubeiServiceMarketOrder->expire_date = $orderItems['expire_date'];
+                $koubeiServiceMarketOrder->order_status = $orderItems['order_status'];
+                $koubeiServiceMarketOrder->shop_status = $orderItems['shop_status'];
+                $koubeiServiceMarketOrder->status = $orderItems['status'];
+                $koubeiServiceMarketOrder->commodity_id = $orderItems['commodity_id'];
+                $koubeiServiceMarketOrder->merchant_pid = $orderItems['merchant_pid'];
+                $koubeiServiceMarketOrder->merchant_name = $orderItems['merchant_name'];
+                $koubeiServiceMarketOrder->brand_name = $orderItems['brand_name'];
+                $koubeiServiceMarketOrder->contacts = $orderItems['contacts'];
+                $koubeiServiceMarketOrder->shop_name = $orderItems['shop_name'];
+                $koubeiServiceMarketOrder->shop_id = $orderItems['shop_id'];
+                $koubeiServiceMarketOrder->category = $orderItems['category'];
+                $koubeiServiceMarketOrder->province = $orderItems['province'];
+                $koubeiServiceMarketOrder->city = $orderItems['city'];
+                $koubeiServiceMarketOrder->address = $orderItems['address'];
+                if($koubeiServiceMarketOrder->save()){
+                    return true;
+                }else{
+                    Yii::error($koubeiServiceMarketOrder);
+                }
+            } else {
+                Yii::error('AlipayOpenServicemarketOrderQueryRequest error,result:' . json_encode($result),'alipay');
+            }
+        }
+        return false;
+    }
+}

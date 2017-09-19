@@ -1,0 +1,194 @@
+<?php
+
+namespace frontend\modules\scenic\controllers;
+
+use common\models\PanoramicList;
+use Yii;
+use common\models\Scenic;
+use yii\web\ForbiddenHttpException;
+use common\models\ScenicSpot;
+use common\models\Panoramic;
+use common\models\PanoramicMaterial;
+use common\models\ScenicAudio;
+use yii\web\Response;
+
+/**
+ * Default controller for the `scenic` module
+ */
+class ScenicSpotController extends BaseController
+{
+
+    public $layout = '/scenic_backend';
+    public $enableCsrfValidation = false;
+
+    /**
+     * 初始页面
+     */
+    public function actionIndex()
+    {
+        $scenicModel = Scenic::findOne(['user_id' => Yii::$app->user->id]);
+        if ($scenicModel) {
+            $spotList = ScenicSpot::find()->where(['user_id' => Yii::$app->user->id,'status'=>1])->all();
+            return $this->render('index', [
+                'scenic' => $scenicModel,
+                'spotList' => $spotList
+            ]);
+        } else {
+            throw new ForbiddenHttpException('景区不存在，请返回编辑景区。');
+        }
+    }
+
+
+    /**
+     * 初始页面
+     */
+    public function actionEdit($id='')
+    {
+        $scenicSpotModel = ScenicSpot::findOne($id);
+        $scenicRadioList = [];
+        $panoramicList = [];
+        if($scenicSpotModel){
+            $scenicRadioList = ScenicAudio::find()->where(['rel_type'=>2,'rel_id'=>$id,'status'=>1])->all();
+            $panoramicList = PanoramicList::find()->where(['status'=>1,'panoramic_id' => $scenicSpotModel->panoramic_id])->all();
+        }else{
+            $scenicSpotModel = new ScenicSpot;
+        }
+        return $this->render('edit', [
+            'scenicSpotModel' => $scenicSpotModel,
+            'scenicRadioList'=>$scenicRadioList,
+            'panoramicList'=>$panoramicList
+        ]);
+    }
+
+    /**
+     * 保存景点
+     */
+    public function actionSave()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $return = ['status' => 0, 'msg' => '','data'=>[]];
+        $post = Yii::$app->request;
+        if (!$post->post('sceneList')) {
+            $return['msg'] = '至少上传一张全景图';
+            return $return;
+        }
+        $model = null;
+        if (!$post->post('id')) {
+            $model = new ScenicSpot (['scenario' => 'create']);
+        } else {
+            $model = ScenicSpot::findOne($post->post('id'));
+            $model->scenario = 'update';
+        }
+        $model->setAttributes([
+            'title' => $post->post('title'),
+            'user_id' => Yii::$app->user->id,
+            'sort' => $post->post('grade'),
+            'introduce' => $post->post('introduce',''),
+            'audio_id' => $post->post('defaultAudio',0),
+            'default_material_id'=>$post->post('default_material_id',0) ? $post->post('default_material_id',0) : 0
+        ]);
+        $transaction = Yii::$app->db->beginTransaction();
+        if ($model->save()) {
+            $model->scenario = 'update';
+            if ($post->post('sceneList')) {
+                if ($model->panoramic_id) {
+                    $panoramic = Panoramic::findOne($model->panoramic_id);
+                } else {
+                    $panoramic = new Panoramic(['scenario' => 'create']);
+                    $panoramic->setAttributes([
+                        'member_id' => Yii::$app->user->id,
+                    ]);
+                    if (!$panoramic->save()) {
+                        Yii::error($panoramic);
+                    }else{
+                        $model->panoramic_id = $panoramic->id;
+                    }
+                }
+
+                if ($panoramic->id) {
+                    PanoramicList::updateAll(['lock'=>1],['AND',
+                        'panoramic_id='.$panoramic->id,
+                        'status=1',
+                    ]);
+                    foreach ($post->post('sceneList') as $key => $item) {
+                        $panoramic_material_id = $item['id'];
+                        $panoramicList = PanoramicList::findOne(['panoramic_id' => $panoramic->id, 'panoramic_material_id' => $panoramic_material_id]);
+                        if (!$panoramicList) {
+                            $panoramicList = new PanoramicList(['scenario' => 'create']);
+                        } else if ($panoramicList->panoramic_id != $panoramic->id) {
+                            continue;
+                        }else{
+                            $panoramicList->scenario = 'update';
+                        }
+                        $panoramicList->setAttributes([
+                            'panoramic_id' => $panoramic->id,
+                            'panoramic_material_id' => $panoramic_material_id,
+                            'sort_val' => $key,
+                            'lock'=>0,
+                            'panoramic_material_title'=>$item['title']
+                        ]);
+                        if (!$panoramicList->save()) {
+                            Yii::error($panoramicList);
+                        }
+                    }
+                    PanoramicList::updateAll(['lock'=>0,'status'=>2], ['AND',
+                        'panoramic_id='.$panoramic->id,
+                        '`lock`=1',
+                    ]);
+
+                    if($post->post('audioList')){
+                        foreach($post->post('audioList') as $key=>$audio_id){
+                            $scenicAudio = ScenicAudio::findOne($audio_id);
+                            if ($scenicAudio && $scenicAudio->rel_type==2) {
+                                if($scenicAudio->rel_id==0){
+                                    $scenicAudio->scenario = 'update';
+                                    $scenicAudio->rel_id = $model->id;
+                                    if(!$scenicAudio->save()){
+                                        Yii::error($scenicAudio);
+                                    }
+                                }
+                            } else {
+                                continue;
+                            }
+                        }
+                    }
+                }
+                if(!$model->save()){
+                    Yii::error($model);
+                }else{
+                    $return['data']['scenic_spot_id'] = $model->id;
+                    $return['status'] = 1;
+                }
+            } else {
+                $return['msg'] = $model->errors;
+            }
+        }
+        if ($return['status']) {
+            $transaction->commit();
+        } else {
+            $return['msg'] = '保存失败，请重试。';
+            $transaction->rollBack();
+        }
+        return $return;
+    }
+
+    /**
+     * 删除
+     */
+    public function actionDelete(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $return = ['status' => 0];
+        if (Yii::$app->request->post()) {
+            $post = Yii::$app->request;
+            $audioModel = ScenicSpot::findOne($post->post('id'));
+            if($audioModel && $audioModel->user_id=Yii::$app->user->id){
+                $audioModel->scenario = 'update';
+                $audioModel->status = 2;
+                if ($audioModel->save()){
+                    $return['status'] = 1;
+                }
+            }
+        }
+        return $return;
+    }
+}

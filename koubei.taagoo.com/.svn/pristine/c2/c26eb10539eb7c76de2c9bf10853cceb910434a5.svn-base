@@ -1,0 +1,21 @@
+<?php
+return [
+    'alioss'=>[
+        'accessKeyId' => "d0GMzdMG0zgwvsJW",
+        'accessKeySecret' => "sPZKQTIm4cNKxK4wWFz8XKpAmaSbNa",
+        'endpoint' => "http://test-pano.taagoo.cn",//可公开访问
+        'regionId'=>'cn-hangzhou',
+        'videoTemplateIdPc'=>'a8f2b75cbb2900671527cc0e56ec95b8',
+        'videoTemplateIdMobile'=>'03be392ee23763f88e3603e65fcfef6d',
+        'bucket'=>'test-pano',
+        'OutputBucket'=>'test-pano',//编码转换输出
+        'Location'=>'oss-cn-hangzhou',
+        'pipelineId'=>'d4d63cb597124f9eb3db4e0f16932bbb',
+        'Child_accessKeyId'=>'LTAIaDbd4lrKNUAz', //子账号  accessKeyId
+        'Child_accessKeySecret'=>'IttU0TDCBiSbnyygfBgnNz7HBIM0Es', // 子账号 accessKeySecret
+        'roleArn'=>'acs:ram::20619795:role/test-pano-role-write', // 拥有写入权限的 role 的rolearn
+        'endpoint_oss' => "oss-cn-hangzhou.aliyuncs.com",
+        'pano_endpoint'=>'http://test-pano.taagoo.cn'
+    ],
+    'map_key'=>'c6a41fadba9a8a02660d68c99403122d',//高德地图JSAPI的开发者key
+];
