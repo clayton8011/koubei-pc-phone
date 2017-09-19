@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>商圈设置</title>
+		<link rel="stylesheet" type="text/css" href="css/index-reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body class="color-body ">
+		<header>
+			<div class="header base-width">
+				<div class="pull-left"><img src="images/logo.png"/></div>
+				<ul class="pull-left manu-list">
+					<li class="active"><a href="javascript:void(0);">景区景点</a></li>
+					<li><a href="headlines.html">景区头条</a></li>
+					<li><a href="scenic-spot-list.html">景区特色</a></li>
+				</ul>
+				<div class="pull-right">
+					<span class="user-name">用户：TOM</span>
+					<button class="exit-btn" type="button">退出登录</button>
+				</div>
+			</div>
+		</header>
+		<div class="base-content base-width">
+			<div class="no-scenic-area-inf">
+				<img src="images/no-infor.png"/>
+				<p>您还没有景区，点击我开始建立吧！</p>
+				<button class="new-bulid-btn" type="button">新建</button>
+			</div>
+			<div class="scenic-area-inf">
+				<p class="scenic-area-title">景区信息编辑</p>
+				<ul class="scenic-area-edit-list clearfix">
+					<li>
+						<div class="scenic-area-li-link">
+							<img src="images/jq-base.png"/>
+							<h5>景区基础信息</h5>
+							<p>包括景区名称、等级、地址和封面等</p>
+						</div>
+						<div class="p-list-hover-box"><a data-linkpage="scenic-area-edit-info" href="javascript:void(0);"><img src="images/edit-lg.png"/></a></div>
+					</li>
+					<li>
+						<div class="scenic-area-li-link">
+							<img src="images/jq-tip.png"/>
+							<h5>景区须知</h5>
+							<p>包括景区介绍，开放时间，推荐游玩时间，交通攻略和门票信息</p>
+						</div>
+						<div class="p-list-hover-box"><a data-linkpage="notice-box" href="javascript:void(0);"><img src="images/edit-lg.png"/></a></div>
+					<li>
+						<div class="scenic-area-li-link">
+							<img src="images/jq-admin.png"/>
+							<h5>景点管理</h5>
+							<p>包括景点名称、介绍、VR展示等</p>
+						</div>
+						<div class="p-list-hover-box"><a data-linkpage="scenic-area-list" href="javascript:void(0);"><img src="images/edit-lg.png"/></a></div>
+					</li>
+					<li>
+						<div class="scenic-area-li-link">
+							<img src="images/jq-didanpu.png"/>
+							<h5>景区店铺管理</h5>
+							<p>包括景区店铺的下家</p>
+						</div>
+						<div class="p-list-hover-box"><a data-linkpage="" href="javascript:void(0);"><img src="images/edit-lg.png"/></a></div>
+					</li>
+				</ul>
+			</div>
+			<div class="scenic-area-list">
+				<p class="list-title">景点列表<button class="pull-right bulid-scenic-spot">新建景点</button></p>
+				<table class="spot-list short-spot-list" border="" cellspacing="" cellpadding="">
+					<thead>
+						<tr><th>序号</th><th>景点名称</th><th>权重</th><th>操作</th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="checkbox" name="" class="checkbox-type-hui" value="" />01</td>
+							<td class="text-over">北京故宫养心殿</td>
+							<td>01</td>
+							<td class="edit-grp">
+								<button type="button" class="list-edit-btn" >修改</button>
+								<button type="button" >删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="notice-box">
+				<p class="scenic-area-title lg-title">景区须知配置</p>
+				<div class="scenic-area-inf-box">
+					<p class="scenic-edit-tips">请输入景点介绍/请输入开放时间/请输入门票信息 <img class="close-tip pull-right" src="images/tip-close.png"></p>
+					<div class="input-box">
+						<div class="default-notice">
+							<label>景区介绍</label>
+							<div>
+								<textarea class="textarea-inp textarea-sm" placeholder="请输入景区介绍。" maxlength="200" name="" rows="" cols=""></textarea>
+							</div>
+							<label>门票价格</label>
+							<div>
+								<textarea class="textarea-inp textarea-sm" placeholder="请输入门票价格，例如：15/人  免费" maxlength="200" name="" rows="" cols=""></textarea>
+							</div>
+							<label>开放时间</label>
+							<div>
+								<textarea class="textarea-inp textarea-xs" placeholder="请输入开放时间，例如：周一至周五 8:00-18:00。" maxlength="200" name="" rows="" cols=""></textarea>
+							</div>
+							<label>免费政策</label>
+							<div>
+								<textarea class="textarea-inp textarea-sm" placeholder="请输入免费政策，例如：儿童身高1.2米一下免费，持残疾人证免费。" maxlength="200" name="" rows="" cols=""></textarea>
+							</div>
+							<label>优惠政策</label>
+							<div>
+								<textarea class="textarea-inp textarea-xs" placeholder="请输入优惠政策，例如：持老年人优待证可享受半价优惠。" maxlength="200" name="" rows="" cols=""></textarea>
+							</div>
+							<label>交通攻略</label>
+							<div>
+								<textarea class="textarea-inp textarea-xs" placeholder="请输入交通攻略，例如：公交可乘坐52路到劲松桥东站转乘41路抵达厚俸桥南（北京欢乐谷）站下车即到；地铁可乘坐7号线直达欢乐谷。" maxlength="200" name="" rows="" cols=""></textarea>
+							</div>
+						</div>
+						<div class="input-notice">
+							<label>标题</label>
+							<div><input type="text" name="" class="notice-input-title" maxlength="40" value="" placeholder="单行输入" /><button class="notice-input-confirm">确认</button><button class="notice-input-cancel">取消</button></div>
+							<label>优惠政策</label>
+							<div style="position: relative;">
+								<textarea class="textarea-inp" placeholder="多行输入" maxlength="200" name="" rows="" cols=""></textarea>
+								<span class="textarea-number">0/200</span>
+							</div>
+						</div>
+						<label></label>
+						<div>
+							<button class="add-totice">
+								<img src="images/add-notice.png"/>
+								自定义添加
+							</button>
+							<div class="sub-button-grp">
+								<button class="save-btn">保存</button>
+								<button class="cancel-btn">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="scenic-area-edit-info base-width">
+			<div class="shadow-box shadow-box-first">
+				<p class="scenic-area-title lg-title">景区信息配置</p>
+				<div class="scenic-area-inf-box">
+					<p class="scenic-edit-tips">请输入景区名称/景区等级/上传全景照片/选择展示模版/填写地址/为景区选点<img class="close-tip pull-right" src="images/tip-close.png"></p>
+					<div class="input-box">
+						<label>景区名称</label>
+						<div>
+							<input class="in-name" type="text" name="" id="" value="" placeholder="请输入景区名称" />
+						</div>
+						<label>景区等级</label>
+						<div>
+							<select class="base-sel" name="grade">
+								<option value="">3A</option>
+								<option value="">4A</option>
+								<option value="">5A</option>
+							</select>
+							<label class="inside-label">景区类型</label>
+							<select class="base-sel" name="grade">
+								<option value="">自然景观资源</option>
+								<option value="">人文景观资源</option>
+								<option value="">民俗风情资源</option>
+								<option value="">传统饮食资源</option>
+								<option value="">文化资源和工艺品资源</option>
+								<option value="">都市和田园风光资源</option>
+							</select>
+							<label class="inside-label inside-label-last">显示权重</label>
+							<select class="base-sel" name="grade">
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+								<option value="">6</option>
+								<option value="">7</option>
+								<option value="">8</option>
+								<option value="">9</option>
+								<option value="">10</option>
+							</select>
+						</div>
+						<label>景区等级</label>
+						<div>
+							<div class="updata-box">
+								<img class="updata-img" style="margin-top: 96px;" src="images/updata.png"/>
+								<p class="updata-tip">点击或拖拽上传1张全景照片(长宽比例为2:1)</p>
+							</div>
+							<ul class="add-scene-list clearfix">
+								<li>
+									<img src="images/scene-img.png">
+									<div class="del-btn-box">
+										<button class="pull-left" type="button">设为默认</button>
+										<button class="pull-right" type="button">删除</button>
+									</div>
+									<p class="text-over">小鬼当家学前班</p>
+									<button class="rename-btn"><img src="images/rename-btn.png">重命名</button>
+								</li>
+								<li>
+									<img src="images/scene-img.png">
+									<div class="del-btn-box">
+										<button type="button" class="max-hover-btn">默认展示</button>
+									</div>
+									<p class="text-over">小鬼当家学前班</p>
+									<button class="rename-btn"><img src="images/rename-btn.png">重命名</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="shadow-box">
+				<div class="scenic-area-inf-box">
+					<div class="input-box">
+						<label>页面地址</label>
+						<div>
+							<input class="url" type="text" name="" id="" value="" placeholder="" />
+							<a class="link-type" href="#">预览</a>
+							<button class="link-type">二维码</button>
+							<button class="link-type link-type-last">复制地址</button>
+						</div>
+						<label>开场图样式</label>
+						<div class="radio-box">
+								<input class="checkbox-type" type="checkbox" name="" id="" value="正星球图" />
+								<span class="check-name">正星球图</span>
+								<input class="checkbox-type" type="checkbox" name="" id="" value="反星球图" />
+								<span class="check-name">反星球图</span>
+						</div>
+						<label>景区文字介绍</label>
+						<div style="position: relative;">
+							<textarea class="textarea-inp" placeholder="请输入景区介绍" maxlength="200" name="" rows="" cols=""></textarea>
+							<span class="textarea-number">0/200</span>
+						</div>
+						<label>插入语音</label>
+						<div>
+							<div class="updata-box" style="height: 220px;">
+								<img class="updata-img" style="margin-top: 38px;" src="images/updata.png"/>
+								<p class="updata-tip">点击或将文件拖拽到这里上传，只能上传一段语音</p>
+							</div>
+							<ul class="updata-music-list">
+								<li class="updating">
+									<p class="text-over">巴黎假期</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+											
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<!--<button class="set-default">默认</button>-->
+										<button class="delect-btn"></button>
+										<!--<button class="edit-btn"></button>-->
+									</div>
+								</li>
+								<li>
+									<p class="text-over">巴黎假期</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+											
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<button class="set-default">已默认</button>
+										<button class="delect-btn"></button>
+										<button class="edit-btn"></button>
+									</div>
+								</li>
+								<li>
+									<p class="text-over">巴黎假期</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+											
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<button class="set-default">设为默认</button>
+										<button class="delect-btn"></button>
+										<button class="edit-btn"></button>
+									</div>
+								</li>
+								<li>
+									<p class="text-over">巴黎假期</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+											
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<button class="set-default">设为默认</button>
+										<button class="delect-btn"></button>
+										<button class="edit-btn"></button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="shadow-box">
+				<div class="scenic-area-inf-box">
+					<div class="input-box">
+						<label>口碑上线</label>
+						<div>
+							<label class="switch-btn lg-switch">
+				                <input class="checked-switch" type="checkbox" checked="checked" />
+				                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+				                <span class="toggle-btn"></span> 
+				            </label>
+			           </div>
+						<label>页面模版</label>
+						<div>
+							<ul class="template-list clearfix">
+								<li>
+									<img src="images/template-list.png">
+									<div class="template-btn-grp clearfix">
+										<button class="pull-left" type="button">预览</button>
+										<button class="pull-right" type="button">选用</button>
+									</div>
+									<p class="template-selected">当前模版</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="shadow-box">
+				<div class="scenic-area-inf-box">
+					<div class="input-box">
+						<label>景区手绘地图</label>
+						<div>
+							<div style="height: 54px;">
+								<label class="switch-btn lg-switch">
+					                <input class="checked-switch" type="checkbox" checked="checked" />
+					                <span class="text-switch" data-yes="yes" data-no="no"></span> 
+					                <span class="toggle-btn"></span> 
+					            </label>
+							</div>
+							<div class="updata-box" style="height: 220px;">
+								<img class="updata-img" style="margin-top: 38px;" src="images/updata.png"/>
+								<p class="updata-tip">点击或将文件拖拽到这里上传，只能上传一张图</p>
+							</div>
+							<ul class="updata-music-list updata-map-list">
+								<li class="updating">
+									<p class="text-over">故宫景区地图.jpg</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<button class="delect-btn"></button>
+									</div>
+								</li>
+								<li>
+									<p class="text-over">巴黎假期</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+											
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<button class="set-default">已默认</button>
+										<button class="delect-btn"></button>
+										<button class="edit-btn"></button>
+									</div>
+								</li>
+								<li>
+									<p class="text-over">巴黎假期</p>
+									<div class="gress-box">
+										<div style="width: 10%;">
+											
+										</div>
+									</div>
+									<div class="music-btn-grp">
+										<button class="set-default">设为默认</button>
+										<button class="delect-btn"></button>
+										<button class="edit-btn"></button>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<label>景区地址</label>
+						<div id="citySelect">
+							<select class="base-sel prov" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr ">省</label>
+							<select class="base-sel city" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr">市</label>
+							<select class="base-sel dist" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr inside-label-last">县／区</label>
+							<input class="addr-input" type="text" name="" id="" value="" placeholder="请输入景区详细地址" />
+						</div>
+						<label>电子导航图</label>
+						<div>
+							<div class="map">
+								<img src="images/map.png" style="display: block;width: 100%;height: 100%;"/>
+							</div>
+							<div class="sub-button-grp">
+								<button class="save-btn">保存</button>
+								<button class="cancel-btn">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+ 
+	</body>
+	<script src="js/jquery-2.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.cityselect.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/cloud-business.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $("#citySelect").citySelect({  
+	           nodata: "none",  
+	           required: false
+	//         prov:"北京",  
+	//         city:"北京",  
+	//         dist:"东城区"  
+	   		}); 
+	   		businessCircle.isIe();
+			
+		})
+	</script>
+</html>

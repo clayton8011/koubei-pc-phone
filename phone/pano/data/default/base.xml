@@ -1,0 +1,187 @@
+<krpano version="1.19" title="三峡大学" debugmode="false" showerrors="false">
+    <security>
+        <crossdomainxml url="/crossdomain.xml"/>
+        <allowdomain domain="*"/>
+    </security>
+<!--    <hotspot name="nadirlogo" url="/static/vender/krpano/snow_idmage/heart.png" keep="true" ath="0" atv="90" distorted="true" scale="1.0" rotate="0.0" rotatewithview="false" onclick="switch(rotatewithview);invalidatescreen();"/>-->
+
+    <include url="%SWFPATH%/custom/xml/autorotate.xml" />
+    <include url="%SWFPATH%/custom/xml/object.xml" />
+    <include url="%SWFPATH%/plugins/video-player.xml"/>
+    <contextmenu fullscreen="false" versioninfo="false">
+        <item name="logo" caption="大国慧谷" separator="true" onclick="openurl('http://www.taagoo.com/')" devices="flash|webgl"/>
+    </contextmenu>
+    <include url="%SWFPATH%/custom/plugin/bbgmusic/plugin.xml" />
+    <include url="%SWFPATH%/custom/plugin/open_alert/plugin.xml" />
+<!--    <include url="%SWFPATH%/static/plugin/custom_right_button/xml/plugin.xml.php" />-->
+    <include url="%SWFPATH%/custom/plugin/shade_sky_floor/plugin.xml" />
+<!--    <include url="%SWFPATH%/custom/plugin/comment/plugin.xml" />-->
+
+    <action name="startup" autorun="onstart">
+        setScene();
+        if(startscene === null OR !scene[get(startscene)],
+        copy(startscene,scene[0].name); );
+        if(device.fullscreensupport == true,js(showFullscreenBtn()););
+        if(device.mobile OR device.tablet,js(hideShareAndFootmarkBtn()););
+        loadscene(get(startscene), null, MERGE);
+        if(startactions !== null, startactions() );
+    </action>
+                <scene name="scene_4454" title="入口"  album="场景选择"  onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e402f2af0cd/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="229.086" vlookat="13.919" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e402f2af0cd/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402f2af0cd/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402f2af0cd/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402f2af0cd/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4462" title="校园"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e403b36811c/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="49.199" vlookat="10.404" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e403b36811c/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e403b36811c/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e403b36811c/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e403b36811c/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4461" title="图书馆正门"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e4038daa03d/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="-10.713" vlookat="-0.015" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e4038daa03d/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4038daa03d/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4038daa03d/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4038daa03d/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4459" title="图书馆"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e40363e83db/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="-78.513" vlookat="23.458" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e40363e83db/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e40363e83db/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e40363e83db/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e40363e83db/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4456" title="水电大楼"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e4031ddc10c/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="119.481" vlookat="-4.878" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e4031ddc10c/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4031ddc10c/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4031ddc10c/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4031ddc10c/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4457" title="水电基石"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e4033557411/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="78.662" vlookat="12.46" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e4033557411/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4033557411/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4033557411/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4033557411/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4452" title="老牌门"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e402c57736d/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="149.757" vlookat="-22.35" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e402c57736d/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402c57736d/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402c57736d/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402c57736d/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4451" title="建筑群"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e402aa474b9/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="-295.158" vlookat="14.407" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e402aa474b9/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402aa474b9/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402aa474b9/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402aa474b9/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4455" title="三峡大学全景"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e40303922cc/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="91.592" vlookat="33.646" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e40303922cc/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e40303922cc/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e40303922cc/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e40303922cc/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4450" title="后山"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e402976b8cd/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="216.741" vlookat="16.323" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e402976b8cd/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402976b8cd/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402976b8cd/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e402976b8cd/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4448" title="雕塑"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e4025380c28/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="84.45" vlookat="-13.933" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e4025380c28/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4025380c28/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4025380c28/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4025380c28/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4447" title="毕业照"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e4023aac162/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="-40.206" vlookat="10.147" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e4023aac162/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4023aac162/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4023aac162/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e4023aac162/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <scene name="scene_4463" title="学生公寓"    onstart="activatespot(90)" thumburl="//pano.taagoo.com/normal/2016/09/23/157e403c72acef/thumb.jpg?v=1501658691" lat="" lng="" heading="" >
+                <view hlookat="14.753" vlookat="6.985" fovtype="MFOV" fov="120" fovmin="50" fovmax="140" vlookatmin="-90" vlookatmax="180" limitview="fullrage"/>
+                <preview url="//pano.taagoo.com/normal/2016/09/23/157e403c72acef/preview.jpg" />
+                <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled"><level tiledimagewidth="3200" tiledimageheight="3200">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e403c72acef/l3_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="1536" tiledimageheight="1536">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e403c72acef/l2_%s_%v_%h.jpg" />
+                            </level><level tiledimagewidth="768" tiledimageheight="768">
+                                <cube url="//pano.taagoo.com/normal/2016/09/23/157e403c72acef/l1_%s_%v_%h.jpg" />
+                            </level></image>            </scene>
+                        <include url="%SWFPATH%/skin/vtourskin_default.xml"></include>
+                    <include url="%SWFPATH%/skin/vtourskin_design_glass.xml"></include>
+                <include url="%SWFPATH%/custom/xml/newFun.xml"/>
+    <skin_settings thumbs_width="90" thumbs_height="90" thumbs_crop="0|40|360|360" deeplinking="true" />
+    <action name="skin_deeplinking_update_url">
+    if(skin_settings.deeplinking AND (!webvr OR webvr.isenabled === false), delayedcall(skin_deeplinking_update, calc(%1 == null ? 0.1 : %1), skin_deeplinking_update_url_process() ); );
+    </action>
+    <action name="skin_deeplinking_update_url_process">
+    copy(adr, browser.location); indexoftxt(qi, get(adr), 'startscene=');
+     if(qi GT 0, subtxt(adr, adr, 0, get(qi))); 
+     copy(si, scene[get(xml.scene)].name); copy(h, view.hlookat); copy(v, view.vlookat); copy(f, view.fov); copy(d, view.distortion); copy(a, view.architectural); clamp(d, 0.0, 1.0); clamp(a, 0.0, 1.0); set(pp, calc(f LT 10 ? 6 : 2)); roundval(h, get(pp)); roundval(v, get(pp)); roundval(f, get(pp)); roundval(d, 2); roundval(a, 1); 
+     indexoftxt(wi, get(adr), '?');
+     if(wi GT 0,
+                set(adr, calc(adr +'&amp;'+ 'startscene=' + si + '&amp;')); ,
+                set(adr, calc(adr +'?'+ 'startscene=' + si + '&amp;')); 
+     );
+     
+     js( history.replaceState(null, document.title, get(adr)); );
+    <!-- setScene(); -->
+    </action>
+    <action name="setScene">
+        copy(adr, browser.location); indexoftxt(qi, get(adr), 'startscene=');add(qi,11);indexoftxt(ei,get(adr),'&amp;',get(qi));
+        trace(qi);trace(ei);sub(len,ei,qi);trace(len);subtxt(aimname, get(adr),get(qi),get(len));trace(get(aimname));
+        set(startscene,get(aimname));
+    </action>
+    <events name="share_events" keep="true" onnewpano="skin_deeplinking_update_url();"  />
+    <layer name="skin_layer" keep="true" type="container" align="top" width="get:skin_settings.layout_width" maxwidth="get:skin_settings.layout_maxwidth" height="100%" maskchildren="true" visible="false" bgcapture="false" zorder="1">
+    </layer>
+</krpano>

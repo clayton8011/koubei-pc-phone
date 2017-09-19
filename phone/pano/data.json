@@ -1,0 +1,196 @@
+{
+  "data": {
+    "address": "西八里庄路61号中关村互联网文化创意产业园21号楼大国慧谷",
+    "angle_of_view": [
+      {
+        "fov": 120,
+        "fovmax": 140,
+        "fovmin": 70,
+        "hlookat": 0,
+        "hlookatmax": 180,
+        "hlookatmin": -180,
+        "keepView": 0,
+        "sceneName": "scene_19345",
+        "vlookat": 0,
+        "vlookatmax": 90,
+        "vlookatmin": -90
+      }
+    ],
+    "autorotate": 0,
+    "directory_id": 1,
+    "hotspot": {
+      "scene_19345": {
+        "image": [
+          {
+            "ath": 49.0953,
+            "atv": 4.98485,
+            "galleryName": "glrhotspot_27655",
+            "hotspotTitle": "pic",
+            "iconId": 212,
+            "iconType": "system",
+            "imgs": {
+              "rid": 289,
+              "src": "//pano.taagoo.com/normal/pic/2017/06/02/159311371b4206.jpg"
+            },
+            "isDynamic": 2,
+            "isShowSpotName": 1,
+            "name": "hotspot_27655",
+            "thumbPath": "//pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/hotsport.png"
+          }
+        ],
+        "link": [
+          {
+            "ath": 32.4269,
+            "atv": 9.33417,
+            "galleryName": "glrhotspot_27657",
+            "hotspotTitle": "知乎",
+            "iconId": 213,
+            "iconType": "system",
+            "isDynamic": 2,
+            "isShowSpotName": 1,
+            "link": "http://www.zhihu.com",
+            "name": "hotspot_27657",
+            "thumbPath": "//pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/link.png"
+          }
+        ],
+        "scene": [
+          {
+            "ath": 9.51583,
+            "atv": 10.4685,
+            "effect_id": 112,
+            "effect_type": "OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)",
+            "galleryName": "glrhotspot_27654",
+            "hotspotTitle": "01渔寮景区",
+            "iconId": 201,
+            "iconType": "system",
+            "isDynamic": 2,
+            "isShowSpotName": 1,
+            "linkedscene": "scene_19345",
+            "name": "hotspot_27654",
+            "sceneImg": "//pano.taagoo.com/normal/2016/11/17/1582d0b25c2040/thumb.jpg",
+            "sceneTitle": "01渔寮景区",
+            "thumbPath": "//pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/music.png"
+          }
+        ],
+        "text": [
+          {
+            "ath": 23.3617,
+            "atv": -6.57858,
+            "galleryName": "glrhotspot_27656",
+            "hotspotTitle": "text",
+            "iconId": 109,
+            "iconType": "system",
+            "isDynamic": 1,
+            "isShowSpotName": 1,
+            "name": "hotspot_27656",
+            "thumbPath": "//pano.taagoo.com/static/player/1.19-pr6/hotspot-icon/start.png",
+            "wordContent": "fffffffffffffffffffffffffffff我们与国内知名品牌合作，也全力协助新兴的VR技术体验，在VR体验营销市场取得长远成功。"
+          }
+        ],
+        "video": [
+          {
+            "ath": 40.5159,
+            "atv": -7.67557,
+            "galleryName": "glrhotspot_27653",
+            "hotspotTitle": "video",
+            "iconId": 202,
+            "iconType": "system",
+            "isDynamic": 2,
+            "isShowSpotName": 1,
+            "location": "//pano.taagoo.com/own/video/2016/08/22/157ba6f9c32884.mp4",
+            "name": "hotspot_27653",
+            "rid": 1,
+            "thumbPath": "//pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/video.png",
+            "type": 1
+          }
+        ],
+        "voice": [
+          {
+            "ath": 7.79155,
+            "atv": -1.14319,
+            "galleryName": "glrhotspot_27652",
+            "hotspotTitle": "sound",
+            "iconId": 201,
+            "iconType": "system",
+            "isDynamic": 2,
+            "isShowSpotName": 1,
+            "musicSrc": "//pano.taagoo.com/normal/audio/2017/01/09/1587326f5b4d20.mp3",
+            "musicTitle": "寂静之声",
+            "name": "hotspot_27652",
+            "rid": 85,
+            "thumbPath": "//pano.taagoo.com/static/player/1.19-pr6/hotspot-icon-gif/music.png"
+          }
+        ]
+      }
+    },
+    "icon_list": [],
+    "id": 31,
+    "lat": "39.930739",
+    "lng": "116.279944",
+    "name": "鱼疗",
+    "play_rules": 0,
+    "sand_table": {
+      "isOpen": false,
+      "sandTables": []
+    },
+    "scene_bg_music": {
+      "scene_19345": {
+        "mediaID": 0,
+        "sceneID": 19345
+      }
+    },
+    "scene_commentary": {
+      "scene_19345": {
+        "mediaID": 0,
+        "sceneID": 19345
+      }
+    },
+    "scene_group": {
+      "sceneGroups": [
+        {
+          "groupID": 1483,
+          "groupName": "场景选择",
+          "iconID": 101,
+          "iconType": "system",
+          "imgPath": "//pano.taagoo.com/static/player/1.19-pr6/system-icon/menu.png",
+          "scenes": [
+            {
+              "imgPath": "//pano.taagoo.com/normal/2016/11/17/1582d0b25c2040/thumb.jpg",
+              "sceneName": "scene_19345",
+              "sceneTitle": "01渔寮景区"
+            }
+          ],
+          "sort": 0
+        }
+      ]
+    },
+    "scene_list": [
+      {
+        "id": 347,
+        "sceneName": "scene_19345",
+        "scene_id": 19345,
+        "scene_title": "01渔寮景区",
+        "thumbPath": "//pano.taagoo.com/normal/2016/11/17/1582d0b25c2040/thumb.jpg"
+      }
+    ],
+    "show_logo": 1,
+    "sky_land_shade": {
+      "isWhole": 1,
+      "shadeSetting": {
+        "size": 100,
+        "type": 1,
+        "useShade": 0
+      }
+    },
+    "special_effects": {
+      "effectSettings": [
+        {
+          "effectId": 0,
+          "sceneName": "scene_19345"
+        }
+      ]
+    },
+    "thumbs_opened": 0
+  },
+  "status": 1
+}

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="UTF-8">
+    <title>海淀区阅读地图 </title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/frontend_index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <div class="CodeMirror-cursor" style="left: 246px; top: 140px; height: 20px;">&nbsp;</div>
+</head>
+<body>
+    <div class="public-body" id="container">
+
+    </div>
+    <div class="public-bottom">
+        <ul class="flex-box pub-bottom-ls">
+            <li class="flex1 active"><a href="map.html"  class="map-btn"> </a></li>
+            <li class="flex1"><a href="read.html"  class="tuijian-btn"> </a></li>
+            <li class="flex1"><a href="find.html"  class="find-btn"> </a></li>
+        </ul>
+    </div>
+
+
+
+    <!-- <div class="left-top-box">
+        <img class="now-point" src="images/now-point.png"/>
+        <img class="back-parking-point" src="images/back-point.png"/>
+    </div> -->
+    <!-- <div class="left-bottom-box">
+        <img class="parking-point" src="images/parking-point.png"/>
+        <img class="remove-point" src="images/remove-point.png"/>
+    </div> -->
+    <div class="right-bottom-box">
+        <ul>
+            <li class="book-shop-btn clearfix"><img src="images/list-shd.png" alt=""></li>
+            <li class="museum-btn clearfix"><img src="images/list-bwg.png" alt=""></li>
+            <li class="library-btn clearfix"><img src="images/list-tshg.png" alt=""></li>
+            <li class="park-btn clearfix"><img src="images/list-yl.png" alt=""></li>
+        </ul>
+    </div>
+    <!-- <div class="right-middle-box">
+        <a href="">
+    	    <img class="go-filter" src="images/filter-right.png"/>
+        </a>
+    </div> -->
+   <!--  <div id="tip">
+    </div> -->
+    <!-- <div class="info">
+        <div class="win-title flex-box">
+            <h5 class="flex1 text-over">北京海淀-北京大学图书馆</h5>
+            <img class="window-close" src="images/window-close.png" alt="">
+        </div>
+        <div class="win-content flex-box">
+            <img src="images/beijingdaxue.jpg" alt="" class="name-img">
+            <div class="window-inf-box flex1">
+                <p>北京大学图书馆是中国最早的现代新型图书馆之一，被国务院批准为首批国家重点古籍保护单位，已发展成为资源丰富、现代化、综合性、开放式的研究型图书馆。图书馆由总馆、医学馆、38个分馆、储存馆组成，总、分馆文献资源累积量约1100余万册，其中纸质藏书800余万册，以及大量引进和自建的国内外数字资源，包括各类数据库、电子期刊、电子图书和多媒体资源约300余万册。馆藏中有150万册中文古籍，其中20万件5至18世纪的珍贵书籍，是中华民族的文化瑰宝，被国务院批准为首批国家重点古籍保护单位。外文善本、金石拓片、1949年前出版物的收藏均名列中国国内图书馆前茅，为研究家所珍视。此外，还有燕京大学学位论文、名人捐赠等特色收藏。</p>
+                <div class="btn-grp clearfix">
+                    <a href="vr-player.html?name=beijingdaxue&id=20170903464656"><img src="images/vr-preview.png" alt=""></a>
+                    <a href="//uri.amap.com/marker?position=116.309972,39.991902&name=北京大学图书馆&src=mypage&coordinate=gaode&callnative=0">
+                       <img src="images/go-here.png" alt="">
+                    </a>
+                </div>
+            </div> 
+        </div>
+        <img class="map-arrow" src="/images/map-arrow.png">
+    </div> -->
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=c6a41fadba9a8a02660d68c99403122d"></script>
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script> -->
+    <script type="text/javascript">
+    var filter_data=[
+        {
+            "name":"yuanmingyuan",
+            "url":"//uri.amap.com/marker?position=116.31201,40.013782&name=圆明园-展览馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"40.013782",
+            "lng":"116.31201",
+            "id":"20170903462229",
+            "title":"北京海淀-圆明园展览馆",
+            "detail":"圆明园展览馆位于海淀区清华北路圆明园遗址公园内，建于1979年。该馆有大量珍贵文物、图片和影视录像，有按原貌复制的“圆明三园”微缩模型，详细介绍了圆明园的景观，并再现了一代名园的兴盛历史。展览馆共两个展厅，第一展厅、第二展厅的大部分以圆明园的营建、盛况为主要内容，第二展厅的部分为圆明园罹难、圆明园复苏的有关资料。展品总数为150件，整个展览以图片、照片为主，模型及实物为辅，每件展品都附有简要的文字说明。展览馆附设导游、讲解业务并在录像厅全天连续播放国史录像片《中华第一园的毁灭》。为方便游人，在第二展厅销售有关圆明园文史、录像资料及旅游纪念品。",
+            "img":"",
+            "add":"北京市海淀区清华西路28号圆明园南门东侧100米停车场旁边二楼",
+            "imgType":1,
+        },
+        {
+            "name":"longhui",
+            "url":"//uri.amap.com/marker?position=116.253626,39.926573&name=北京龙徽葡萄酒博物馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.926573",
+            "lng":"116.253626",
+            "id":"20170602259537",
+            "title":"龙徽葡萄酒博物馆",
+            "detail":"龙徽葡萄酒博物馆是北京市唯一一家讲述北京葡萄酒百年文化及历史发展的博物馆。这是一座古朴典雅的明清风格建筑，分地上、地下两大部分，总建筑面积为9463平方米。其中地上部为国际展厅、欧洲展厅、亚洲展厅、贵宾接待室、现代展厅、历史展厅，地下部分为VIP酒吧、地下发酵参观长廊。这座文化历史博物馆，是对龙徽近百年历史精髓的纪念，是对过去为龙徽光辉事业做出贡献的人们的祭奠，是对龙徽无数辉煌事业的敬仰，是对龙徽为中国葡萄酒产业的发展进步所做点点滴滴的成果展示，更是对中国葡萄酒文化产业不断推陈出新精神的鉴证。",
+            "img":"",
+            "add":"北京市海淀区玉泉路2号(近西四环定慧桥)",
+            "imgType":1,
+        },
+        {
+            "name":"mingde",
+            "url":"//uri.amap.com/marker?position=116.313751,39.972951&name=中国人民大学-明德书店&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.972951",
+            "lng":"116.313751",
+            "id":"20170903449739",
+            "title":"北京海淀-中国人民大学明德书店",
+            "detail":"明德书店是中国人民大学出版社下设的六家书店之一。书店约有600平米，由库房改装而成，保留了简约朴素的风格，没有过多的装潢，目光所及之处全是图书。浓郁的阅读气氛瞬间就能让浮躁的心灵安静下来，只想捧起一本书，慢慢沉浸在神奇的文字里。依托于人民大学得天独厚的教学资源，明德书店现主要以人大出版社出版的图书为主，辅以外版图书，形成了以人文社科图书为主要图书品种的藏书结构，目前拥有图书20000余种，涉及经济、管理、哲学、宗教等。图书分类有教材、学术专著和大众图书，各水平层次的读者都可以获取自己所需的图书和知识，形容明德书店是人大学子的精神家园一点都不为过。",
+            "img":"",
+            "add":"北京市海淀区东关村大街59号中国人民大学静园7号",
+            "imgType":2,
+        },
+        {
+            "name":"taofen",
+            "url":"//uri.amap.com/marker?position=116.339191,39.998363&name=北京三联韬奋24小时书店海淀分店&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.998363",
+            "lng":"116.339191",
+            "id":"20170903454972",
+            "title":"北京海淀-北京三联韬奋24小时书店海淀分店",
+            "detail":"三联书店海淀分店位于清华大学同方科技大厦。这里文化氛围浓郁，周边林立着清华、北大、北京林业大学、中国地质大学等二十多所高校，不远处坐落着京城另一家著名的学术书店——万圣书园。海淀分店的内部面积有900平米，其中图书区域500多平米。书店内部呈长方形，一端被设计成有创意的阶梯式空间，另一端是咖啡、甜品和简餐售卖处，中间的狭长区域则摆放着琳琅满目的书，其中主要是人文社科类图书。",
+            "img":"",
+            "add":" 北京海淀区清华同方科技大厦D座1层111",
+            "imgType":2,
+        },
+        {
+            "name":"waiyan",
+            "url":"//uri.amap.com/marker?position=116.308708,39.954894&name=北京外研书店&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.954894",
+            "lng":"116.308708",
+            "id":"20170903463425",
+            "title":"北京海淀-北京外研书店",
+            "detail":"北京外研书店成立于1993年7月。是北京外国语大学主管，外语教学与研究出版社和北京外语音像出版社联合主办的窗口书店。座落于海淀区西三环北路19号。一直遵循“沟通世界文化，为广大外语读者走向世界铺路搭桥”的服务宗旨服务于广大读者。下设门市部、市场开发部、客服部、储运部、办公室五个部门。店内图书涉及30多个语种，近3万个品种，满足了各个层次语言学习和研究者的需求，以图书的专业性、权威性、品种的多样性受到读者的青睐。同时也是全国各大中小图书馆，资料室选书的首选之地。近年来外研书店正以惊人的速度向服务全方位、经营立体化的模式发展。在业内具有较高的知名度和信誉度。" ,
+            "img":"",
+            "add":"北京海淀区西三环北路2号临15北外国际大厦1-2层",
+            "imgType":2,
+        },
+        {
+            "name":"pika",
+            "url":"//uri.amap.com/marker?position=116.242193,39.929255&name=皮卡书屋少儿中英文图书馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.929255",
+            "lng":"116.242193",
+            "id":"20170903445481",
+            "title":"北京海淀-皮卡书屋少儿中英文图书馆",
+            "detail":["皮卡书屋，简称皮卡，是一家以美国社区图书馆为蓝本，公益、非营利的民办少儿中英文图书馆。书屋为0-15岁的孩子介绍和提供生动活泼的中英文图书，组织丰富多彩“寓学于乐”的活动，并创设特色英文学习课程。",
+                      "皮卡凭借丰富独特的双语教育资源，激发少儿各阶段阅读兴趣，培养让孩子们受益终身的阅读习惯。书屋为孩子们搭建起一个国际文化教育交流的平台，促进了社区精神文明的建设。皮卡旨在鼓励和培育父母乃至全社会和孩子共同学习、一起成长的理念和环境，以期逐步实现培养全方位、高素质公民的愿景。",
+                      "通过阅读、培训等各种形式，传播推广先进文化教育理念，帮助孩子们成长为热爱读书、视野开阔、心灵丰富、多元文化的“地球村”好公民，推动全民素质提高和社会进步。",
+                     ],
+            "img":"",
+            "add":"北京市海淀区田村西口圣华里社区6号楼田村驿站",
+            "imgType":3,
+        },
+        {
+            "name":"beibutushuguan",
+            "url":"//uri.amap.com/marker?position=116.188853,40.041962&name=北部文化中心图书馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"40.041962",
+            "lng":"116.188853",
+            "id":"20170903450607",
+            "title":"北部文化中心图书馆",
+            "detail":["海淀北部文化中心总建筑面积达88100平米，由档案馆、文化馆、图书馆和温泉中心四部分组成，其中，档案馆、文化馆和图书馆主要用于公益性的文化服务，温泉中心未来将建成一个商业配套设施，首层为商场，二层到四层为电影院及其他配套商业。",
+                      "图书馆内部环境，干净整洁，灯光柔和，是一个很舒适的阅读环境。图书馆分为5层，适应各类读者，1层是儿童阅读区，2层社科类，三处文化艺术和新书…馆内设有自动借书还书的设备，还有自助复印、打印、扫描的机器。"
+                     ],
+            "img":"",
+            "add":"北京市海淀区温泉路与白家疃东路交叉口西北150米",
+            "imgType":3,
+        },
+        {
+            "name":"zhongguancun",
+            "url":"//uri.amap.com/marker?position=116.304971,39.984328&name=北京中关村图书大厦&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.984328",
+            "lng":"116.304971",
+            "id":"20170903452868",
+            "title":"北京海淀-北京中关村图书大厦",
+            "detail":["北京中关村图书大厦是由北京市新华书店全额投资购置的大型综合性书城。坐落在享有“中国硅谷”美誉的中关村。大厦营业面积近万平方米，汇集35余万种高、精、专、特、新图书、音像制品电子出版物。",
+                      "中关村图书大厦的设计风格以“文化长城、智慧流水”为主题，为读者提供优雅、明快的购书环境和人性化的高水准服务，彰显“行业先导，国际一流”的独特品质。大厦服务空间广阔，延伸书店内涵，水吧、特色书区和读者俱乐部一应俱全。大厦五层多功能厅可举办文化学术研讨、前沿科学知识交流和各种时尚性活动，在出版者、读者与作家学者之间架起文化交流的桥梁，营造高雅的文化品位，为各界读者提供丰富多彩的阅读、欣赏空间。"
+                     ],
+            "img":"",
+            "add":"北京市海淀区北四环西路68号",
+            "imgType":3,
+        },
+        {
+            "name":"guojiatushuguan",
+            "url":"//uri.amap.com/marker?position=116.323321,39.94394&name=中国国家图书馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.94394",
+            "lng":"116.323321",
+            "id":"20170903469969",
+            "title":"北京海淀-中国国家图书馆",
+            "detail":["中国国家图书馆位于北京市中关村南大街33号，与海淀区白石桥高粱河、紫竹院公园相邻。中国国家图书馆总馆占地7.24公顷，建筑面积14万平方米，主楼为双塔形高楼，采用双重檐形式，孔雀蓝琉璃瓦大屋顶，淡乳灰色的瓷砖外墙，花岗岩基座的石阶，再配以汉白玉栏杆，通体以蓝色为基调，取其用水慎火之意。",
+                      "中国国家图书馆分为总馆南馆、总馆北馆和古籍馆，馆藏书籍3119万册，其中古籍善本有200余万册。2008年中国国家图书馆建筑面积为28万平方米，是亚洲规模最大的图书馆，居世界国家图书馆第三位。"
+                     ],
+            "img":"",
+            "add":" 北京市海淀区中关村南大街33号",
+            "imgType":3,
+        },
+        {
+            "name":"beijingdaxue",
+            "url":"//uri.amap.com/marker?position=116.309972,39.991902&name=北京大学图书馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.991902",
+            "lng":"116.309972",
+            "id":"20170903464656",
+            "title":"北京海淀-北京大学图书馆",
+            "detail":"北京大学图书馆是中国最早的现代新型图书馆之一，被国务院批准为首批国家重点古籍保护单位，已发展成为资源丰富、现代化、综合性、开放式的研究型图书馆。图书馆由总馆、医学馆、38个分馆、储存馆组成，总、分馆文献资源累积量约1100余万册，其中纸质藏书800余万册，以及大量引进和自建的国内外数字资源，包括各类数据库、电子期刊、电子图书和多媒体资源约300余万册。馆藏中有150万册中文古籍，其中20万件5至18世纪的珍贵书籍，是中华民族的文化瑰宝，被国务院批准为首批国家重点古籍保护单位。外文善本、金石拓片、1949年前出版物的收藏均名列中国国内图书馆前茅，为研究家所珍视。此外，还有燕京大学学位论文、名人捐赠等特色收藏。",
+            "img":"",
+            "add":" 北京市海淀区颐和园路5号北京大学内(近中关村) ",
+            "imgType":3,
+        },
+        {
+            "name":"beihang",
+            "url":"//uri.amap.com/marker?position=116.348747,39.983905&name=北京航空航天大学图书馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.983905",
+            "lng":"116.348747",
+            "id":"20170903481859",
+            "title":"北京航空航天大学图书馆",
+            "detail":"北京航空航天大学图书馆建于 1952 年。截至2013年底，馆藏印刷型书刊资料累计已达275.9万册。作为全国最大的航空航天专业图书馆，馆藏具有鲜明的航空航天及工程学科特色，有关航空航天科技报告以及工程领域等方面的文献收藏齐全。图书馆馆舍面积近2万平方米，阅览座位近3000个，有13个大型阅览室，设有办公室、文献资源采集访问部、文献资源编目整合部、图书流通借阅服务部、读者培训参考咨询部以及网络自动化技术支持部6个部门。",
+            "img":"",
+            "add":"北京市海淀区学院路37号北京航空航天大学内",
+            "imgType":3,
+
+        },      
+        {
+            "name":"beijia",
+            "url":"//uri.amap.com/marker?position=116.104774,40.061663&name=贝家花园&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"40.061663",
+            "lng":"116.104774",
+            "id":"20170903453269",
+            "title":"北京海淀-贝家花园",
+            "detail":"贝家花园，始建于民国时期，位于海淀区北安河村。园主是法国人贝熙业。花园整体布局以欧洲古罗马城堡式结合中式建筑修建而成，该花园由三部分组成：园门外为一座三层西式石城堡，城堡坐西朝东呈四方形，正门上镶嵌有石匾额一方，上书“济世之医”四字，为当地人感谢贝大夫为民治病而送，城堡墙体用花岗岩石垒砌而成。其北山腰平台山环中，建有两层五楹卷棚歇山顶楼阁一座，楼前有水池、藤架、喷泉等。南山坡上建有坐西朝东，歇山顶五楹厅堂一座，以及附属房屋数间。总体上，该花园为一处中西合璧的私家花园，且目前保存基本完好。",
+            "img":"",
+            "add":"北京市海淀区贝家花园路",
+            "imgType":4,
+        },
+        {
+            "name":"biyunsi",
+            "url":"//uri.amap.com/marker?position=116.192236,39.997371&name=北京香山公园-碧云寺&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.997371",
+            "lng":"116.192236",
+            "id":"20170903458576",
+            "title":"北京海淀-北京香山公园-碧云寺",
+            "detail":"碧云寺位于北京海淀区香山公园北侧，西山余脉聚宝山东麓，是一组布局紧凑、保存完好的园林式寺庙。创建于元至顺二年，后经明、清扩建。寺院坐西朝东，依山势而建造。整个寺院布置，以排列在六进院落为主体，南北各配一组院落，院落采用各自封闭建筑手法，层层殿堂依山叠起，三百多级阶梯式地势而形成的特殊布局。因寺院依山势逐渐高起，为不使总体布局景露无遗，故而采用迥旋串连引人入胜的建造形式。其中立于山门前的一对石狮、哼哈二将，殿中的泥质彩塑以及弥勒佛殿山墙上的壁塑皆为明代艺术珍品。" ,
+            "img":"",
+            "add":"北京市海淀区买卖街40号香山公园内",
+            "imgType":4,
+        },
+        {
+            "name":"jianxinzhai",
+            "url":"//uri.amap.com/marker?position=116.1921,39.994223&name=北京香山公园-见心斋&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.994223",
+            "lng":"116.1921",
+            "id":"20170903459153",
+            "title":"北京海淀-北京香山公园-见心斋",
+            "detail":"见心斋在香山公园北门内西侧，毗邻眼镜湖。建于明嘉靖年间，曾几经修葺，是座颇具江南风情的庭院。清代，乾隆曾在此读书和赐宴群臣。嘉庆帝曾在轩内题七律一首，其中四名道：“虚檐流水息尘襟，静觉澄明妙悟深；山鸟自啼花自落，循环无已见天心。”见心斋是一座环形庭院式建筑，造型别致，环境清静，具有江南园林特色，为香山著名的园中之园。院内有半圆开水池。池水清澈，游鱼可数。沿水池东、南、北三面建有半圆形回廊，连接着正面"    ,
+            "img":"",
+            "add":"北京市海淀区买卖街40号香山公园静宜园内",
+            "imgType":4,
+
+        },
+        {
+            "name":"shuangqing",
+            "url":"//uri.amap.com/marker?position=116.194696,39.986762&name=北京香山公园-双清别墅纪念馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.986762",
+            "lng":"116.194696",
+            "id":"20170903461601",
+            "title":"北京海淀-北京香山公园-双清别墅纪念馆",
+            "detail":"香山双清别墅位于香山公园南麓的半山腰，环境幽雅，以其苍翠的竹林、遮天蔽日的银杏、挺拔的松柏、古朴的建筑引人前往。别墅内有放生池、梦感亭、大石台、古经幢、石屏、辽王坟、蟾蜍峰、双清泉称为双清小八景，然而真正使这个地方闻名天下的并不是她的秀丽风光，而是因为这里曾是毛主席住过的地方，曾是中共中央的指挥中心，曾发生过扭转中国命运决定中国前途的大事。"  ,
+            "img":"",
+            "add":"北京市海淀区买卖街40号香山公园静宜园双清别墅内",
+            "imgType":4,
+        },
+        {
+            "name":"caoxueqin",
+            "url":"//uri.amap.com/marker?position=116.212495,39.998911&name=曹雪芹纪念馆&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"39.998911",
+            "lng":"116.212495",
+            "id":"20170903466890",
+            "title":"曹雪芹纪念馆",
+            "detail":"曹雪芹纪念馆是以北京香山正白旗39号老屋为中心建立起来的一座小型乡村博物馆。馆舍是一排坐北朝南的清式平房，占地面积约3000平方米，建筑面积300平方米。馆藏主要有与曹雪芹身世相关的文物，曹雪芹一家与正白旗村有关的文物，以及名著《红楼梦》所描述的实物仿制品等。馆内分为五个展室，分别陈列有曹雪芹当年居住的地方；写作《红楼梦》的书斋；香山地区美丽的自然环境所给予文学家的灵感；二百年来有关曹雪芹身世的重大发现以及与故居有关的资料。此外还有一些碑刻陈列，反映了曹家与香山地区的关系。",
+            "img":"",
+            "add":"北京市海淀区香山卧佛寺路正白旗村39号北京植物园内",
+            "imgType":4,
+        },
+        {
+            "name":"nalan",
+            "url":"//uri.amap.com/marker?position=116.19853,40.106459&name=纳兰家族家庙&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"40.106459",
+            "lng":"116.19853",
+            "id":"20170300734968",
+            "title":"纳兰家族家庙",
+            "detail":"纳兰家庙旧为唐代古刹东岳庙，现在海淀区上庄乡永泰庄村。东岳庙山门外一派衰败与凋零之景色，山门主体残破，岌岌可危。进入山门西边钟楼保存完好，分上下两层，东边鼓楼已毁。前殿面阔三间，明间石拱券门上镌刻着精美的五龙穿云高浮雕图案。门上方石匾“瞻岱之门”字有碗口大。进入第二院落，大殿是全寺的主要殿宇，巍峨宏伟、恢弘瑰丽，庑殿顶。殿前有宽大花岗岩月台，月台前部已残。东西配殿各五楹。后殿面阔五楹，两侧各转角殿五楹，原供奉碧霞元君等七位娘娘塑像和牌位。西转角配殿五楹原供奉纳兰氏先人影像和牌位。（此庙为清入关后叶赫那拉氏之祖庙）为纳兰后人祭祀祖先之地。据当地传说，清朝末年，慈禧太后曾经两次前往祖庙祭祀先祖。"  ,
+            "img":"",
+            "add":"北京市海淀区上庄永泰庄村",
+            "imgType":4,
+        },
+        {
+            "name":"yiheyuan",
+            "url":"//uri.amap.com/marker?position=116.272876,39.99243&name=颐和园&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"339.99243",
+            "lng":"116.272876",
+            "id":"20170300920656",
+            "title":"颐和园",
+            "detail":"颐和园是保存最完整的一座皇家行宫御苑，被誉为“皇家园林博物馆”。它是以昆明湖、万寿山为基址，以杭州西湖为蓝本建成的一座大型山水园林，颐和园大致可分为行政、生活、游览三个部分。以仁寿殿为中心的行政区，是当年慈禧太后和光绪皇帝坐朝听政的地方。仁寿殿后是三座大型四合院：乐寿堂、玉澜堂和宜芸馆，分别为慈禧、光绪和后妃们居住的地方。宜芸馆东侧的德和园大戏楼是清代三大戏楼之一。颐和园自万寿山顶的智慧海向下，由佛香阁、德辉殿、排云殿、排云门、云辉玉宇坊，构成了一条层次分明的中轴线。山下是一条长700多米的“长廊”，长廊枋梁上有彩画8000多幅，号称 “世界第一廊”。长廊之前是昆明湖。昆明湖的西堤是仿照西湖的苏堤建造的"    ,
+            "img":"",
+            "add":"北京市海淀区新建宫门路19号",
+            "imgType":4,
+        },
+        {
+            "name":"dajuesi",
+            "url":"//uri.amap.com/marker?position=116.106153,40.052637&name=西山大觉寺&src=mypage&coordinate=gaode&callnative=0",
+            "lat":"40.052637",
+            "lng":"116.106153",
+            "id":"20170602302112",
+            "title":"西山大觉寺",
+            "detail":"西山大觉寺又称大觉禅寺，位于北京市海淀区阳台山麓，始建于辽代咸雍四年，称清水院，金代时大觉寺为金章宗西山八大水院之一，后改名灵泉寺，明重建后改为大觉寺。大觉寺以清泉、古树、玉兰、环境优雅而闻名。寺内共有古树160株，有1000年的银杏、300年的玉兰，古娑罗树，松柏等。大觉寺的玉兰花与法源寺的丁香花、崇效寺的牡丹花一起被称为北京三大花卉寺庙。大觉寺八绝：古寺兰香、千年银杏、老藤寄柏、鼠李寄柏、灵泉泉水、辽代古碑、松柏抱塔、碧韵清池。",
+            "img":"",
+            "add":"北京市海淀区北安河乡西山大觉寺路9号",
+            "imgType":4
+        },
+        
+    ];
+        var myMap = {
+            mapObj:null,
+            nowPoint:[],
+            city:null,
+            addPointNum:[],
+            addMarkerObj:[],
+            searchPoint:[],
+            init:function(){
+        	    var imageLayer = new AMap.ImageLayer({
+    		        url: 'images/haidianmap.png',
+    		        bounds: new AMap.Bounds(
+    		        		[116.050633, 39.88673],//
+    		                [116.396016, 40.160156]//
+    		                
+    		        ),
+    		        zooms: [8, 18]
+    		    });
+                var map = new AMap.Map('container',{
+                    resizeEnable: true,
+                    zoom: 11,
+                    center: [116.248881,40.014894],
+     				layers: [
+    		            new AMap.TileLayer(),
+    		            imageLayer
+    		        ]                
+                });
+                this.mapObj= map;
+                // this.getNowPoint(this.mapObj);
+                this.mapObj.setFeatures(["bg","road","building"]);
+                addPoint(0);
+            },
+            getNowPoint:function(map){
+                var geolocation;
+                map.plugin('AMap.Geolocation', function() {
+                    geolocation = new AMap.Geolocation({
+                        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                        zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                        showButton:false
+                    });
+                    map.addControl(geolocation);
+                    geolocation.getCurrentPosition();
+                    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                });
+                //解析定位结果
+                function onComplete(data) {
+                    // $("#tip").hide();
+                    console.log(data.addressComponent.citycode);
+                    myMap.city=data.addressComponent.citycode;
+                    var str=[];
+                    str.push(data.position.getLng());
+                    str.push(data.position.getLat());
+    //			        if(data.accuracy){
+    //			             str.push('精度：' + data.accuracy + ' 米');
+    //			        }//如为IP精确定位结果则没有精度信息
+    //			        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+                    myMap.nowPoint=str;
+    //			        console.log(str);
+                }
+                //解析定位错误信息
+                function onError(data) {
+                    // $("#tip").show();
+                    // document.getElementById('tip').innerHTML = '定位失败';
+                    console.log('定位失败');
+                }
+            },
+            addMarker:function(map){
+                console.log(map);
+                var _this=this;
+                _this.getNowPoint(myMap.mapObj);
+                if( _this.addPointNum.length == 0) {
+                    _this.addPointNum = _this.nowPoint;
+                    var marker= new AMap.Marker({
+                        map: map,
+                        position:_this.addPointNum,
+                        icon: new AMap.Icon({
+                            size: new AMap.Size(40, 50),  //图标大小
+                            image: "/images/parkingPoint.png",
+                        })
+                    });
+                    _this.addMarkerObj.push(marker);
+                }
+            },
+            newWindow:function(point,data){
+                var infoWindow = new AMap.InfoWindow({
+                    isCustom: true,  //使用自定义窗体
+                    autoMove:true,
+                    content: createInfoWindow(point,data),
+                    position:AMap.LngLat(point[0],point[1]),
+                    offset: new AMap.Pixel(0, -50)//-113, -140
+                });
+                infoWindow.open(myMap.mapObj,point);
+            },
+            addToolbar:function(){
+            	var _this=this;
+            	window.onload = function() {
+    				 _this.mapObj.plugin(["AMap.ToolBar"], function() {
+    					 _this.mapObj.addControl(new AMap.ToolBar());
+    				});
+    				if(location.href.indexOf('&guide=1')!==-1){
+    					 _this.mapObj.setStatus({scrollWheel:false})
+    				}
+    			}
+            }
+        }
+        function createInfoWindow(poi,data) {
+            var info = document.createElement("div");
+            info.className = "info";
+            // var content=[];
+            // if(undefined!=data['voucherList']){
+            //     for (var j=0;j<data['voucherList'].length;j++){
+            //         var voucher = data['voucherList'][j];
+            //         if(!voucher['item_logo']){
+            //             continue;
+            //         }
+            //         //voucherList+='<p class="quan text-over"><a href="'+voucher['voucher_detail_url']+'"><img src="'+voucher['item_logo']+'"/> '+voucher['item_name']+'</a></p>';
+            //         if(j == 0){
+            //             voucherList += '<a href="'+voucher['voucher_detail_url']+'"><p class="text-over"><img class="maidan-img" src="/images/map-maidan.png"/><img src="'+voucher['item_logo']+'"/>'+voucher['item_name']+'</p></a>';
+            //         }else{
+            //             voucherList += '<a href="'+voucher['voucher_detail_url']+'"><p class="half-right text-over"><img src="'+voucher['item_logo']+'"/>'+voucher['item_name']+'</p></a>';
+            //         }
+            //     }
+            // }
+            // if(data['star']){
+            //     data['star'] = parseInt(data['star']);
+            //     while(data['star']--){
+            //         starStr += '<img src="/images/fire.png"/>';
+            //     }
+            // }
+
+            //插入窗口。
+            var htl='<div class="win-title flex-box"><h5 class="flex1 text-over">'+data.title+'</h5><img class="window-close" onClick="closeInfoWindow();" src="images/window-close.png" alt=""></div>'+
+                    '<div class="win-content flex-box"><img src="images/'+data.name+'.jpg" alt="" class="name-img">'+
+                    ' <div class="window-inf-box flex1"><p>'+data.detail+'</p>'+
+                    '<div class="btn-grp clearfix"><a href="vr-player.html?name='+data.name+'&id='+data.id+'"  target="_blank"><img src="images/vr-preview.png" alt=""></a>'+
+                    '<a href="'+data.url+'" target="_blank"><img src="images/go-here.png" alt=""></a></div></div></div><img class="map-arrow" src="/images/map-arrow.png">'            
+            info.innerHTML=htl;
+            return info;
+        }      
+        function closeInfoWindow() {
+            myMap.mapObj.clearInfoWindow();
+        }
+        function addPoint(type) {
+            closeInfoWindow();
+            myMap.mapObj.remove(myMap.searchPoint);
+            for(var i in filter_data){
+                if(type == 0){
+                    addMarket(filter_data[i]);
+                }else{
+                    if(filter_data[i].imgType == type){
+                        addMarket(filter_data[i]);
+                    }
+                }
+            }
+        }
+        function addMarket(data){
+            var img = '',i = data.id;
+            switch (data.imgType){
+                case 1:
+                    img="/images/point-shd.png";
+                    break;
+                case 2:
+                    img="/images/point-bwg.png";
+                    break;
+                case 3:
+                    img="/images/point-tshg.png";
+                    break;
+                case 4:
+                    img="/images/point-yl.png";
+                    break;
+                default:
+                    break;
+            }
+            var ar = [data.lng, data.lat];
+            var marker = new AMap.Marker({
+                position: ar,
+                map : myMap.mapObj,
+                extensions: 'all',
+                icon: new AMap.Icon({
+                    size: new AMap.Size(20, 30),  //图标大小
+                    image: img,
+                }),
+                label:{i:0}
+            });
+            myMap.searchPoint.push(marker);
+            marker.on('click',function(e){
+                target=e.target;
+                var point=[];
+                point.push(e.target.getPosition().lng);
+                point.push(e.target.getPosition().lat);
+                myMap.newWindow(point,data);
+                myMap.mapObj.setCenter(ar);
+            });
+        }                
+
+    </script>
+    
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+            myMap.init();
+            AMap.event.addListener(myMap.mapObj, "click", function(e) {
+                closeInfoWindow();
+            });
+            $(".filter-bottom").find("div").on("touchstart",function(){
+                $(this).addClass('active').siblings().removeClass("active");
+            });
+            $(".book-shop-btn").on('touchstart',function(){
+                addPoint(2);
+            }); 
+            $(".museum-btn").on('touchstart',function(){
+                addPoint(1);
+            });
+            $(".library-btn").on('touchstart',function(){
+                addPoint(3);
+            });
+            $(".park-btn").on('touchstart',function(){
+                addPoint(4);
+            });
+            $(".info").on('touchstart','.window-close',function(){
+                // alert(1)
+               closeInfoWindow();
+            });
+            $(".pub-bottom-ls").on('touchstart','li',function(){
+                // alert(22);
+                $(this).addClass("active").siblings().removeClass('active');
+            });
+            // $(".plus").on('touchstart',function(){
+            //     var old=myMap.mapObj.getZoom();
+            //     myMap.mapObj.setZoom(old+1);
+            // })
+            // $(".minus").on('touchstart',function(){
+            //     var old=myMap.mapObj.getZoom();
+            //     myMap.mapObj.setZoom(old-1);
+            // })
+            // $(".now-point").on('touchstart',function(){
+            //     myMap.getNowPoint(myMap.mapObj);
+            //     if(myMap.nowPoint.length >0) {
+            //         myMap.mapObj.setCenter(myMap.nowPoint)
+            //     }
+            // })
+        })
+        
+    </script>
+</body>
+</html>

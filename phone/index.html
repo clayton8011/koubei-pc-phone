@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>海淀图书城</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		 <style>
+		 	html,body {
+		 		height: 100%
+		 	}
+		 	.bg-img {
+		 		width: 100%;height: 100%;/*background: url(images/index-bg.png) no-repeat center/100% 100%;*/
+		 	}
+		 </style>
+	</head>
+	<body >
+		<div class="bg-img"><img id="bg-img" src="images/index-bg.png" style="display: block;width: 100%;height: 100%;" alt=""></div>
+		<!-- <img style="display:block;width: 100%;height: 100%;" src="images/index-bg.png"/> -->
+		<!-- <div class="index-title">
+			<img src="images/zhangye-name.png"/>
+		</div>
+		<div style="position: absolute;top: 79.8%;width: 100%;">
+			<a href="map.html" style="display: block;width: 17.8rem;height: 3.34rem;background: url(images/ph-index-btn.png) no-repeat center/100% auto; margin: 0 auto;"></a>
+		</div>
+		<div class="index-bottom">
+			<img src="images/gs-name.png"/>
+		</div> -->
+		<script type="text/javascript">
+			
+			document.getElementById('bg-img').onload = function(e){
+				e.stopPropagation();
+					// alert(1);
+				setTimeout(function(){
+					window.location="map.html";
+				},2500)
+			}	
+		</script>
+
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			var protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+
+		    //判断是否为微信
+		    function isWeiXin(){
+		        var ua = window.navigator.userAgent.toLowerCase();
+		        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		            return true;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    var shareData = {
+		        'title': '海淀图书城',
+		        'link': location.href,
+		        'desc': '海淀图书城',
+		        'imgUrl': protocol+"pano.taagoo.com/panos/zhangye/zhangYePhone/images/1%E5%88%9B%E5%AF%8C%E4%B8%AD%E5%BF%83-188.jpg", // 分享图标
+		        success: function () {
+		            alert('分享成功');
+		        },
+		        cancel: function () {
+		            alert('您取消了分享');
+		        }
+		    };
+
+		    //是微信才会执行分享信息
+		    if(isWeiXin()){
+				var oHead = document.getElementsByTagName('HEAD').item(0);
+		        var oScript= document.createElement("script");
+		        oScript.type = "text/javascript";
+		        oScript.src=protocol+"data.taagoo.com/weixin/js-share.html?url="+encodeURIComponent(window.location.href.split("#")[0])+"&js_callback=weixinCallback";
+		        oHead.appendChild( oScript);
+		    }
+		    //微信回调
+		    function weixinCallback(obj){
+		        wx.config(obj);
+		        wx.ready(function() {
+		            wx.onMenuShareTimeline(shareData);
+		            wx.onMenuShareAppMessage(shareData);
+		            wx.onMenuShareQQ(shareData);
+		            wx.onMenuShareWeibo(shareData);
+		        });
+		        wx.error(function(res){
+		            //alert("wx.error"+res.errMsg);
+		        });
+		    }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+		<!-- <link rel="stylesheet" type="text/css" href="../swiper/swiper-3.3.1.min.css"/> -->
+	</head>
+	<body>
+		<div id="krpano" style="position: absolute;width: 100%;height: 100%;">
+			<img src="images/bg.jpg" style="display: block; width: 100%;height: 100%;">
+		</div>
+		<header class="head" data-role="header">
+			<!-- <div class="back-box"> -->
+				<button class="back-btn-base" data-rel="back" type="button" data-add-back-btn="true" >返回</button>
+				<div class="headlines-box">
+					<div>
+						<h5>景区头条</h5>
+						<div class="swiper-container" id="toutiao-sw">
+					        <div class="swiper-wrapper">
+					        	<div class="swiper-slide"><a href="http://www.baidu.com">西单大悦城商圈西单大悦城商圈</a></div>
+					        	<div class="swiper-slide"><a href="http://www.baidu.com">朝阳大悦城商圈朝阳大悦城商圈</a></div>
+					        	<div class="swiper-slide"><a href="http://www.baidu.com">CBD大悦城商圈</a></div>
+					        	<div class="swiper-slide"><a href="http://www.baidu.com">Slide大悦城商圈</a></div>
+					        	<div class="swiper-slide"><a href="http://www.baidu.com">ALT大悦城商圈</a></div>
+				       		</div>
+				        </div>
+					</div>
+				</div>
+				<button class="more-btn-base" type="button"></button>
+
+			<!-- </div> -->
+		</header>
+		<a class="logo-link" href="#"><img src="images/logo.png" /></a>
+		<div class="btn-grp-r">
+			<a class="hongbao-link" href="#"><img src="images/hongbao.png" /></a>
+			<div class="music-box">
+				<button type="button"  class="music-btn" href="#"><img src="images/music.png" /></button>
+				<ul class="music-list">
+					<li>中文</li>
+					<li>English</li>
+				</ul>
+			</div>
+			<button class="map-btn" href="#"><img src="images/by-car.png" /></button>
+		</div>
+		<div class="shangquan-bottom">
+			<button class="swiper-btn" type="button" ></button>
+			<div class="swiper-container" id="shop-list">
+				<ul class="swiper-wrapper">
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店</p></li>
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店9</p></li>
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿专卖店</p></li>
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">迪专卖店</p></li>
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店0</p></li>
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店1</p></li>
+					<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店2</p></li>
+					 <div class="swiper-pagination"></div> 
+				</ul>
+			</div>
+			<div class="business-circle-addr flex-box">
+				<img class="bus-cir-img" src="images/shangquan-name.png">
+				<div class="flex1">
+					<h5>三里屯太古里</h5>
+					<p class="text-over">朝阳区三里屯路19号院</p>
+				</div>
+				<button class="by-car-btn" type="button"> 打车去</button>
+			</div>
+			<div class="component">
+				<button class="cn-button" id="cn-button"></button>
+				<!-- <div class="cn-wrapper" id="cn-wrapper">
+				    <ul>
+				      <li><a href="#"><img src="images/dianpu.png"></a></li>
+				      <li><a href="#"><img src="images/xinxi.png"></a></li>
+				      <li><a href="#"><img src="images/movie.png"></a></li>
+				      <li><a href="#"><img src="images/zan.png"></a></li>
+				      <li><a href="#"><img src="images/ren.png"></a></li>
+				     </ul>
+				</div> -->
+				<div class="manu-list hide">
+					<ul>
+					    <li><a href="#"><img src="images/dianpu.png"></a></li>
+					    <li><a href="#"><img src="images/xinxi.png"></a></li>
+					    <li><a href="#"><img src="images/movie.png"></a></li>
+					    <!--<li><a href="#"><img src="images/zan.png"></a></li>-->
+					    <li><a href="#"><img src="images/ren.png"></a></li>
+				    </ul>	
+				</div>
+			</div>
+			<div class="park-detial-box">
+				<select>
+					<option>123</option>
+					<option>12aa3</option>
+					<option>1d23</option>
+					<option>s123</option>
+				</select>
+			</div>
+			<div class="businessmen-box">
+				
+			</div>
+			<div class="activity-box">
+				
+			</div>
+			<div class="hongbao-box">
+				
+			</div>
+		</div>
+	
+
+
+
+	</body>
+	<script src="js/jquery-1.11.0.js"></script>
+	<!--去除JQ M默认行为-->
+	<script type="text/javascript">
+		$("button").attr('data-role','none');  
+		$("select").attr('data-role','none'); 
+	</script>
+	<script src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script src="js/swiper-3.3.1.jquery.min.js"></script>
+	<script src="js/swiper.animate1.0.2.min.js"></script>
+	<script type="text/javascript">
+		var businessCircle = {
+			event:null,
+			init:function() {
+				var swiper = new Swiper('#shop-list', {
+			        // pagination: '.swiper-pagination',
+			        slidesPerView: 4,
+			        paginationClickable: false,
+			        spaceBetween: "2%",
+			        freeMode: true
+			    });
+			    if(!event) {
+			    	businessCircle.bindEvent;
+			    }
+			},
+			bindEvent:$(function() {
+
+				$("#cn-button").on('tap',function() {
+					if (this.className == "cn-button active") {
+						businessCircle.manuShow(this);
+					} else {
+						businessCircle.manuHide(this);
+					}
+				});
+				$("body").on('tap','.swiper-btn',function() {
+					businessCircle.manuHide();
+				})
+				$(".music-btn").on('tap',function() {
+					businessCircle.musicListSH();
+				})
+			}),
+			manuShow:function(obj) {
+				$(".manu-list").removeClass("opened-nav");
+				document.getElementById("cn-button").className="cn-button";
+				$("#shop-list").removeClass('swiper-container-hide');
+				setTimeout(function() {
+					$(".manu-list").width("0");
+				},300)
+			},
+			manuHide:function(obj) {
+				$(".manu-list").addClass("opened-nav");
+				document.getElementById("cn-button").className="cn-button active";
+				$("#shop-list").addClass('swiper-container-hide');
+				 $(".manu-list").width("260%");
+			},
+			setToutiaoSw:function(){
+				var swiper = new Swiper('#toutiao-sw', {
+		//	        pagination: '.swiper-pagination',
+		//	        nextButton: '.swiper-button-next',
+		//	        prevButton: '.swiper-button-prev',
+			        paginationClickable: true,
+			        spaceBetween: 30,
+			        centeredSlides: true,
+			        autoplay: 2000,
+			        autoplayDisableOnInteraction: false,
+		        	direction: 'vertical',
+		        	loop: true
+			    });
+			},
+			musicListSH:function() {
+				var listBody = document.getElementsByClassName("music-list")[0];
+				if(listBody.className == "music-list") {
+					listBody.className+= " music-anim";
+				} else {
+					listBody.className  = "music-list"
+				}
+			}
+			
+		}
+		$(document).ready(function(){
+			businessCircle.init();
+			//去除loading
+			$.mobile.hidePageLoadingMsg(); 
+//			$.ajax({
+//				url:"swiper-data.json",
+//				type:"get",
+//				dataType:"json",
+//				async:true,
+//				success:function(data){
+//					console.log(data.sqname);
+//					var htl="";
+//						for(var k in data.sqname) {
+//							htl += '<div class="swiper-slide"><a href="http://www.baidu.com">'+data.sqname[k]+'</a></div>';
+//						}
+//					$("#toutiao-sw").find('.swiper-wrapper').append(htl);
+//				},
+//				
+//			})
+			businessCircle.setToutiaoSw();
+		})
+	</script>
+</html>

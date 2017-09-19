@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>海淀图书城</title>
+		 <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/frontend_index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+		<script type="text/javascript">
+// 		function GetRequest() {
+// 		    var url = location.search; //获取url中"?"符后的字串
+// 		    var theRequest = new Object();
+// 		    if (url.indexOf("?") != -1) {
+// 		        var str = url.substr(1);
+// 		        strs = str.split("&");
+// 		        for(var i = 0; i < strs.length; i ++) {
+// 		            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+// 		        }
+// 		    }
+// 		    return theRequest;
+// 		}
+// 		var request = GetRequest();
+// 		var reg = /^[0-9]+.?[0-9]*$/;
+// 		if(reg.test(request.id)) {
+// 		}else{
+// 			request.id="20161100031387";
+// 		}
+// 		if(!request.name) {
+// 			request.name="default";
+// 		}
+// //		console.log(request.id);
+// //		console.log(id);
+//         var pageObj = {
+//                 pano_id:'31',
+//                 pano_json_url:'pano/data/'+request.name+'/data.json',
+//                 base_xml_url:'//data.taagoo.com/pano/base-xml.html?code='+request.id,
+//                 login_id:'',
+//                 login_url:'',
+//                 login_avatar:'',
+//                 is_praise:''
+//             };
+		</script>
+	<script language="JavaScript" type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/bootstrap.min.js"></script>
+     <!-- <script language="JavaScript" type="text/javascript" src="js/UtoVRPlayerGuide.js"></script> -->
+    <!-- <script language="JavaScript" type="text/javascript" src="js/common.js"></script> -->
+    <!-- <script language="JavaScript" type="text/javascript" src="js/vrshow.js"></script> -->
+    <script language="JavaScript" type="text/javascript" src="js/tour.js"></script>
+	</head>
+	<body>
+		<!-- <div id="pano" style="width:100%; height:100%;position: absolute;"></div> -->
+		<iframe src="http://bjhdqw.weishutu.com/index.php/book/index" frameborder="0" style="width: 100%;height: 100%;"></iframe>
+		<!-- <button class="back-btn" type="button" style="display: block;width: 100px;height: 50px;background: #fff;position: absolute;top: 0;left: 0;">返回</button> -->
+		<a href="http://ditu.amap.com/regeo?lng=116.30621&lat=39.976121&name=park&src=mypage&callnative=0"></a>
+		<div class="public-bottom flex-box">
+		    <div class="flex1 disability"></div>
+		    <div class="flex1 hospital"></div>
+		    <div class="flex1 parking"></div>
+		    <div class="flex1 toilet"></div>
+		</div>
+			<!-- var haiDianTuShu={
+				init:function(){this.bind();},
+				bind:function(){
+						document.getElementById("yuanpan-btn").onclick=function(){
+							var manuLfetBox=document.getElementsByClassName('pano-box')[0];
+							if(manuLfetBox.className == "pano-box manu-left-hide-first" || manuLfetBox.className =="pano-box manu-left-hide-animation" ){
+								manuLfetBox.className="pano-box manu-left-show-animation";
+								document.getElementsByClassName('collapse')[0].className="collapse collapse-hide";
+								var krpano = document.getElementById('krpanoSWFObject');
+								krpano.call('skin_showthumbs(false)');
+								$(this).attr("src","images/changjingsel.png")
+							}else{
+								manuLfetBox.className="pano-box manu-left-hide-animation";
+								var krpano = document.getElementById('krpanoSWFObject');
+								krpano.call('skin_showthumbs(true)');
+								$(this).attr("src","images/changjing.png")
+							}
+						};
+						document.getElementsByClassName("manu-left")[0].onclick=function(){
+							var krpano = document.getElementById('krpanoSWFObject');
+								krpano.call('skin_showthumbs()');
+								var manuLfetBox=document.getElementsByClassName('pano-box')[0];
+						        	manuLfetBox.className="pano-box manu-left-hide-animation";
+						        	$('#yuanpan-btn').attr("src","images/changjing.png");
+
+						};
+						document.getElementsByClassName("manu-r-btn")[0].onclick=function(){
+							var manuLfetBox=document.getElementsByClassName('collapse')[0];
+							if(manuLfetBox.className == "collapse" ){
+								manuLfetBox.className="collapse collapse-hide";
+							}else{
+								manuLfetBox.className="collapse";
+//								document.getElementsByClassName('pano-box')[0].className="pano-box manu-left-hide-animation";
+								var newClass=document.getElementsByClassName('pano-box')[0].className;
+								console.log(newClass);
+								if(newClass == "pano-box manu-left-show-animation") {
+									document.getElementsByClassName('pano-box')[0].className="pano-box manu-left-hide-animation";
+								}
+							}
+						};
+//						document.getElementsByClassName("close-modal")[0].onclick=function(){
+//							document.getElementsByClassName("modal-box")[0].className="modal-box";
+//						};
+//						document.getElementsByClassName("introduction-btn")[0].onclick=function(){
+//							document.getElementsByClassName("modal-box")[0].className="modal-box modal-show";
+//						};
+						document.getElementsByClassName("close-modal")[0].onclick=function(){
+							document.getElementsByClassName("modal-box")[0].style.display="none";
+						};
+						document.getElementsByClassName("close-jishu-modal")[0].onclick=function(){
+							document.getElementsByClassName("modal-jishu-box")[0].style.display="none";
+						};
+						document.getElementsByClassName("introduction-btn")[0].onclick=function(){
+							var krpano = document.getElementById('krpanoSWFObject');
+								krpano.call('skin_showthumbs(false)');
+								var manuLfetBox=document.getElementsByClassName('pano-box')[0];
+						        	manuLfetBox.className="pano-box manu-left-hide-animation";
+						        	$('#yuanpan-btn').attr("src","images/changjing.png");
+				        	document.getElementsByClassName("modal-jishu-box")[0].style.display="none";
+							document.getElementsByClassName("modal-box")[0].style.display="block";
+							
+						};
+						document.getElementsByClassName("jishu-btn")[0].onclick=function(){
+							document.getElementsByClassName("modal-jishu-box")[0].style.display="block";
+							var krpano = document.getElementById('krpanoSWFObject');
+								krpano.call('skin_showthumbs(false)');
+						};
+					},
+			}
+			window.onload=function(){
+				haiDianTuShu
+.init();
+			}
+			$(function(){
+                plugins_init_function.push(bgvoice_init);
+            });
+            function bgvoice_init(data,settings){
+                var speechObj = (undefined!=data.global_commentary&&data.global_commentary.mediaUrl)?data.global_commentary:null;
+                if(speechObj){
+                    settings["onstart"] += "playsound(bgspeech, '"+data.global_commentary.mediaUrl+"', 0);";
+                }else{
+                    if(undefined!=data.scene_commentary) {
+
+                        for(var scene_name in data.scene_commentary){
+                            var objOne = data.scene_commentary[scene_name];
+                            if (objOne.mediaUrl) {
+                                settings['scene[scene_'+objOne.sceneID+'].bgspeech'] = objOne.mediaUrl;
+                            }
+                        }
+                    }
+                }
+                settings["events[skin_events].onloadcomplete"]+="js(toggleSpeechBtn(get(xml.scene)));";
+            }
+            function toggleSpeechBtn(sceneName){
+                var panoData = $("body").data("panoData");
+                if(undefined!=panoData.global_commentary&&panoData.global_commentary.mediaUrl){
+                    $('.btn_music,.btn_music_off').show();
+                }else if(undefined!=panoData.scene_commentary&& undefined!=panoData.scene_commentary[sceneName] && panoData.scene_commentary[sceneName].mediaUrl){
+                    $('.btn_music,.btn_music_off').show();
+                }else{
+                    $('.btn_music,.btn_music_off').hide();
+                }
+            }
+			function pauseSpeech(el){
+                    var krpano = document.getElementById('krpanoSWFObject');
+                    krpano.call("pausesoundtoggle(bgspeech);pausesoundtoggle(bgs);");
+                     if($(el).attr("src").indexOf("off") == -1){
+		        	$(el).attr("src","images/music-btn-off.png");
+			        }else{
+			        	$(el).attr("src","images/music.png");
+			        }
+                }
+		    function showWebVR(){
+		        var krpano = document.getElementById('krpanoSWFObject');
+		        var webvr = krpano.get("webvr");
+		        webvr.onentervr=function(){
+		        	$(".back,.collapse,.manu-left ,#yuanpan-btn").hide();
+		        	if($("#yuanpan-btn").attr("src").indexOf("sel") ==-1){
+		        		
+		        	}else{
+		        		$("#yuanpan-btn").click();
+		        	}
+		        	krpano.call('skin_showthumbs(false)');
+		        }
+		        webvr.onexitvr=function(){
+		        	$(".back,.collapse,.manu-left ,#yuanpan-btn").show();
+		        }
+		        webvr.entervr();
+		    }
+		
+		    function rotateEx(obj) {
+		    	if($(obj).attr('src').indexOf("close") == -1){
+		    		$(obj).attr('src',"images/gravity-close.png");
+		    	}else{
+		    		$(obj).attr('src',"images/gravity.png");
+		    	}
+		        var krpano = document.getElementById('krpanoSWFObject');
+//		        krpano.call('set(skin_gyro.enabled,true)');
+//		        alert(krpano.get('skin_gyro.enabled'));
+		        krpano.call("switch(plugin[skin_gyro].enabled); if(plugin[skin_gyro].enabled, skin_showmap(false))")
+		    }
+//		    function rotateEx() {
+//		    	alert(1);
+//		        var krpano = document.getElementById('krpanoSWFObject');
+//		        var now_value = krpano.get('autorotate.enabled');
+//		        now_value = !now_value;
+//		        krpano.call('set(autorotate.enabled,'+now_value+')');
+//		    }
+		    function pause_bgMusic(el) {
+		        var krpano = document.getElementById('krpanoSWFObject');
+		        krpano.call("pausesoundtoggle(bgmusic);pausesoundtoggle(bgm);");
+		        if($(el).attr("src").indexOf("off") == -1){
+		        	$(el).attr("src","images/music-btn-off.png");
+		        }else{
+		        	$(el).attr("src","images/music.png");
+		        }
+//		        toggleMusic(el);
+		    }
+		    function toggleMusic(el) {
+		        if ($(el).atr) {
+		            $(el).removeClass("btn_bgmusic");
+		            $(el).addClass("btn_bgmusic_off");
+		        } else {
+		            $(el).removeClass("btn_bgmusic_off");
+		            $(el).addClass("btn_bgmusic");
+		        }
+		    }
+		    
+		   
+		   var localData={
+		   	"chuangfu":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.965450,100.423900;title:张掖创富中心;addr:甘肃省张掖市甘州区玉水街84号&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"zhiyaochang":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.937760,100.473830;title:河西制药厂;addr:肃省张掖市甘州区张火公路与三一二国道交叉处向东100米路南&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"fuhuayuan":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.937770,100.396280;title:农业创新孵化园;addr:甘肃省张掖市甘州区新墩镇发展大道&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"shandanxian":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.784760,101.088580;title:山丹县;addr:甘肃省张掖市山丹县&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"minlexian":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.430790,100.812860;title:民乐县;addr:甘肃省张掖市民乐县&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"linzexian":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:39.152240,100.164360;title:临泽县;addr:甘肃省张掖市临泽县县府街169&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"yushuiyuan":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.974210,100.427450;title:玉水苑;addr:甘肃省张掖市甘州区312国道&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"danxia":{
+		   		"url": "http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.975000,100.073230;title:丹霞七彩镇;addr:甘肃省张掖市肃南裕固族自治县倪家营镇七彩镇(万象桃园假日宾馆西)&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"gaotaixian":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:39.377730,99.819320;title:高台县;addr:甘肃省张掖市高台县&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"heximinsu":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.951050,100.441860;title:河西民俗文化博览园;addr:甘肃省张掖市甘州区北环路846号&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"ganzhou":{
+		   		"url":"http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.954420,100.483897;title:甘州区经开区;addr:甘肃省张掖市甘州区北二路&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	},
+		   	"qichecheng":{
+		   		"url": "http://apis.map.qq.com/tools/poimarker?type=0&marker=coord:38.932350,100.399530;title:金张掖汽车城;addr:甘肃省张掖市甘州区新墩镇南华三社西三环路西350米&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp",
+		   		"detail":""
+		   	}
+		   }
+		   $("#map-link").attr("href",localData[request.name].url);
+		   if(localData[request.name].detail) {
+			   	$(".modal-inf-box p").text(localData[request.name].detail)
+		   } -->
+		   
+		</script>
+
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+		document.getElementsByClassName("back-btn")[0].onclick=function(){
+			alert(1);
+		}
+
+			var protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+
+		    //判断是否为微信
+		    function isWeiXin(){
+		        var ua = window.navigator.userAgent.toLowerCase();
+		        if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		            return true;
+		        }else{
+		            return false;
+		        }
+		    }
+
+		    var shareData = {
+		        'title': '',
+		        'link': '',
+		        'desc': '',
+		        'imgUrl': protocol+"pano.taagoo.com/panos/", // 分享图标
+		        success: function () {
+		            alert('分享成功');
+		        },
+		        cancel: function () {
+		            alert('您取消了分享');
+		        }
+		    };
+
+		    //是微信才会执行分享信息
+		    if(isWeiXin()){
+			    setTimeout(function(){
+					var oHead = document.getElementsByTagName('HEAD').item(0);
+			        var oScript= document.createElement("script");
+			        oScript.type = "text/javascript";
+			        oScript.src=protocol+"data.taagoo.com/weixin/js-share.html?url="+encodeURIComponent(encodeURIComponent(window.location.href.split("#")[0]))+"&js_callback=weixinCallback";
+			        oHead.appendChild( oScript);
+		    	},3000);
+		        
+		    }
+		    //微信回调
+		    function weixinCallback(obj){
+		        wx.config(obj);
+		        wx.ready(function() {
+		            wx.onMenuShareTimeline(shareData);
+		            wx.onMenuShareAppMessage(shareData);
+		            wx.onMenuShareQQ(shareData);
+		            wx.onMenuShareWeibo(shareData);
+		        });
+		        wx.error(function(res){
+		            //alert("wx.error"+res.errMsg);
+		        });
+		    }
+		</script>
+	</body>
+</html>

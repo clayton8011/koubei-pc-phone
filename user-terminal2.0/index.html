@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/scrollbar.css"/>
+		<!-- <link rel="stylesheet" type="text/css" href="../swiper/swiper-3.3.1.min.css"/> -->
+	</head>
+	<body>
+		<div id="krpano" style="position: absolute;width: 100%;height: 100%;">
+			<img src="images/bg.jpg" style="display: block; width: 100%;height: 100%;">
+		</div>
+		<div class="pano-bg-box"></div>
+		<header class="head" data-role="header">
+			<!-- <div class="back-box"> -->
+				<!--<button class="back-btn-base" data-rel="back" type="button" data-add-back-btn="true" >口碑</button>-->
+				<div class="headlines-box">
+					<div>
+						<h5>景区头条</h5>
+						<div class="swiper-container" id="toutiao-sw">
+					        <div class="swiper-wrapper">
+					        	<div class="swiper-slide">西单大悦城商圈西单大悦城商圈</div>
+					        	<div class="swiper-slide">朝阳大悦城商圈朝阳大悦城商圈</div>
+					        	<div class="swiper-slide">CBD大悦城商圈</div>
+					        	<div class="swiper-slide">Slide大悦城商圈</div>
+					        	<div class="swiper-slide">ALT大悦城商圈</div>
+				       		</div>
+				        </div>
+					</div>
+				</div>
+				<!--<button class="more-btn-base" type="button"></button>-->
+
+			<!-- </div> -->
+		</header>
+		<div class="btn-grp-l">
+			<a class="logo-link" href="#"><img src="images/logo.png" /></a>
+			<div class="music-box">
+				<button type="button"  class="music-btn" href="#"><img src="images/music.png" /></button>
+				<ul class="music-list">
+					<li>中文</li>
+					<li class="active">English</li>
+				</ul>
+			</div>
+		</div>
+		<div class="btn-grp-r">
+			<a class="hongbao-link" href="#"><img src="images/hongbao.png" /></a>
+			<a class="map-btn" href="#"><img src="images/map-tn.png" /></a>
+		</div>
+		<button class="cn-button" id="cn-button"></button>
+		<!--<div class="component">-->
+		<div class="manu-list hide">
+			<ul>
+			    <li class="businessmen-btn"><img src="images/tuijianshangjia.png"></li>
+			    <!--<li class="vr-btn"><img src="images/vr.png"></li>-->
+			    <li class="theme-btn"><img src="images/jingquxinxi.png"></li>
+			    <li class="tese-activity-btn"><img src="images/tesehuodong.png"></li>
+			    <li class="public-btn"><a href=""><img src="images/gonggongsheshi.png"></a></li>
+		    </ul>	
+		</div>
+			<!--</div>-->
+		<!--景点-->
+				<!--<img src="images/timg.jpg"/ style="display: block; width: 50%;height: auto; position: absolute;top: 0;left: 0;z-index: 999;" >-->
+		<div class="base-bottom scenic-spot-bottom" style="display: none;">
+			<div class="tapSlide-all-box">
+				<div class="bottom-top">
+					<button class="swiper-down-btn" id="scenic-spot-sw-btn" type="button" ></button>
+					<div class="base-addr flex-box scenic-spot-addr">
+						<h5 class="text-over">三里屯太古里</h5>
+					</div>
+					<button class="spot-back-btn" type="button"></button>
+				</div>
+			</div>
+			<div class="line spot-line"></div>
+			<div class="scenic-spot-detial">
+				<b>景点介绍：</b>
+				<p>什刹海指前海、后海和西海三个湖泊及临近地区，这里拥有大片优美的湖面，也是北京著名的一片历史街区，众多名人故居、王府等古迹散落其中，还有贴近老百...生活的各类美食，后海酒吧街更是京城夜生活的老牌胜地。夏天来坐游船初到什刹海，第一眼一定被大片潋艳的湖光所吸引。...垂柳毵毵，远山秀色如黛，风光绮丽，为燕京胜...之一。今天，这里仍旧保存着十分难得的自然景观和人文胜迹交相辉映的历史风貌，宋庆龄故居、郭沫若故居、恭王府花园、广化寺、火神庙、钟鼓楼和银锭桥等古迹将什刹海点缀得美丽灿烂。
+近年来，什刹海酒吧街已成为京城夜色中最热闹的地方之一。这里还聚集着众多北京风味的特色餐厅。你可以品酒泛舟，览湖光粼粼，或徜徉两岸，听杨柳婆娑，或搜寻美食，尝御膳家宴，或投宿胡同人家品着原汁的京味儿。</p>
+				<button class="show-all-btn">查看全部 <img src="images/all-down.png"/></button>
+			</div>
+			<div class="swiper-box" style="background: #fff;">
+				<div class="swiper-container" id="scenic-spot-list">
+					<ul class="swiper-wrapper scenic-spot-sw-list">
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店9</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿专卖店</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">迪专卖店</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店0</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店1</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店2</p></li>
+						 <div class="swiper-pagination"></div> 
+					</ul>
+				</div>
+			</div>
+			 <div style="background: #fff;position: absolute;bottom: 0;width: 100%;height:4rem;">
+    	
+    </div>
+		</div>
+		<!--场景-->
+		<div class="base-bottom scene-bottom" style="display: none;">
+			<div class="bottom-top">
+				<button class="swiper-down-btn" id="scenes-sw-btn"  type="button" ><img src="images/swiper-btn.png"/></button>
+				<div class="swiper-container" id="scenes-list">
+					<ul class="swiper-wrapper scenes-sw-list">
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店9</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿专卖店</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">迪专卖店</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店0</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店1</p></li>
+						<li class="swiper-slide"><img src="images/scene-img.png"><p class="text-over">阿迪专卖店2</p></li>
+						 <div class="swiper-pagination"></div> 
+					</ul>
+				</div>
+				<div class="line"></div>
+			</div>
+			<div class="base-addr flex-box scene-addr">
+				<img class="bus-cir-img" src="images/shangquan-name.png">
+				<div class="flex1">
+					<h5>三里屯太古里</h5>
+					<p class="text-over">朝阳区三里屯路19号院</p>
+				</div>
+				<button class="by-car-btn" type="button"> 打车去</button>
+			</div>
+		</div>
+		<!--公共部分 头条，景区信息等-->
+		<div class="base-bottom base-high-bottom" style="display: block;">
+			<div class="bottom-top">
+				<button class="swiper-down-btn" id="base-high-sw-btn" type="button" ></button>
+			</div>
+			<div class="base-addr flex-box base-high-addr" id="base-head-wp">
+				<img class="bus-cir-img" src="images/shangquan-name.png">
+				<div class="flex1">
+					<h5>三里屯太古里</h5>
+					<p class="text-over">中国成都市锦江区中纱帽街8号</p>
+				</div>
+				<button class="by-car-btn" type="button" onclick="location.href='https://common.diditaxi.com.cn/general/webEntry#/'"> 打车去</button>
+			</div>
+			<div class="base-high-bottom-box">
+				<!--头条-->
+				<div class="headlines-show-box" style="display: none;">
+					<h2>景区头条</h2>
+					<ul class="headlines-list">
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-link">凤凰资讯<span>2015.01.01</span></p>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-link">凤凰资讯<span>2015.01.01</span></p>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-link">凤凰资讯<span>2015.01.01</span></p>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-link">凤凰资讯<span>2015.01.01</span></p>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-link">凤凰资讯<span>2015.01.01</span></p>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!--景区信息-->
+				<div class="scenic-inf-box" style="display: none;">
+					<div class="scenic-inf-section">
+						<p class="inf-base-tip"><img src="images/scenic-time.png"/><b>开放时间：</b>全天开放</p>
+						<p class="inf-base-tip"><img src="images/scenic-ticket.png"/><b>门票价格：</b>免费</p>
+						<p class="inf-base-tip inf-base-tip-last"><img src="images/scenic-layer.png"/><b>景点级别：</b>AAAA</p>
+					</div>
+					<div class="scenic-inf-section">
+						<h5 class="inf-title">景点介绍：</h5>
+						<p class="inf-detial scenic-introduction">什刹海也写作“十刹海”，四周原有十座佛寺，故有此称。随着时间发展逐渐形成西海﹑后海﹑前海，三海水道相通。自清代起就成为游乐消夏之所。三海碧波荡漾什刹海也写作“十刹海”，四周原有十座佛寺，故有此称。随着时间发展逐渐形成西海﹑后海﹑前海，三海水道相通。自清代起就成为游乐消夏之所。三海碧波荡漾</p>
+						<button class="show-all-inf-btn">查看全部 <img src="images/all-down.png"/></button>
+					</div>
+					<div class="scenic-inf-section">
+						<h5 class="inf-title">交通信息：</h5>
+						<p class="inf-detial">乘坐地铁6号线到北海北站下车或乘坐5、60、107、124路等公交车到鼓楼站下车。乘坐13、107、111、118、609、623路在北海北门下车，沿着前海向北步行可到达。公交地安门外站——60路; 82路; 90内; 90外; 107路; 124路; 204夜班车内; 204夜班车外；</p>
+					</div>
+				</div>
+				<!--特色活动-->
+				<div class="activity-box">
+					<h2>特色活动</h2>
+					<ul class="headlines-list">
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a class="flex-box" href="">
+								<img src="images/toutiao-img.png"/>
+								<div class="flex1 flex-box">
+									<div class="headlines-detail">
+										<h5>北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛北京什刹海举行端午龙舟赛</h5>
+										<p class="headlines-time">什刹海第十届端午龙舟赛5月27日上午在后海圆满结束，比赛从宋庆龄故居比赛从宋庆龄故居比赛从宋庆龄故居</p>
+									</div>
+									<button class="headlines-more" href="#"></button>
+								</div>
+							</a>
+						</li>
+						
+					</ul>
+				</div>
+				<!--推荐商家-->
+				<div class="businessmen-box" style="display: block;">
+					<!--<div class="businessmen-head flex-box">
+						<div>
+							<input type="text" name="" id="" value="" placeholder="搜一搜西式快餐" />
+						</div>
+					</div>-->
+					<ul class="bus-sel-grp flex-box">
+						<li class="food-btn">美食</li>
+						<li class="near-btn">附近</li>
+						<li class="sort-btn">智能排序</li>
+						<li class="filter-btn">筛选</li>
+					</ul>
+					<div id="wrapper">
+						<div id="scroller">
+							<ul class="businessmen-list" id="thelist">
+								<li>
+									<a class="flex-box" href="">
+										<img class="businessmen-img" src="images/bs-list-img.png"/>
+										<div class="bus-list-infbox">
+											<h5 class="text-over">南京大排挡（南京路店）</h5>
+											<p class="renjun text-over"><em>月人均人气78</em><img src="images/fire.png"/><img src="images/fire.png"/><img src="images/fire.png"/><span>人均47元</span></p>
+											<p class="caixi text-over">浙江菜 公主坟/万寿路 3.9KM </p>
+											<p class="quan text-over"><img src="images/zan.png"/> 30元代金券</p>
+											<p class="manjian text-over"><img src="images/bus-minus.png"/> 满5元</p>
+										</div>
+									</a>
+								</li>
+							</ul>
+							<div id="pullUp">
+								<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+							</div>
+						</div>
+					</div>
+					<div class="select-show-box">
+						<div class="food-box">
+							<div class="clearfix">
+								<div class="foodbox-left">
+									<ul class="foodbox-left-list">
+										<li>全部分类</li>
+										<li class="active">美食</li>
+										<li>全部分类</li>
+										<li>美食</li>
+										<li>全部分类</li>
+										<li>美食</li>
+										<li>全部分类</li>
+										<li>美食</li>
+										<li>全部分类</li>
+										<li>美食</li>
+										<li>全部分类</li>
+										<li>美食</li>
+										<li>全部分类</li>
+										<li>美食</li>
+									</ul>
+								</div>
+								<div class="foodbox-right">
+									<ul class="foodbox-right-list">
+										<li>全部美食</li>
+										<li>中餐</li>
+										<li>全部美食</li>
+										<li>中餐</li>
+										<li>全部美食</li>
+										<li>中餐</li>
+										<li>全部美食</li>
+										<li>中餐</li>
+										<li>全部美食</li>
+										<li>中餐</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="near-box">
+							<div class="clearfix">
+								<ul class="nearbox-left">
+									<li class="active">附近</li>
+									<li>热门商圈</li>
+									<li>朝阳区</li>
+									<li>海淀区</li>
+								</ul>
+								<ul class="nearbox-right">
+									<li>1km</li>
+									<li>3km</li>
+									<li>5km</li>
+									<li>10km</li>
+									<li>附近</li>
+								</ul>
+							</div>
+						</div>
+						<div class="sort-box">
+							<ul class="sort-list">
+								<li class="active">智能排序</li>
+								<li>人气优先</li>
+								<li>离我最近</li>
+								<li>回头客最多</li>
+								<li>我的优惠</li>
+								<li>畅销单品</li>
+							</ul>
+						</div>
+						<div class="filter-box">
+							<div class="">
+								<div class="filter-list-box">
+									<h5>优惠和权益</h5>
+									<ul class="sel-offer-list clearfix">
+										<li>折扣</li>
+										<li>优惠券</li>
+										<li>买单立减</li>
+										<li>储值卡</li>
+									</ul>
+									<h5>服务</h5>
+									<ul class="sel-server-list clearfix">
+										<li>点菜</li>
+										<li>排号</li>
+										<li>预订</li>
+										<li>外卖</li>
+										<li>包厢</li>
+										<li>无地沟油</li>
+										<li>营业中</li>
+									</ul>
+									<h5>价格</h5>
+									<ul class="sel-price-list clearfix">
+										<li>50以下</li>
+										<li>50-100</li>
+										<li>100-300</li>
+										<li>300以上</li>
+									</ul>
+								</div>
+									<div class="bus-sel-btngrp-box flex-box">
+										<button class="flex1 bus-sel-reset" type="button">重置</button>
+										<button class="flex1 bus-sel-confirm" type="button">确定</button>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--主题推荐-->
+				<div class="theme-box">
+					主题推荐
+				</div>
+				<!--时下特惠-->
+				<div class="offer-box" style="display: none;">
+					<h2>时下特惠</h2>
+					<ul class="offer-list">
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+						<li class="flex-box">
+							<img class="offer-ls-img" src="images/offer-list-img.jpg"/>
+							<div class="offer-ls-name">
+								<h5 class="text-over">印巷小馆</h5>
+								<p class="text-over"><span>10</span>元代金券<em>满55元可用</em></p>
+							</div>
+							<div class="offer-ls-lingqu">
+								<h5>免费领</h5>
+								<p>已领340593</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<audio id="music-player" src=""></audio>
+	<!--<div class="loading-box">
+		<img src="images/page-loading.gif" alt="" />
+	</div>-->
+</body>
+	<script src="js/jquery-1.11.0.js"></script>
+	<!--去除JQ M默认行为-->
+	<script type="text/javascript">
+		$("button").attr('data-role','none');  
+		$("select,input").attr('data-role','none'); 
+	</script>
+	<script src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script src="js/swiper-3.3.1.jquery.min.js"></script>
+	<script src="js/swiper.animate1.0.2.min.js"></script>
+	<script src="js/modile-scenic.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+
+var myScroll,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+
+
+/**
+ * 滚动翻页 （自定义实现此方法）
+ * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+ */
+function pullUpAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		var el, li, i;
+		el = document.getElementById('thelist');
+
+		for (i=0; i<3; i++) {
+		li = document.createElement('li');
+		li.innerHTML = '<a class="flex-box" href=""><img class="businessmen-img" src="images/bs-list-img.png"/><div class="bus-list-infbox">'+
+						'<h5 class="text-over">南京大排挡（南京路店）</h5><p class="renjun text-over"><em>月人均人气78</em><img src="images/fire.png"/><img src="images/fire.png"/><img src="images/fire.png"/><span>人均47元</span></p><p class="caixi text-over">浙江菜 公主坟/万寿路 3.9KM </p><p class="quan text-over"><img src="images/zan.png"/> 30元代金券</p><p class="manjian text-over"><img src="images/bus-minus.png"/> 满5元</p></div></a>';
+					el.appendChild(li);
+		}
+		
+		myScroll.refresh();		// 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+}
+
+/**
+ * 初始化iScroll控件
+ */
+function loaded() {
+//	pullDownEl = document.getElementById('pullDown');
+//	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpEl = document.getElementById('pullUp');	
+	pullUpOffset = pullUpEl.offsetHeight;
+	
+	myScroll = new iScroll('wrapper', {
+		scrollbarClass: 'myScrollbar', /* 重要样式 */
+		useTransition: false, /* 此属性不知用意，本人从true改为false */
+		topOffset: 0,
+		onRefresh: function () {
+			if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+			}
+		},
+		onScrollMove: function () {
+			console.log(this.y);
+			console.log(this.maxScrollY);
+			 if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+				this.maxScrollY = pullUpOffset;
+			}
+		},
+		onScrollEnd: function () {
+			if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';				
+			}
+			pullUpAction();	// Execute custom function (ajax call?)
+		}
+	});
+	
+	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+}
+
+//初始化绑定iScroll控件 
+document.getElementById('wrapper').addEventListener('touchmove', function (e) { 
+	if($(e.target).closest("#scroller")){
+		console.log(1);
+		e.preventDefault(); 
+	} }, false);
+document.addEventListener('DOMContentLoaded', loaded, false); 
+
+
+//id方案
+/*var touchUpDown= (function(params){
+	var touchUpDown={
+		y:null,
+		oldY:null,
+		newY:null,
+		domObj:params.name,
+		init:function(){
+			var _this= touchUpDown;
+			var swipObj=document.getElementById(_this.domObj) || document.getElementsByClassName(_this.domObj)[0];
+			console.log(swipObj);
+			swipObj.addEventListener("touchstart",_this.touchStart,false);
+			swipObj.addEventListener("touchend",_this.touchEnd,false);
+//			swipObj.addEventListener("touchmove",_this.touchmove,false);
+		},
+		touchStart:function(event) {
+			var event = event || window.event;  
+//			console.log(event.touches[0].screenY);
+			this.oldY=event.touches[0].clientY;
+			console.log(this.oldY);
+		},
+		touchEnd:function(event){
+			var event = event || window.event;
+			this.newY=event.changedTouches[0].clientY;
+			distanceY = this.newY-this.oldY;
+			thisObj=document.getElementById('base-high-sw-btn');
+			if(Math.abs(distanceY)>10){
+				if(distanceY<0){
+				    console.log('往上滑动');
+				    if(thisObj.className== "swiper-down-btn swiper-up-btn") {
+						businessCircle.collapseBaseBox(thisObj)
+					}else {
+						  return;
+					}
+				}else if(distanceY>0){
+					console.log('往下滑动');
+					if(thisObj.className== "swiper-down-btn") {
+						businessCircle.collapseBaseBox(thisObj)
+					}else {
+						  return;
+					}
+				}
+			}
+		},
+		touchmove:function(event){
+			var event = event || window.event; 
+		    this.newY = event.touches[0].clientY;
+		    console.log(this.newY);
+//		    document.getElementsByClassName("base-high-bottom")[0].style.top=this.newY;
+//		    var _this=event.target;
+//		    console.log(_this);
+		    //获取滑动距离
+		    distanceY = this.newY-this.oldY;
+//		    console.log(distanceY);
+//			if(Math.abs(distanceY)>10){
+//				if(distanceY<0){
+//				    console.log('往上滑动');
+//				    businessCircle.collapseScene(_this);
+//				    return;
+//				}else if(distanceY>0){
+//					businessCircle.collapseScene(_this);
+//				    console.log('往下滑动');
+//				    return;
+//				}
+//			}
+		}
+	}
+	return touchUpDown;
+})({
+	name:"base-head-wp",
+})*/
+
+//类方案查找按钮
+
+var touchUpDown= (function(params){
+	var touchUpDown={
+		y:null,
+		oldY:null,
+		newY:null,
+		domObj:params.name,
+		init:function(){
+			var _this= touchUpDown;
+			var swipObj=document.getElementsByClassName("tapSlide-all-box");
+			console.log(swipObj);
+			for(var i = 0 ;i <swipObj.length;i++) {
+				swipObj[i].addEventListener("touchstart",_this.touchStart,false);
+				swipObj[i].addEventListener("touchend",_this.touchEnd,false);
+			}
+//			swipObj.addEventListener("touchmove",_this.touchmove,false);
+		},
+		touchStart:function(event) {
+			var event = event || window.event;  
+//			console.log(event.touches[0].screenY);
+			this.oldY=event.touches[0].clientY;
+			console.log(this.oldY);
+		},
+		touchEnd:function(event){
+			var event = event || window.event;
+			console.log(event.target);
+			var eventObjBtn = $(event.target).closest(".base-high-addr").prev().find("button");
+			console.log(eventObjBtn);
+			this.newY=event.changedTouches[0].clientY;
+			distanceY = this.newY-this.oldY;
+			thisObj=eventObjBtn.get(0);
+			if(Math.abs(distanceY)>10){
+				if(distanceY<0){
+				    console.log('往上滑动');
+//				    if(thisObj.className== "swiper-down-btn swiper-up-btn") {
+//						businessCircle.collapseBaseBox(thisObj)
+//					}else {
+//						  return;
+//					}
+				}else if(distanceY>0){
+					console.log('往下滑动');
+//					if(thisObj.className== "swiper-down-btn") {
+//						businessCircle.collapseBaseBox(thisObj)
+//					}else {
+//						  return;
+//					}
+				}
+			}
+		},
+		touchmove:function(event){
+			var event = event || window.event; 
+		    this.newY = event.touches[0].clientY;
+		    console.log(this.newY);
+//		    document.getElementsByClassName("base-high-bottom")[0].style.top=this.newY;
+//		    var _this=event.target;
+//		    console.log(_this);
+		    //获取滑动距离
+		    distanceY = this.newY-this.oldY;
+//		    console.log(distanceY);
+//			if(Math.abs(distanceY)>10){
+//				if(distanceY<0){
+//				    console.log('往上滑动');
+//				    businessCircle.collapseScene(_this);
+//				    return;
+//				}else if(distanceY>0){
+//					businessCircle.collapseScene(_this);
+//				    console.log('往下滑动');
+//				    return;
+//				}
+//			}
+		}
+	}
+	return touchUpDown;
+})({
+	name:"tapSlide-all-box",
+})
+
+var res={
+	"resultStr":"http://weixin.qq.com/r/EGJkTbEW2skrXLy96QB",
+	"errMsg":"scanQRCode:ok"
+}
+$(document).ready(function(){
+	
+	$(".map-btn").on("tap",function(){
+		alert("map");
+		wx.scanQRCode({
+		    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+		    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+		    success: function (res) {
+		    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+		    alert(result);
+		}
+		});
+	})
+})
+
+wx.ready(function(){
+	alert("weixin")
+});
+wx.error(function(res){alert(res)});
+
+document.addEventListener('DOMContentLoaded', touchUpDown.init, false); 
+console.log(wx.scanQRCode)
+
+var myScan=function(a) {
+	a = a || {}, c("scanQRCode", {
+		needResult: a.needResult || 0,
+		scanType: a.scanType || ["qrCode", "barCode"]
+	}, function() {
+		return a._complete = function(a) {
+			var b, c;
+			y && (b = a.resultStr, b && (c = JSON.parse(b), a.resultStr = c && c.scan_code && c.scan_code.scan_result))
+		}, a
+	}())
+}
+
+
+//临时点击事件
+$(function(){
+	$(".bus-sel-grp").on('tap', 'li',function(){
+		if($(this).hasClass("active")) {
+			$(".select-show-box").fadeOut();
+		}else {
+			$(this).addClass("active").siblings().removeClass("active");
+			var ind= $(this).index();
+			$(".select-show-box").show().children("div").eq(ind).fadeIn().siblings().hide();
+		}
+		
+	});
+	$(".foodbox-left,.sort-list,.nearbox-left,.nearbox-right,.sel-price-list,.sel-server-list,.sel-offer-list").on('tap', 'li',function(){
+		if(this.className == "active") {
+			this.className="";
+		}else {
+			$(this).addClass("active").siblings().removeClass("active");
+		}
+	});
+})
+
+</script>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>景区头条</title>
+		<link rel="stylesheet" type="text/css" href="css/index-reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body class="color-body ">
+		<header>
+			<div class="header base-width">
+				<div class="pull-left"><img src="images/logo.png"/></div>
+				<ul class="pull-left manu-list">
+					<li><a href="index.html">景区景点</a></li>
+					<li class="active"><a href="headlines.html">景区头条</a></li>
+					<li><a href="scenic-spot-list.html">景区特色</a></li>
+				</ul>
+				<div class="pull-right">
+					<span class="user-name">用户：TOM</span>
+					<button class="exit-btn" type="button">退出登录</button>
+				</div>
+			</div>
+		</header>
+		
+		<div class="headlines-box base-width">
+			<div class="shadow-box shadow-box-first">
+				<p class="scenic-area-title lg-title">景区头条</p>
+				<div class="activity-inf-box">
+					<div class="input-box">
+						<label>头条名称</label>
+						<div>
+							<input class="max-input" type="text" name="" id="" value="" placeholder="请输入名称" />
+						</div>
+						<label>头条来源</label>
+						<div>
+							<input class="max-input" type="text" name="" id="" value="" placeholder="请输入来源网址" />
+						</div>
+						<label>发布时间</label>
+						<div>
+							<input class="max-input" type="text" name="" id="" value="" placeholder="请输入显示时间" />
+						</div>
+						<label>权重</label>
+						<div>
+							<select name="" class="max-input">
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+								<option value="">6</option>
+								<option value="">7</option>
+								<option value="">8</option>
+								<option value="">9</option>
+								<option value="">10</option>
+							</select>
+						</div>
+						<label>封面图</label>
+						<div class="clearfix">
+							<div class="updata-box activity-sm-input pull-left" style="height: 196px;">
+								<img class="updata-img" style="margin-top: 34px;" src="images/activity-updata.png">
+								<p class="updata-tip">点击或拖拽上传封面照片（限一张，格式为jpg)</p>
+							</div>
+							<div class="pull-left" style="margin-left: 50px;">
+								<div class="activity-view-box">
+									<img class="activity-view-img" src="images/activity-view.png"/>
+								</div>
+								<div class="activity-btn-grp clearfix">
+									<button class="pull-left" type="button">预览</button>
+									<button class="pull-right" type="button">选用</button>
+								</div>
+							</div>
+						</div>
+						<label>活动内容介绍</label>
+						<div>
+							<textarea class="textarea-inp" placeholder="请输入编辑内容" maxlength="200" name="" rows="" cols=""></textarea>
+						</div>
+						<label></label>
+						<div>
+							<div class="sub-button-grp">
+								<button class="save-btn">保存<tton>
+								<button class="cancel-btn">取消<tton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="shadow-box">
+				<p class="scenic-area-title lg-title">详细信息</p>
+				<div class="activity-inf-box">
+					<div class="input-box">
+						<label>景区地址</label>
+						<div id="citySelect">
+							<select class="base-sel prov" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr ">省</label>
+							<select class="base-sel city" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr">市</label>
+							<select class="base-sel dist" name="grade">
+								<option value="">请选择</option>
+							</select>
+							<label class="inside-label label-addr inside-label-last">县／区</label>
+							<input class="addr-input" type="text" name="" id="" value="" placeholder="请输入景区详细地址" />
+						</div>
+						<label>电子导航图</label>
+						<div>
+							<div class="map">
+								<img src="images/map.png" style="display: block;width: 100%;height: 100%;"/>
+							</div>
+						</div>
+						<label>活动介绍</label>
+						<div style="position: relative;">
+							<textarea class="textarea-inp" placeholder="请输入活动介绍" maxlength="200" name="" rows="" cols=""></textarea>
+							<span class="textarea-number">0/200</span>
+						</div>
+						<label>是否有门票</label>
+						<div class="radio-box">
+								<input class="checkbox-type" type="checkbox" name="" id="" value="正星球图" />
+								<span class="check-name">是</span>
+								<input class="checkbox-type" type="checkbox" name="" id="" value="反星球图" />
+								<span class="check-name">否</span>
+								<input type="text" name="" id="" value="" placeholder="请输入门票价格" style="width: 471px;" />
+						</div>
+						<label>交通攻略</label>
+						<div style="position: relative;">
+							<textarea class="textarea-inp" placeholder="请输入交通攻略" maxlength="200" name="" rows="" cols=""></textarea>
+							<span class="textarea-number">0/200</span>
+						</div>
+						<label></label>
+						<div class="sub-button-grp">
+								<button class="save-btn">保存</button>
+								<button class="cancel-btn">取消</button>
+							</div>
+					</div>
+				</div>
+			</div>-->
+			<div class="shadow-box">
+				<div class="clearfix head-title-box ">
+					<p class="pull-left head-title"  role="button" data-toggle="collapse" href="#headlines-1" aria-expanded="false" aria-controls="collapseExample">头条名称：故宫二人转</p>
+					<div class="pull-right">
+						<button type="button" class="head-edit-btn"><img src="images/edit-btn.png"/> 编辑</button>
+						<button type="button" class="head-del-btn"><img src="images/del-btn.png"/> 删除</button>
+					</div>
+				</div>
+				<div class="collapse" id="headlines-1">
+				 <div class="head-list-detial">
+				 	<h5>头条来源：<span class="from">途牛旅游</span> 发布时间：<span>2017年6月1日 17:00</span></h5>
+				 	<div class="">
+				 		<p>在9周年庆大促活动中，途牛开启“万元大红包”大派送模式，这一出游省钱利器受到众多用户追捧。截至10月28日24时，已有近600万用户领取“万元大红包”。此外，更多用户已使用“万元大红包”，预订国内“赏秋”游、出境“反季游”等主题旅游产品。</p>
+						<p>针对“双11”活动，途牛继续放大招，再降“红包雨”。从10月26日开始，途牛提前向用户发放“双11”红包，涵盖国内游、出境游以及周边游等产品，活动将持续至11月12日。李媛表示，用户在途牛预订旅游产品时，不仅享受最高立减等价格优惠，还可使用“双11”红包，在立减基础上可享最高再降1100元的福利，出游更省钱，剁手党不用担心钱包突然大瘦身。</p>
+				 	</div>
+				 </div>
+				</div>
+			</div>
+			<div class="shadow-box">
+				<div class="clearfix head-title-box ">
+					<p class="pull-left head-title"  role="button" data-toggle="collapse" href="#headlines-2" aria-expanded="false" aria-controls="collapseExample">头条名称：故宫二人转</p>
+					<div class="pull-right">
+						<button type="button" class="head-edit-btn"><img src="images/edit-btn.png"/> 编辑</button>
+						<button type="button" class="head-del-btn"><img src="images/del-btn.png"/> 删除</button>
+					</div>
+				</div>
+				<div class="collapse" id="headlines-2">
+				 <div class="head-list-detial">
+				 	<h5>头条来源：<span class="from">途牛旅游</span> 发布时间：<span>2017年6月1日 17:00</span></h5>
+				 	<div class="">
+				 		<p>在9周年庆大促活动中，途牛开启“万元大红包”大派送模式，这一出游省钱利器受到众多用户追捧。截至10月28日24时，已有近600万用户领取“万元大红包”。此外，更多用户已使用“万元大红包”，预订国内“赏秋”游、出境“反季游”等主题旅游产品。</p>
+						<p>针对“双11”活动，途牛继续放大招，再降“红包雨”。从10月26日开始，途牛提前向用户发放“双11”红包，涵盖国内游、出境游以及周边游等产品，活动将持续至11月12日。李媛表示，用户在途牛预订旅游产品时，不仅享受最高立减等价格优惠，还可使用“双11”红包，在立减基础上可享最高再降1100元的福利，出游更省钱，剁手党不用担心钱包突然大瘦身。</p>
+				 	</div>
+				 </div>
+				</div>
+			</div>
+			<div class="shadow-box">
+				<div class="clearfix head-title-box ">
+					<p class="pull-left head-title"  role="button" data-toggle="collapse" href="#headlines-3" aria-expanded="false" aria-controls="collapseExample">头条名称：故宫二人转</p>
+					<div class="pull-right">
+						<button type="button" class="head-edit-btn"><img src="images/edit-btn.png"/> 编辑</button>
+						<button type="button" class="head-del-btn"><img src="images/del-btn.png"/> 删除</button>
+					</div>
+				</div>
+				<div class="collapse" id="headlines-3">
+				 <div class="head-list-detial">
+				 	<h5>头条来源：<span class="from">途牛旅游</span> 发布时间：<span>2017年6月1日 17:00</span></h5>
+				 	<div class="">
+				 		<p>在9周年庆大促活动中，途牛开启“万元大红包”大派送模式，这一出游省钱利器受到众多用户追捧。截至10月28日24时，已有近600万用户领取“万元大红包”。此外，更多用户已使用“万元大红包”，预订国内“赏秋”游、出境“反季游”等主题旅游产品。</p>
+						<p>针对“双11”活动，途牛继续放大招，再降“红包雨”。从10月26日开始，途牛提前向用户发放“双11”红包，涵盖国内游、出境游以及周边游等产品，活动将持续至11月12日。李媛表示，用户在途牛预订旅游产品时，不仅享受最高立减等价格优惠，还可使用“双11”红包，在立减基础上可享最高再降1100元的福利，出游更省钱，剁手党不用担心钱包突然大瘦身。</p>
+				 	</div>
+				 </div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-box">
+			<div class="modal-cont">
+				<img src="images/del-tip.png"/>
+				<span>确认删除吗？</span>
+				<div>
+					<button class="modal-confirm">确定</button>
+					<button class="modal-cancel">取消</button>
+				</div>
+			</div>
+		</div>
+ 
+		<script src="js/jquery-2.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/cloud-business.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cityselect.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				businessCircle.isIe()
+
+				 $("#citySelect").citySelect({  
+			           nodata: "none",  
+			           required: false
+			     }); 
+//			      $("#citySelect").citySelect({  
+//		           nodata: "none",  
+//		           required: false
+//		//         prov:"北京",  
+//		//         city:"北京",  
+//		//         dist:"东城区"  
+//		     }); 
+			})
+		</script>
+	</body>
+	
+</html>

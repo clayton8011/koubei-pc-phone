@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title>活动内容</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+		<!-- <link rel="stylesheet" type="text/css" href="../swiper/swiper-3.3.1.min.css"/> -->
+	</head>
+	<body>
+		<header class="head activity-head" data-role="header">
+			<!-- <div class="back-box"> -->
+				<button class="back-btn-base" data-rel="back" type="button" data-add-back-btn="true" >返回</button>
+				<div class="headlines-box" style="background: none;height: 2.5rem;">
+				</div>
+				<button class="more-btn-base" type="button"></button>
+
+			<!-- </div> -->
+		</header>
+		<div class="activity-body">
+			<div class="activity-banner">
+				<img src="images/activity-content-head.jpg"/>
+			</div>
+			<div class="base-addr flex-box base-high-addr" style="box-shadow: 0 1px 4px #f2f1f1;">
+				<img class="bus-cir-img" src="images/shangquan-name.png">
+				<div class="flex1">
+					<h5>三里屯太古里</h5>
+					<p class="text-over">朝阳区三里屯路19号院</p>
+				</div>
+				<button class="by-car-btn" type="button"> 打车去</button>
+			</div>
+			<div class="activity-inf-box">
+				<div>
+					<div class="activity-section">
+						<p class="inf-base-tip"><img src="images/scenic-time.png"/><b>开放时间：</b><span>全天开放</span>全天开放</p>
+						<p class="inf-base-tip"><img src="images/scenic-ticket.png"/><b>门票价格：</b><span>免费</span>免费</p>
+						<p class="inf-base-tip inf-base-tip-last" id="to-line-show"><img src="images/about-line.png"/><b>相关路线</b><img class="line-more" src="images/tourtiao-more.png"/></p>
+					</div>
+					<div class="activity-gr-line"></div>
+				</div>
+				<div>
+					<div class="activity-section">
+						<h5>活动介绍</h5>
+						<p>什刹海也写作“十刹海”，四周原有十座佛寺，故有此称。随着时间发展逐渐形成西海﹑后海﹑前海，三海水道相通。自清代起就成为游乐消夏之所。三海碧波荡漾，岸边垂柳毵毵，远山秀色如黛，风光绮丽，为燕京胜景之一。今天，这里仍旧保存着十分难得的自然景观和人文胜迹交相辉映的历史风貌，宋庆龄故居、郭沫若故居、恭王府花园、广化寺、火神庙、钟鼓楼和银锭桥等古迹将什刹海点缀得美丽灿烂。
+近年来，什刹海酒吧街已成为京城夜色中最热闹的地方之一。这里还聚集着众多北京风味的特色餐厅。你可以品酒泛舟，览湖光粼粼，或徜徉两岸，听杨柳婆娑，或搜寻美食，尝御膳家宴，或投宿胡同人家品着原汁的京味儿。</p>
+					</div>
+					<div class="activity-gr-line"></div>
+				</div>
+				<div>
+					<div class="activity-section" style="padding: ;">
+						<h5>其他活动</h5>
+						<div class="swiper-container" id="other-activity-list">
+						        <div class="swiper-wrapper">
+						        	<div class="swiper-slide"><img src="images/other-activity.jpg"/><p>端午活动</p></div>
+						        	<div class="swiper-slide"><img src="images/other-activity.jpg"/><p>遇见什刹海</p></div>
+						        	<div class="swiper-slide"><img src="images/other-activity.jpg"/><p>赏荷季</p></div>
+						        	<div class="swiper-slide"><img src="images/other-activity.jpg"/><p>赏荷季赏荷季赏荷季赏荷季</p></div>
+					       		</div>
+				        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="activity-modal">
+			<div class="ac-modal-conetent">
+				<div class="ac-modal-box">
+					<div class="ac-modal-head">相关线路</div>
+					<div class="ac-moal-detial">
+						<h5>1.公交</h5>
+						<p>地安门外站——60路; 82路; 90内; 90外; 107路; 124路; 204夜班车内; 204夜班车外；</p>
+						<p>北海北门站——13路; 42路; 90内; 90外; 107路; 111路; 118路; 204夜班车内; 204夜班车外; 609路; 612路; 623路; 701路；</p>
+						<p class="last-ac-de-row">地安门内站——5路; 111路; 124路; 210路夜班车; 609路</p>
+						<h5>2.地铁</h5>
+						<p class="last-ac-de-row">地铁6号线——北海北门站</p>
+					</div>
+				</div>
+				<button class="ac-close-btn"></button>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.0.js"></script>
+	<!--去除JQ M默认行为-->
+	<script type="text/javascript">
+		$("button").attr('data-role','none');  
+		$("select").attr('data-role','none'); 
+	</script>
+	<script src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script src="js/swiper-3.3.1.jquery.min.js"></script>
+	<script src="js/swiper.animate1.0.2.min.js"></script>
+	<script src="js/modile-scenic.js" type="text/javascript" charset="utf-8"></script>
+</html>
